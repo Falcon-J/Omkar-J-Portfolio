@@ -1,5 +1,5 @@
 
-# 🌐 Portfolio 2.0
+# 🌐 Omkar's Portfolio
 
 A modern, responsive, and accessible developer portfolio built using **Next.js 13**, **TypeScript**, and **Tailwind CSS**.
 
