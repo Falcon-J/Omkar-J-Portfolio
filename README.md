@@ -5,7 +5,7 @@ A modern, responsive, and accessible developer portfolio built using **Next.js 1
 
 ## 🚀 Live Demo
 
-🔗 Check it out here: [portfolio-2-0-seven-theta.vercel.app](https://portfolio-2-0-seven-theta.vercel.app)
+🔗 Check it out here: [https://omkar-s-portfolio-two.vercel.app](https://omkar-s-portfolio-two.vercel.app/)
 
 ## 🧱 Tech Stack
 
