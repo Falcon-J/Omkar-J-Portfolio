@@ -19,7 +19,7 @@ export default function ContactPage() {
       <section className="py-20 relative z-0">
         <div className="container">
           <FadeIn>
-            <h1 className="text-4xl font-bold mb-16 text-center text-navy">
+            <h1 className="text-4xl font-bold mb-16 text-center text-[var(--color-secondary)]">
               Get In Touch
             </h1>
           </FadeIn>

@@ -16,7 +16,7 @@ const getProjectData = (slug: string) => {
       description:
         "A high-performance personal portfolio website showcasing my skills, projects, and experience. Built with React, Tailwind CSS, and Redux to create a responsive and engaging user experience.",
       image: "/screenshots/homepage.jpg",
-      tags: ["Next.js", "Tailwind CSS",  "TypeScript", "Firebase", "Redux"],
+      tags: ["Next.js", "Tailwind CSS", "TypeScript", "Firebase", "Redux"],
       features: [
         "Developed a high-performance personal portfolio, improving load times by 40% and boosting user engagement.",
         "Enhanced UI/UX with Tailwind CSS, reducing development time by 20% and ensuring responsiveness across devices.",
@@ -72,6 +72,36 @@ const getProjectData = (slug: string) => {
       },
       github: "https://github.com/omkarjawalikar/traveltrouve",
       live: "https://traveltrouve.vercel.app",
+    },
+    "url-shortener": {
+      title: "URL Shortener",
+      description:
+        "A URL shortener built with Node.js and Express, featuring a user-friendly interface and analytics.",
+      image: "/placeholder.svg?height=600&width=1200",
+      tags: ["Node.js", "Express", "Next.js", "MongoDB", "Analytics"],
+      features: [
+        "Developed a URL shortener using Node.js and Express, reducing link length by 70% on average.",
+        "Implemented a user-friendly interface with React, enhancing user experience and engagement.",
+        "Integrated analytics to track link performance, providing users with insights on click rates and demographics.",
+      ],
+      challenges: [
+        "Ensuring reliable and unique short URL generation",
+        "Handling high traffic and concurrent requests efficiently",
+        "Providing real-time analytics without impacting performance",
+      ],
+      solutions: [
+        "Used hash algorithms and collision checks for unique short URLs",
+        "Implemented caching and optimized database queries for scalability",
+        "Leveraged asynchronous logging and aggregation for analytics",
+      ],
+      technologies: {
+        frontend: ["Next.js", "Tailwind CSS"],
+        backend: ["Node.js", "Express", "MongoDB"],
+        tools: ["Git", "Postman", "Figma"],
+        deployment: ["Vercel"],
+      },
+      github: "https://github.com/Falcon-J/urlshortner",
+      live: "https://url-shortner.vercel.app",
     },
   };
 

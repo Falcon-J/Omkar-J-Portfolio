@@ -42,7 +42,7 @@ export default function AboutPage() {
         <div className="container">
           <FadeIn>
             <motion.h1
-              className="text-5xl font-bold mb-16 text-center text-navy "
+              className="text-5xl font-bold mb-16 text-center text-[var(--color-secondary)] "
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}

@@ -6,23 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 export default function ExperiencePage() {
   return (
     <PageWrapper>
-       {/* Animated Background */}
-       {/* <div className="fixed inset-0 -z-10 ">
-        <div className="lines-pattern h-full w-full">
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-        </div>
-      </div> */}
+      
       <div className="fixed inset-0 -z-10">
         <div className="skill-grid h-full w-full">
           {Array.from({ length: 100 }).map((_, i) => (
@@ -42,7 +26,7 @@ export default function ExperiencePage() {
       <section className="py-20">
         <div className="container">
           <FadeIn>
-            <h1 className="text-4xl font-bold mb-16 text-center text-navy">Experience</h1>
+            <h1 className="text-4xl font-bold mb-16 text-center text-[var(--color-secondary)]">Experience</h1>
           </FadeIn>
 
           <Tabs defaultValue="professional" className="w-full">

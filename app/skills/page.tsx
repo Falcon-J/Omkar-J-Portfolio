@@ -1,21 +1,21 @@
 "use client";
 
-import { useState } from "react";
 import { PageWrapper } from "@/components/page-wrapper";
 import { FadeIn } from "@/components/fade-in";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Code, Database, Layers, Wrench } from "lucide-react";
 import { motion } from "framer-motion";
 
-export default function SkillsPage() {
-  const [activeCard, setActiveCard] = useState<number | null>(null);
+const PRIMARY_COLOR = "bg-[var(--color-primary)]";
+const SECONDARY_COLOR = "bg-[var(--color-secondary)]";
+const PRIMARY_TEXT = "text-[var(--color-primary)]";
+const SECONDARY_TEXT = "text-[var(--color-secondary)]";
 
+export default function SkillsPage() {
   const skillCategories = [
     {
       id: 1,
-      title: "Languages",
-      icon: <Code className="h-5 w-5 text-navy" />,
+      title: "Programming Languages",
+      icon: <Code className="h-5 w-5" />,
       skills: [
         "Python",
         "Java",
@@ -26,12 +26,11 @@ export default function SkillsPage() {
         "R",
         "SQL",
       ],
-      color: "bg-gradient-to-br from-indigo-600 to-blue-800",
     },
     {
       id: 2,
       title: "Frameworks & Libraries",
-      icon: <Layers className="h-5 w-5 text-navy" />,
+      icon: <Layers className="h-5 w-5" />,
       skills: [
         "React",
         "Next.js",
@@ -41,19 +40,17 @@ export default function SkillsPage() {
         "Scikit-learn",
         "TensorFlow",
       ],
-      color: "bg-gradient-to-br from-purple-600 to-indigo-800",
     },
     {
       id: 3,
       title: "Databases",
-      icon: <Database className="h-5 w-5 text-navy" />,
+      icon: <Database className="h-5 w-5" />,
       skills: ["MongoDB", "Firestore", "MySQL"],
-      color: "bg-gradient-to-br from-blue-600 to-cyan-800",
     },
     {
       id: 4,
-      title: "Tools & Platforms",
-      icon: <Wrench className="h-5 w-5 text-navy" />,
+      title: "Tools, Platforms & DevOps",
+      icon: <Wrench className="h-5 w-5" />,
       skills: [
         "Git",
         "GitHub",
@@ -63,115 +60,64 @@ export default function SkillsPage() {
         "Firebase",
         "Vercel",
       ],
-      color: "bg-gradient-to-br from-cyan-600 to-teal-800",
     },
   ];
 
   return (
     <PageWrapper>
-      {/* Creative animated background */}
-      <div className="fixed inset-0 -z-10">
-        <div className="skill-grid h-full w-full">
-          {Array.from({ length: 100 }).map((_, i) => (
-            <div
-              key={i}
-              className="skill-dot"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${Math.random() * 10 + 10}s`,
-              }}
-            ></div>
-          ))}
-        </div>
-      </div>
-
       <section className="py-24">
-        <div className="container">
-          <FadeIn>
-            <motion.h1
-              className="text-5xl font-bold mb-20 text-center text-[var(--color-primary)]"
-              initial={{ backgroundPosition: "0% 0%" }}
-              animate={{ backgroundPosition: "100% 100%" }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-            >
-              Technical Skills
-            </motion.h1>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {skillCategories.map((category, index) => (
-              <FadeIn key={category.id} delay={0.2 + index * 0.1}>
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() =>
-                    setActiveCard(
-                      activeCard === category.id ? null : category.id
-                    )
-                  }
-                  className="cursor-pointer"
-                >
-                  <Card
-                    className={`border-beige overflow-hidden transition-all duration-300 ${
-                      activeCard === category.id ? "shadow-xl" : "shadow-md"
+        <FadeIn>
+          <motion.h1
+            className="text-5xl font-bold mb-16 text-center text-[var(--color-secondary)] "
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Skills
+          </motion.h1>
+        </FadeIn>
+        <div className="container flex flex-col items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-8xl">
+            {skillCategories.map((cat, i) => (
+              <motion.div
+                key={cat.id}
+                className="rounded-xl shadow-lg p-8 flex flex-col items-center bg-white border "
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <div className="flex flex-row items-center gap-4">
+                  <h2
+                    className={`text-3xl font-bold mb-4 ${
+                      i % 2 === 0 ? PRIMARY_TEXT : SECONDARY_TEXT
                     }`}
                   >
-                    <div className={`h-2 ${category.color}`}></div>
-                    <CardHeader className="flex flex-row items-center justify-between">
-                      <CardTitle className="flex items-center gap-3 text-navy text-xl">
-                        <div
-                          className={`w-10 h-10 rounded-full flex items-center justify-center ${category.color} bg-opacity-20`}
-                        >
-                          {category.icon}
-                        </div>
-                        {category.title}
-                      </CardTitle>
-                      <motion.div
-                        animate={{
-                          rotate: activeCard === category.id ? 180 : 0,
-                        }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <div className="w-6 h-6 text-navy flex items-center justify-center">
-                          {activeCard === category.id ? "−" : "+"}
-                        </div>
-                      </motion.div>
-                    </CardHeader>
-                    <motion.div
-                      animate={{
-                        height: activeCard === category.id ? "auto" : "0px",
-                        opacity: activeCard === category.id ? 1 : 0,
-                      }}
-                      transition={{ duration: 0.3 }}
-                      className={`overflow-hidden`}
+                    {cat.title}
+                  </h2>
+                  <div
+                    className={`flex items-center justify-center w-12 h-12 rounded-full mb-4 ${
+                      i % 2 === 0 ? PRIMARY_COLOR : SECONDARY_COLOR
+                    }`}
+                  >
+                    {cat.icon}
+                  </div>
+                </div>
+                <ul className="flex flex-wrap gap-2 justify-center">
+                  {cat.skills.map((skill) => (
+                    <li
+                      key={skill}
+                      className={`px-3 py-1 rounded-full text-md font-semibold shadow ${
+                        i % 2 === 0
+                          ? "bg-[var(--color-primary)/10] text-[var(--color-primary)]"
+                          : "bg-[var(--color-secondary)/10] text-[var(--color-secondary)]"
+                      }`}
                     >
-                      <CardContent className="pt-4">
-                        <div className="flex flex-wrap gap-2">
-                          {category.skills.map((skill) => (
-                            <motion.div
-                              key={skill}
-                              whileHover={{ scale: 1.1 }}
-                              whileTap={{ scale: 0.95 }}
-                            >
-                              <Badge
-                                className={`${category.color} hover:opacity-90 text-white px-3 py-1 text-sm`}
-                              >
-                                {skill}
-                              </Badge>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </motion.div>
-                  </Card>
-                </motion.div>
-              </FadeIn>
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
             ))}
           </div>
 
@@ -180,7 +126,7 @@ export default function SkillsPage() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.8 }}
+            transition={{ delay: 0.2 }}
           >
             <p className="text-navy/70 max-w-2xl mx-auto">
               Continuously expanding my knowledge and staying current with the

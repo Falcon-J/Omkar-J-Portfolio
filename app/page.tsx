@@ -1,5 +1,5 @@
 "use client";
-
+import Mbinterest from '@/components/mbinterest';
 import { Button } from "@/components/ui/button";
 import {
   Github,
@@ -23,12 +23,11 @@ import { PageWrapper } from "@/components/page-wrapper";
 import { FadeIn } from "@/components/fade-in";
 import { FlipCard } from "@/components/flip-card";
 import { IconReveal } from "@/components/icon-reveal";
-import Folder from "@/components/folder";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import Interestsection from "@/components/Interestsection";
 export default function Home() {
-  const [interestsOpen, setInterestsOpen] = useState(false);
 
   return (
     <PageWrapper>
@@ -97,117 +96,13 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <hr></hr>
 
       {/* Quick Stats Section */}
 
       {/* Personal Interests Section */}
-      <section className="py-16 bg-transparent relative">
-        <div className="container">
-          <FadeIn delay={0.3}>
-            <div className="flex justify-center">
-              <div className="text-center mt-20">
-                <Folder
-                  color="#6366f1"
-                  size={2}
-                  items={[
-                    // Tech Card
-                    <div
-                      key="tech-card"
-                      className="w-full h-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-indigo-50 to-indigo-100 shadow-md rounded-lg"
-                    >
-                      <div className="bg-indigo-100 p-2 rounded-full mb-2">
-                        <Laptop className="h-6 w-6 text-indigo-500" />
-                      </div>
-                      <h3 className="text-sm font-semibold text-indigo-700">
-                        Tech
-                      </h3>
-                      <p className="text-xs text-indigo-600/80 mt-1">
-                        Exploring new technologies
-                      </p>
-                    </div>,
-
-                    // Music Card
-                    <div
-                      key="music-card"
-                      className="w-full h-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-pink-50 to-pink-100 shadow-md rounded-lg"
-                    >
-                      <div className="bg-pink-100 p-2 rounded-full mb-2">
-                        <Music className="h-6 w-6 text-pink-500" />
-                      </div>
-                      <h3 className="text-sm font-semibold text-pink-700">
-                        Music
-                      </h3>
-                      <p className="text-xs text-pink-600/80 mt-1">
-                        Discovering diverse genres
-                      </p>
-                    </div>,
-
-                    // Cars Card
-                    <div
-                      key="cars-card"
-                      className="w-full h-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-orange-50 to-orange-100 shadow-md rounded-lg"
-                    >
-                      <div className="bg-orange-100 p-2 rounded-full mb-2">
-                        <Car className="h-6 w-6 text-orange-500" />
-                      </div>
-                      <h3 className="text-sm font-semibold text-orange-700">
-                        Cars
-                      </h3>
-                      <p className="text-xs text-orange-600/80 mt-1">
-                        Automotive design & engineering
-                      </p>
-                    </div>,
-
-                    // Badminton Card
-                    <div
-                      key="badminton-card"
-                      className="w-full h-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-green-50 to-green-100 shadow-md rounded-lg"
-                    >
-                      <div className="bg-green-100 p-2 rounded-full mb-2">
-                        <Award className="h-6 w-6 text-green-500" />
-                      </div>
-                      <h3 className="text-sm font-semibold text-green-700">
-                        Badminton
-                      </h3>
-                      <p className="text-xs text-green-600/80 mt-1">
-                        Competitive matches
-                      </p>
-                    </div>,
-
-                    // Stories Card
-                    <div
-                      key="stories-card"
-                      className="w-full h-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 shadow-md rounded-lg"
-                    >
-                      <div className="bg-blue-100 p-2 rounded-full mb-2">
-                        <BookOpen className="h-6 w-6 text-blue-500" />
-                      </div>
-                      <h3 className="text-sm font-semibold text-blue-700">
-                        Stories
-                      </h3>
-                      <p className="text-xs text-blue-600/80 mt-1">
-                        Books, films & narratives
-                      </p>
-                    </div>,
-                  ]}
-                />
-              </div>
-            </div>
-
-            <div className="text-center mt-10">
-              <motion.h2
-                className="text-3xl md:text-4xl font-bold text-[var(--color-primary)] inline-flex items-center gap-2"
-                
-                whileTap={{ scale: 0.95 }}
-              >
-                Things I{" "}
-                <span className="text-[var(--color-secondary)]">Love</span>
-              </motion.h2>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+      <Interestsection/>
+      {/* Mobile Interests Section */}
+      <Mbinterest />           
     </PageWrapper>
   );
 }

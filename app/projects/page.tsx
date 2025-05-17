@@ -15,24 +15,42 @@ import Link from "next/link";
 
 export default function ProjectsPage() {
   const projects = [
-    {
-      id: 1,
-      title: "Portfolio Website",
-      slug: "portfolio-website",
-      description:
-        "A high-performance personal portfolio website showcasing my skills, projects, and experience.",
-      image: "/screenshots/homepage.jpg",
-      tags: ["Next.js", "Tailwind CSS",  "TypeScript", "Firebase", "Redux"],
-      features: [
-        "Developed a high-performance personal portfolio, improving load times by 40% and boosting user engagement.",
-        "Enhanced UI/UX with Tailwind CSS, reducing development time by 20% and ensuring responsiveness across devices.",
-        "Implemented Redux for efficient state management across 50+ components, improving data consistency.",
-      ],
-      github: "https://github.com/Falcon-J/Portfolio_2.0",
-      live: "https://portfolio-2-0-seven-theta.vercel.app/",
-    },
+    // {
+    //   id: 1,
+    //   title: "Portfolio Website",
+    //   slug: "portfolio-website",
+    //   description:
+    //     "A high-performance personal portfolio website showcasing my skills, projects, and experience.",
+    //   image: "/screenshots/homepage.jpg",
+    //   tags: ["Next.js", "Tailwind CSS",  "TypeScript", "Firebase", "Redux"],
+    //   features: [
+    //     "Developed a high-performance personal portfolio, improving load times by 40% and boosting user engagement.",
+    //     "Enhanced UI/UX with Tailwind CSS, reducing development time by 20% and ensuring responsiveness across devices.",
+    //     "Implemented Redux for efficient state management across 50+ components, improving data consistency.",
+    //   ],
+    //   github: "https://github.com/Falcon-J/Portfolio_2.0",
+    //   live: "https://portfolio-2-0-seven-theta.vercel.app/",
+    // },
+
     {
       id: 2,
+      title: "URL Shortener",
+      slug: "url-shortener",
+      description:
+        "A URL shortener built with Node.js and Express, featuring a user-friendly interface and analytics.",
+      image: "/placeholder.svg?height=200&width=400",
+      tags: ["Node.js", "Express", "MongoDB", "REST API"],
+
+      features: [
+        "Developed a URL shortener using Node.js and Express, reducing link length by 70% on average.",
+        "Implemented a user-friendly interface with React, enhancing user experience and engagement.",
+        "Integrated analytics to track link performance, providing users with insights on click rates and demographics.",
+      ],
+      github: "https://github.com/Falcon-J/urlshortner",
+      live: "https://url-shortner.vercel.app",
+    },
+    {
+      id: 3,
       title: "TravelTrouve",
       slug: "travel-trouve",
       description:
@@ -54,16 +72,16 @@ export default function ProjectsPage() {
       <section className="py-20">
         <div className="container">
           <FadeIn>
-            <h1 className="text-4xl font-bold mb-16 text-center text-navy">
+            <h1 className="text-4xl font-bold mb-16 text-center text-[var(--color-secondary)]">
               Projects
             </h1>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-rows-2 gap-8">
             {projects.map((project, index) => (
               <FadeIn key={project.id} delay={0.2 + index * 0.1}>
                 <Card className="overflow-hidden border-beige hover:shadow-xl transition-all duration-300 group">
-                  <div className="h-48 bg-beige relative overflow-hidden">
+                  {/* <div className="h-48 bg-beige relative overflow-hidden">
                     <Image
                       src={project.image || "/placeholder.svg"}
                       alt={project.title}
@@ -71,7 +89,7 @@ export default function ProjectsPage() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy/50 to-transparent"></div>
-                  </div>
+                  </div> */}
                   <CardHeader>
                     <div className="flex justify-between items-center">
                       <CardTitle className="text-navy">
@@ -122,7 +140,7 @@ export default function ProjectsPage() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-navy/80 mb-4">{project.description}</p>
-                    <ul className="space-y-2 text-sm text-navy/80">
+                    <ul className="space-y-2 text-md text-navy/80">
                       {project.features.map((feature, i) => (
                         <li key={i} className="flex gap-2">
                           <svg
