@@ -1,11 +1,11 @@
 
-# 🌐 Omkar's Portfolio
+# ✨ Omkar's Portfolio
 
 A modern, responsive, and accessible developer portfolio built using **Next.js 13**, **TypeScript**, and **Tailwind CSS**.
 
 ## 🚀 Live Demo
 
-🔗 Check it out here: [https://omkar-s-portfolio-two.vercel.app](https://omkar-s-portfolio-two.vercel.app/)
+🔗 Check it out here: [https://omkar-j-portfolio.vercel.app](https://omkar-j-portfolio.vercel.app/)
 
 ## 🧱 Tech Stack
 
@@ -75,4 +75,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 > Crafted with ❤️ by [Falcon-J](https://github.com/Falcon-J)
 
-"# Omkar-s-Portfolio" 
+
