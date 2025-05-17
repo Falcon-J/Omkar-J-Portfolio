@@ -77,7 +77,7 @@ export default function AboutPage() {
                 </p>
                 <div className="flex justify-center space-x-4 mt-6">
                   <motion.a
-                    href="https://github.com/your-username"
+                    href="https://github.com/Falcon-J"
                     target="_blank"
                     whileHover={{ y: -5 }}
                     whileTap={{ scale: 0.95 }}
@@ -94,7 +94,7 @@ export default function AboutPage() {
                     </svg>
                   </motion.a>
                   <motion.a
-                    href="https://linkedin.com/in/your-linkedin"
+                    href="https://linkedin.com/in/omkar-jawalikar"
                     target="_blank"
                     whileHover={{ y: -5 }}
                     whileTap={{ scale: 0.95 }}
@@ -111,7 +111,7 @@ export default function AboutPage() {
                     </svg>
                   </motion.a>
                   <motion.a
-                    href="mailto:your-email@example.com"
+                    href="mailto:omkarjawalikar04@gmail.com"
                     whileHover={{ y: -5 }}
                     whileTap={{ scale: 0.95 }}
                     className="bg-[#EA4335] text-white p-3 rounded-full hover:bg-[#d33426] transition-colors"

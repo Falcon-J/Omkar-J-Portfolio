@@ -3,13 +3,46 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Laptop, Music, Car, Award, BookOpen } from "lucide-react";
-// import
+
 interface InterestItem {
   icon: React.ReactElement;
   title: string;
   desc: string;
-  color: string;
+  color: keyof typeof colorClasses;
 }
+
+const colorClasses = {
+  indigo: {
+    bg: "from-indigo-50 to-indigo-100",
+    icon: "bg-indigo-100",
+    title: "text-indigo-700",
+    desc: "text-indigo-600/80",
+  },
+  pink: {
+    bg: "from-pink-50 to-pink-100",
+    icon: "bg-pink-100",
+    title: "text-pink-700",
+    desc: "text-pink-600/80",
+  },
+  orange: {
+    bg: "from-orange-50 to-orange-100",
+    icon: "bg-orange-100",
+    title: "text-orange-700",
+    desc: "text-orange-600/80",
+  },
+  green: {
+    bg: "from-green-50 to-green-100",
+    icon: "bg-green-100",
+    title: "text-green-700",
+    desc: "text-green-600/80",
+  },
+  blue: {
+    bg: "from-blue-50 to-blue-100",
+    icon: "bg-blue-100",
+    title: "text-blue-700",
+    desc: "text-blue-600/80",
+  },
+};
 
 const interests: InterestItem[] = [
   {
@@ -58,13 +91,10 @@ export default function Mbinterest() {
   useEffect(() => {
     if (containerRef.current) {
       const width = containerRef.current.clientWidth;
-      // If we are at the cloned last slide (index = interests.length), jump back instantly without smooth
       if (currentIndex === interests.length) {
-        // Scroll instantly to start (0)
         containerRef.current.scrollTo({ left: 0, behavior: "auto" });
         setCurrentIndex(0);
       } else {
-        // Scroll smoothly to current index
         containerRef.current.scrollTo({
           left: width * currentIndex,
           behavior: "smooth",
@@ -82,14 +112,14 @@ export default function Mbinterest() {
           exit={{ opacity: 0, y: 40 }}
           style={{ pointerEvents: "auto" }}
         >
-          <div className="container max-w-screen-sm px-20  ">
-            <h2 className="text-2xl font-bold text-[var(--color-secondary)] mb-6 text-center ">
+          <div className="container max-w-screen-sm px-20">
+            <h2 className="text-2xl font-bold text-[var(--color-secondary)] mb-6 text-center">
               My Interests
             </h2>
 
             <motion.div
               ref={containerRef}
-              className="flex overflow-x-auto snap-x snap-mandatory srollbar-hide"
+              className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
               style={{
                 scrollSnapType: "x mandatory",
                 scrollbarWidth: "none",
@@ -99,16 +129,26 @@ export default function Mbinterest() {
               {[...interests, interests[0]].map((item, idx) => (
                 <div
                   key={idx}
-                  className={`snap-start shrink-0 w-full flex justify-center items-center gap-4 p-6 rounded-xl bg-gradient-to-r from-${item.color}-50 to-${item.color}-100 shadow mx-2`}
+                  className={`snap-start shrink-0 w-full flex justify-center items-center gap-4 p-6 rounded-xl bg-gradient-to-r ${
+                    colorClasses[item.color].bg
+                  } shadow mx-2`}
                 >
-                  <span className={`bg-${item.color}-100 p-2 rounded-full`}>
+                  <span
+                    className={`${
+                      colorClasses[item.color].icon
+                    } p-2 rounded-full`}
+                  >
                     {item.icon}
                   </span>
                   <div>
-                    <h3 className={`font-semibold text-${item.color}-700`}>
+                    <h3
+                      className={`font-semibold ${
+                        colorClasses[item.color].title
+                      }`}
+                    >
                       {item.title}
                     </h3>
-                    <p className={`text-sm text-${item.color}-600/80`}>
+                    <p className={`text-sm ${colorClasses[item.color].desc}`}>
                       {item.desc}
                     </p>
                   </div>
