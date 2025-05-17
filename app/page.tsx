@@ -1,5 +1,5 @@
 "use client";
-import Mbinterest from '@/components/mbinterest';
+import Mbinterest from "@/components/mbinterest";
 import { Button } from "@/components/ui/button";
 import {
   Github,
@@ -21,14 +21,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageWrapper } from "@/components/page-wrapper";
 import { FadeIn } from "@/components/fade-in";
-import { FlipCard } from "@/components/flip-card";
-import { IconReveal } from "@/components/icon-reveal";
-
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import Interestsection from "@/components/Interestsection";
-export default function Home() {
+import Greeting from "@/components/Greeting";
 
+export default function Home() {
   return (
     <PageWrapper>
       {/* Animated Squares Background */}
@@ -62,16 +58,20 @@ export default function Home() {
 
             <FadeIn delay={0.2}>
               <div className="space-y-6">
+                <h1 className="text-4xl md:text-6xl font-bold">
+                  <Greeting />
+                </h1>
                 <h1 className="text-4xl md:text-6xl font-bold tracking-wide text-[var(--color-primary)]">
-                  Hi, I'm{" "}
+                  {/* Hi, {" "} */}
                   <span className="text-[var(--color-secondary)]">
-                    Omkar Jawalikar
+                    I'm Omkar Jawalikar
                   </span>
                 </h1>
                 <p className="text-xl max-w-xl text-[var(--color-secondary)]">
-                  Computer Science student at VIT with expertise in full-stack
-                  development, passionate about building innovative solutions
-                  and entrepreneurship.
+                  As a tech enthusiast and designer at heart, my curiosity
+                  drives me to understand how things work. I thrive in team
+                  environments, whether as a member or a leader passionate about building innovative
+                  solutions.
                 </p>
 
                 <div className="flex flex-wrap gap-4">
@@ -100,9 +100,9 @@ export default function Home() {
       {/* Quick Stats Section */}
 
       {/* Personal Interests Section */}
-      <Interestsection/>
+      <Interestsection />
       {/* Mobile Interests Section */}
-      <Mbinterest />           
+      <Mbinterest />
     </PageWrapper>
   );
 }

@@ -88,7 +88,7 @@ export default function Header() {
     >
       <div className="container flex h-16 items-center justify-between">
         {/* Brand or Logo (optional) */}
-        <div className=" font-bold text-[var(--color-secondary)]">
+        <div className=" font-bold text-[var(--color-secondary)] md:hidden">
           {formattedDateTime}
         </div>
 
