@@ -1,8 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { PageWrapper } from "@/components/page-wrapper";
 import { FadeIn } from "@/components/fade-in";
-import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -17,41 +17,44 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
-  };
+  const [status, setStatus] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setStatus(null);
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
+    };
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(data),
       });
 
-      if (res.ok) {
-        setSuccess(true);
-        setFormData({ name: "", email: "", subject: "", message: "" });
+      const result = await res.json();
+
+      if (result.success) {
+        setStatus("Message sent successfully!");
+        form.reset();
       } else {
-        console.error(await res.json());
+        setStatus("Failed to send message. Try again.");
       }
-    } catch (err) {
-      console.error("Submit error", err);
+    } catch (error) {
+      setStatus("Something went wrong.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
@@ -65,13 +68,14 @@ export default function ContactPage() {
           </FadeIn>
 
           <div className="MainGrid grid md:grid-cols-2 gap-12 ">
+            {/* Contact Info */}
             <FadeIn
               delay={0.2}
-              className="flex flex-col justify-center border-2 border-[var(--color-primary)]/80 rounded-lg p-8 bg-[var(--color-light)]/80 shadow-lg hidden md:block"
+              className="flex flex-col justify-center border-2 border-[var(--color-primary)]/80 rounded-lg p-8 bg-[var(--color-light)]/80 shadow-lg"
             >
               <div className="space-y-8 justify-center flex items-center">
                 <div className="space-y-8">
-                  <div className="Phone flex items-center r gap-8">
+                  <div className="Phone flex items-center gap-8">
                     <div className="w-12 h-12 rounded-full bg-blue-950 flex items-center justify-center hover:bg-blue-350/30">
                       <Phone className="h-5 w-5 text-white" />
                     </div>
@@ -117,72 +121,8 @@ export default function ContactPage() {
               </div>
             </FadeIn>
 
-            {/* <FadeIn delay={0.4}>
-              <Card className="border-beige bg-[var(--color-light)] shadow-lg">
-                <CardHeader>
-                  <CardTitle className="text-navy">Send Me a Message</CardTitle>
-                  <CardDescription>
-                    Fill out the form below and I'll get back to you as soon as
-                    possible.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <form className="space-y-6">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="name" className="text-navy">
-                          Name
-                        </Label>
-                        <Input
-                          id="name"
-                          placeholder="Your Name"
-                          className="border-beige focus:border-navy focus:ring-navy"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email" className="text-navy">
-                          Email
-                        </Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="Your Email"
-                          className="border-beige focus:border-navy focus:ring-navy"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="subject" className="text-navy">
-                        Subject
-                      </Label>
-                      <Input
-                        id="subject"
-                        placeholder="Subject"
-                        className="border-beige focus:border-navy focus:ring-navy"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="message" className="text-navy">
-                        Message
-                      </Label>
-                      <Textarea
-                        id="message"
-                        placeholder="Your Message"
-                        rows={6}
-                        className="border-beige focus:border-navy focus:ring-navy resize-none"
-                      />
-                    </div>
-                    <Button
-                      type="submit"
-                      className="w-full bg-navy text-cream hover:bg-navy/90"
-                    >
-                      <Send className="mr-2 h-4 w-4" /> Send Message
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </FadeIn> */}
-            <FadeIn delay={0.4} >
+            {/* Contact Form */}
+            <FadeIn delay={0.4}>
               <Card className="border-beige bg-[var(--color-light)] shadow-lg">
                 <CardHeader>
                   <CardTitle className="text-navy">Send Me a Message</CardTitle>
@@ -200,9 +140,9 @@ export default function ContactPage() {
                         </Label>
                         <Input
                           id="name"
-                          value={formData.name}
-                          onChange={handleChange}
+                          name="name"
                           required
+                          placeholder="Your Name"
                         />
                       </div>
                       <div className="space-y-2">
@@ -211,10 +151,10 @@ export default function ContactPage() {
                         </Label>
                         <Input
                           id="email"
+                          name="email"
                           type="email"
-                          value={formData.email}
-                          onChange={handleChange}
                           required
+                          placeholder="Your Email"
                         />
                       </div>
                     </div>
@@ -224,8 +164,8 @@ export default function ContactPage() {
                       </Label>
                       <Input
                         id="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
+                        name="subject"
+                        placeholder="Subject"
                         required
                       />
                     </div>
@@ -235,24 +175,28 @@ export default function ContactPage() {
                       </Label>
                       <Textarea
                         id="message"
-                        value={formData.message}
-                        onChange={handleChange}
+                        name="message"
+                        placeholder="Your Message"
                         rows={6}
                         required
+                        className="resize-none"
                       />
                     </div>
                     <Button
                       type="submit"
-                      className="w-full bg-navy text-cream hover:bg-navy/90"
                       disabled={loading}
+                      className="w-full bg-navy text-cream hover:bg-navy/90"
                     >
-                      <Send className="mr-2 h-4 w-4" />{" "}
-                      {loading ? "Sending..." : "Send Message"}
+                      {loading ? (
+                        "Sending..."
+                      ) : (
+                        <>
+                          <Send className="mr-2 h-4 w-4" /> Send Message
+                        </>
+                      )}
                     </Button>
-                    {success && (
-                      <p className="text-green-600 mt-4">
-                        Message sent successfully!
-                      </p>
+                    {status && (
+                      <p className="text-center text-navy mt-4">{status}</p>
                     )}
                   </form>
                 </CardContent>
