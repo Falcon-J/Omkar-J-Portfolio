@@ -1,5 +1,8 @@
+"use client";
+
 import { PageWrapper } from "@/components/page-wrapper";
 import { FadeIn } from "@/components/fade-in";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -14,6 +17,43 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setSuccess(true);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        console.error(await res.json());
+      }
+    } catch (err) {
+      console.error("Submit error", err);
+    }
+    setLoading(false);
+  };
+
   return (
     <PageWrapper>
       <section className="py-20 relative z-0">
@@ -77,7 +117,7 @@ export default function ContactPage() {
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.4}>
+            {/* <FadeIn delay={0.4}>
               <Card className="border-beige bg-[var(--color-light)] shadow-lg">
                 <CardHeader>
                   <CardTitle className="text-navy">Send Me a Message</CardTitle>
@@ -138,6 +178,82 @@ export default function ContactPage() {
                     >
                       <Send className="mr-2 h-4 w-4" /> Send Message
                     </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </FadeIn> */}
+            <FadeIn delay={0.4}>
+              <Card className="border-beige bg-[var(--color-light)] shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-navy">Send Me a Message</CardTitle>
+                  <CardDescription>
+                    Fill out the form below and I'll get back to you as soon as
+                    possible.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form className="space-y-6" onSubmit={handleSubmit}>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name" className="text-navy">
+                          Name
+                        </Label>
+                        <Input
+                          id="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email" className="text-navy">
+                          Email
+                        </Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="subject" className="text-navy">
+                        Subject
+                      </Label>
+                      <Input
+                        id="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="message" className="text-navy">
+                        Message
+                      </Label>
+                      <Textarea
+                        id="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        rows={6}
+                        required
+                      />
+                    </div>
+                    <Button
+                      type="submit"
+                      className="w-full bg-navy text-cream hover:bg-navy/90"
+                      disabled={loading}
+                    >
+                      <Send className="mr-2 h-4 w-4" />{" "}
+                      {loading ? "Sending..." : "Send Message"}
+                    </Button>
+                    {success && (
+                      <p className="text-green-600 mt-4">
+                        Message sent successfully!
+                      </p>
+                    )}
                   </form>
                 </CardContent>
               </Card>
