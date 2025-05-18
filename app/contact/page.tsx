@@ -67,7 +67,7 @@ export default function ContactPage() {
           <div className="MainGrid grid md:grid-cols-2 gap-12 ">
             <FadeIn
               delay={0.2}
-              className="flex flex-col justify-center border-2 border-[var(--color-primary)]/80 rounded-lg p-8 bg-[var(--color-light)]/80 shadow-lg"
+              className="flex flex-col justify-center border-2 border-[var(--color-primary)]/80 rounded-lg p-8 bg-[var(--color-light)]/80 shadow-lg hidden md:block"
             >
               <div className="space-y-8 justify-center flex items-center">
                 <div className="space-y-8">
@@ -182,7 +182,7 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
             </FadeIn> */}
-            <FadeIn delay={0.4}>
+            <FadeIn delay={0.4} >
               <Card className="border-beige bg-[var(--color-light)] shadow-lg">
                 <CardHeader>
                   <CardTitle className="text-navy">Send Me a Message</CardTitle>
