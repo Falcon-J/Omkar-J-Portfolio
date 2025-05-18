@@ -135,7 +135,7 @@ export default function Header() {
       {/* Mobile Menu */}
       {/* Mobile Menu (Horizontal Navbar) */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white/60 dark:bg-neutral-900/60 backdrop-blur-md md:hidden">
+        <div className="fixed inset-0 z-50 bg-white/60 dark:bg-neutral-900/60 backdrop-blur-lg md:hidden ">
           {/* Close Button */}
           <div className="container flex h-16 items-center justify-between">
             <div className="flex-grow"></div>{" "}
@@ -151,13 +151,13 @@ export default function Header() {
             </Button>
           </div>
           {/* Horizontal Nav Items */}
-          <nav className="container mt-6 flex flex-wrap justify-center gap-4">
+          <nav className="container bg-white backdrop-blur-lg flex flex-wrap justify-center gap-4 shadow-md border-b border-white/20 dark:border-neutral-800 py-4">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 href={item.path}
                 className={cn(
-                  "text-base font-medium px-4 py-2 rounded transition-colors",
+                  "text-base font-medium px-4 rounded transition-colors border-2",
                   isActive(item.path)
                     ? "text-[var(--color-secondary)] font-semibold"
                     : "text-[var(--color-secondary)] hover:text-[var(--color-primary)]"
