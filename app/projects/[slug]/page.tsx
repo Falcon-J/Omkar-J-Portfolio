@@ -103,6 +103,43 @@ const getProjectData = (slug: string) => {
       github: "https://github.com/Falcon-J/urlshortner",
       live: "https://url-shortner.vercel.app",
     },
+    memojar: {
+      title: "MemoJar",
+      description:
+        "A memory journaling app with secure authentication, real-time database syncing, and a sleek interactive UI.",
+      image: "/screenshots/memojar.jpg",
+      tags: [
+        "React",
+        "Firebase",
+        "Tailwind CSS",
+        "Framer Motion",
+        "React Router",
+      ],
+      features: [
+        "Built a full-featured journaling app allowing users to create, edit, filter, and delete memories in real time.",
+        "Integrated Firebase Authentication for secure sign-in and route protection.",
+        "Designed a dynamic UI with a mouse-following gradient and smooth animations using Framer Motion.",
+        "Implemented toast notifications and responsive layouts for optimal user experience across devices.",
+      ],
+      challenges: [
+        "Implementing real-time data updates while maintaining UI performance",
+        "Designing an engaging UI/UX that feels responsive and modern",
+        "Securing user data and managing authentication flow properly",
+      ],
+      solutions: [
+        "Leveraged Firebase Realtime Database to push updates instantly across components",
+        "Used Tailwind CSS and Framer Motion for highly responsive and interactive UI",
+        "Utilized Firebase Authentication with protected routes to ensure data integrity",
+      ],
+      technologies: {
+        frontend: ["React", "Tailwind CSS", "Framer Motion", "React Router"],
+        backend: ["Firebase (Realtime Database & Auth)"],
+        tools: ["Git", "VS Code", "Figma"],
+        deployment: ["Vercel"], // Update if hosted elsewhere
+      },
+      github: "https://github.com/Falcon-J/MemoJar.git",
+      live: "https://memo-jar.vercel.app/"
+    },
   };
 
   return projects[slug as keyof typeof projects];

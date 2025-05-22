@@ -15,22 +15,23 @@ import Link from "next/link";
 
 export default function ProjectsPage() {
   const projects = [
-    // {
-    //   id: 1,
-    //   title: "Portfolio Website",
-    //   slug: "portfolio-website",
-    //   description:
-    //     "A high-performance personal portfolio website showcasing my skills, projects, and experience.",
-    //   image: "/screenshots/homepage.jpg",
-    //   tags: ["Next.js", "Tailwind CSS",  "TypeScript", "Firebase", "Redux"],
-    //   features: [
-    //     "Developed a high-performance personal portfolio, improving load times by 40% and boosting user engagement.",
-    //     "Enhanced UI/UX with Tailwind CSS, reducing development time by 20% and ensuring responsiveness across devices.",
-    //     "Implemented Redux for efficient state management across 50+ components, improving data consistency.",
-    //   ],
-    //   github: "https://github.com/Falcon-J/Portfolio_2.0",
-    //   live: "https://portfolio-2-0-seven-theta.vercel.app/",
-    // },
+    {
+    id: 1,
+    title: "MemoJar",
+    slug: "memojar",
+    description:
+      "A beautiful and interactive memory journaling app with Firebase integration, secure auth, and real-time updates.",
+    image: "/screenshots/memojar.jpg",
+    tags: ["React", "Firebase", "Tailwind CSS", "Framer Motion", "React Router"],
+    features: [
+      "Built a responsive memory journaling app with secure Firebase authentication and real-time database functionality.",
+      "Implemented an interactive UI with mouse-following gradients and smooth animations using Framer Motion.",
+      "Enabled full CRUD operations on user-generated memories with real-time syncing and tag-based filtering.",
+    ],
+    github: "https://github.com/Falcon-J/MemoJar.git",
+    live: "https://memo-jar.vercel.app/",
+},
+
 
     {
       id: 2,
