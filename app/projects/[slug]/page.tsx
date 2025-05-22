@@ -107,7 +107,7 @@ const getProjectData = (slug: string) => {
       title: "MemoJar",
       description:
         "A memory journaling app with secure authentication, real-time database syncing, and a sleek interactive UI.",
-      image: "/screenshots/memojar.jpg",
+      image: "/screenshots/Memojar_hero.png",
       tags: [
         "React",
         "Firebase",
@@ -193,7 +193,7 @@ export default function ProjectDetailPage({
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div className="relative h-[400px] rounded-xl overflow-hidden mb-12">
+            <div className="relative h-[400px]  rounded-xl overflow-hidden mb-12">
               <Image
                 src={project.image || "/placeholder.svg"}
                 alt={project.title}
@@ -311,12 +311,7 @@ export default function ProjectDetailPage({
                 <Card className="border-beige">
                   <CardContent className="pt-6">
                     <div className="space-y-4">
-                      <div className="flex justify-between">
-                        <span className="text-navy/70">Role</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-navy/70">Timeline</span>
-                      </div>
+                    
                       <div className="pt-4 space-y-2">
                         <Button
                           className="w-full bg-navy text-cream hover:bg-navy/90"
