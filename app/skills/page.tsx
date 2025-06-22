@@ -59,6 +59,9 @@ export default function SkillsPage() {
         "AWS",
         "Firebase",
         "Vercel",
+        "MLflow",
+        "Docker",
+        "Dagshub"
       ],
     },
   ];
