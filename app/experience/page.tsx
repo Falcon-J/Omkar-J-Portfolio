@@ -1,3 +1,5 @@
+"use client";
+
 import { PageWrapper } from "@/components/page-wrapper";
 import { FadeIn } from "@/components/fade-in";
 import {
@@ -8,6 +10,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 // Define interfaces for type safety
 interface Experience {
@@ -90,42 +94,39 @@ const extracurricularExperiences: Experience[] = [
   },
 ];
 
-// Component to render experience card
+// Updated ExperienceCard component
 const ExperienceCard = ({ experience }: { experience: Experience }) => (
-  <div className="relative">
-    <div className="absolute left-0 top-0 w-12 h-12 md:w-16 md:h-16 bg-navy rounded-full flex items-center justify-center text-cream font-bold z-10">
-      <span>{experience.year}</span>
+  <div className="group relative">
+    <div className="absolute left-0 top-0 w-16 h-16 bg-navy rounded-full flex items-center justify-center text-cream font-bold z-10 transform group-hover:scale-110 transition-transform duration-300">
+      <span className="text-xl">{experience.year}</span>
     </div>
-    <div className="pl-16 md:pl-24">
-      <Card className="border-beige hover:shadow-md transition-all duration-300">
-        <CardHeader>
-          <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-            <div>
-              <CardTitle className="text-navy">{experience.title}</CardTitle>
-              <CardDescription>{experience.company}</CardDescription>
+    <div className="pl-24">
+      <Card className="border-2 border-beige bg-white/80 backdrop-blur-sm hover:border-navy transition-all duration-300 transform group-hover:-translate-y-1">
+        <CardHeader className="pb-4">
+          <div className="flex flex-col gap-2">
+            <div className="flex justify-between items-start">
+              <div>
+                <CardTitle className="text-2xl font-bold text-navy">
+                  {experience.title}
+                </CardTitle>
+                <CardDescription className="text-lg text-navy/70 mt-1">
+                  {experience.company}
+                </CardDescription>
+              </div>
+              <span className="text-sm font-medium px-4 py-1 rounded-full bg-navy/10 text-navy">
+                {experience.duration}
+              </span>
             </div>
-            <div className="text-sm text-navy/70">{experience.duration}</div>
           </div>
         </CardHeader>
         <CardContent>
-          <ul className="space-y-2 text-sm text-navy/80">
+          <ul className="space-y-3">
             {experience.responsibilities.map((responsibility, index) => (
-              <li key={index} className="flex gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5 text-navy flex-shrink-0"
-                >
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                <span>{responsibility}</span>
+              <li key={index} className="flex items-start gap-3 group/item">
+                <div className="mt-1.5 h-2 w-2 rounded-full bg-navy flex-shrink-0 group-hover/item:scale-150 transition-transform duration-300"></div>
+                <span className="text-navy/80 leading-relaxed">
+                  {responsibility}
+                </span>
               </li>
             ))}
           </ul>
@@ -135,11 +136,11 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => (
   </div>
 );
 
-// Experience section component
+// Updated ExperienceSection component
 const ExperienceSection = ({ experiences }: { experiences: Experience[] }) => (
   <div className="relative">
-    <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-beige ml-6 md:ml-8"></div>
-    <div className="space-y-12">
+    <div className="absolute left-[31px] top-8 bottom-8 w-0.5 bg-gradient-to-b from-navy via-beige to-navy"></div>
+    <div className="space-y-16">
       {experiences.map((experience, index) => (
         <ExperienceCard key={index} experience={experience} />
       ))}
@@ -147,45 +148,117 @@ const ExperienceSection = ({ experiences }: { experiences: Experience[] }) => (
   </div>
 );
 
+// Helper function to draw hexagons
+const drawHexagon = (
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  size: number
+) => {
+  ctx.beginPath();
+  for (let i = 0; i < 6; i++) {
+    const angle = (i * Math.PI) / 3;
+    const xPoint = x + size * Math.cos(angle);
+    const yPoint = y + size * Math.sin(angle);
+    if (i === 0) ctx.moveTo(xPoint, yPoint);
+    else ctx.lineTo(xPoint, yPoint);
+  }
+  ctx.closePath();
+};
+
 export default function ExperiencePage() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    let animationFrameId: number;
+    let time = 0;
+
+    const animate = () => {
+      time += 0.001;
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const hexSize = 20;
+      const cols = Math.ceil(canvas.width / (hexSize * 2)) + 2;
+      const rows = Math.ceil(canvas.height / (hexSize * 1.7)) + 2;
+
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          const x = i * hexSize * 2 + (j % 2 === 0 ? 0 : hexSize);
+          const y = j * hexSize * 1.7;
+
+          const distanceFromCenter = Math.sqrt(
+            Math.pow((x - canvas.width / 2) / canvas.width, 2) +
+              Math.pow((y - canvas.height / 2) / canvas.height, 2)
+          );
+
+          const opacity = Math.sin(time + distanceFromCenter * 5) * 0.03 + 0.03;
+
+          ctx.strokeStyle = `rgba(2, 32, 71, ${opacity})`; // navy color with dynamic opacity
+          ctx.lineWidth = 1;
+
+          drawHexagon(ctx, x, y, hexSize);
+          ctx.stroke();
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   return (
     <PageWrapper>
-      <div className="fixed inset-0 -z-10">
-        <div className="skill-grid h-full w-full">
-          {Array.from({ length: 100 }).map((_, i) => (
-            <div
-              key={i}
-              className="skill-dot"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${Math.random() * 10 + 10}s`,
-              }}
-            ></div>
-          ))}
-        </div>
-      </div>
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 -z-10"
+        style={{ opacity: 1}}
+      />
+
       <section className="py-20">
-        <div className="container">
+        <div className="container max-w-5xl">
           <FadeIn>
-            <h1 className="text-4xl font-bold mb-16 text-center text-[var(--color-secondary)]">
+            <h1 className="text-5xl font-bold mb-8 text-center text-navy">
               Experience
             </h1>
+            <p className="text-center text-navy/70 text-lg mb-16 max-w-2xl mx-auto">
+              A chronicle of my professional journey and contributions across
+              various roles and organizations.
+            </p>
           </FadeIn>
 
           <Tabs defaultValue="professional" className="w-full">
             <FadeIn delay={0.2}>
-              <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12">
+              <TabsList className="w-full max-w-xs mx-auto grid grid-cols-2 mb-16 bg-cream/50 p-1 rounded-full">
                 <TabsTrigger
                   value="professional"
-                  className="data-[state=active]:bg-navy data-[state=active]:text-cream"
+                  className="rounded-full px-8 py-2 data-[state=active]:bg-navy data-[state=active]:text-cream transition-all duration-300"
                 >
                   Professional
                 </TabsTrigger>
                 <TabsTrigger
                   value="extracurricular"
-                  className="data-[state=active]:bg-navy data-[state=active]:text-cream"
+                  className="rounded-full px-8 py-2 data-[state=active]:bg-navy data-[state=active]:text-cream transition-all duration-300"
                 >
                   Extracurricular
                 </TabsTrigger>

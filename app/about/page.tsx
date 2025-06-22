@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { PageWrapper } from "@/components/page-wrapper";
 import { FadeIn } from "@/components/fade-in";
 import {
@@ -15,28 +15,92 @@ import Image from "next/image";
 import { Book, Brain, Users, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 
+const drawHexagon = (
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  size: number
+) => {
+  ctx.beginPath();
+  for (let i = 0; i < 6; i++) {
+    const angle = (i * Math.PI) / 3;
+    const xPoint = x + size * Math.cos(angle);
+    const yPoint = y + size * Math.sin(angle);
+    if (i === 0) ctx.moveTo(xPoint, yPoint);
+    else ctx.lineTo(xPoint, yPoint);
+  }
+  ctx.closePath();
+};
+
 export default function AboutPage() {
   const [activeTab, setActiveTab] = useState("education");
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    let animationFrameId: number;
+    let time = 0;
+
+    const animate = () => {
+      time += 0.001;
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const hexSize = 20;
+      const cols = Math.ceil(canvas.width / (hexSize * 2)) + 2;
+      const rows = Math.ceil(canvas.height / (hexSize * 1.7)) + 2;
+
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          const x = i * hexSize * 2 + (j % 2 === 0 ? 0 : hexSize);
+          const y = j * hexSize * 1.7;
+
+          const distanceFromCenter = Math.sqrt(
+            Math.pow((x - canvas.width / 2) / canvas.width, 2) +
+              Math.pow((y - canvas.height / 2) / canvas.height, 2)
+          );
+
+          const opacity = Math.sin(time + distanceFromCenter * 5) * 0.03 + 0.03;
+          ctx.strokeStyle = `rgba(2, 32, 71, ${opacity})`;
+          ctx.lineWidth = 1;
+
+          drawHexagon(ctx, x, y, hexSize);
+          ctx.stroke();
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
 
   return (
     <PageWrapper>
-      {/* Enhanced Animated Background */}
-      <div className="fixed inset-0 -z-10">
-        <div className="about-pattern h-full w-full">
-          {Array.from({ length: 30 }).map((_, i) => (
-            <div
-              key={i}
-              className="about-particle"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 10}s`,
-                animationDuration: `${5 + Math.random() * 15}s`,
-              }}
-            ></div>
-          ))}
-        </div>
-      </div>
+      {/* Replace the existing animated background with canvas */}
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 -z-10"
+        style={{ opacity: 0.7 }}
+      />
 
       <section className="py-20">
         <div className="container">
