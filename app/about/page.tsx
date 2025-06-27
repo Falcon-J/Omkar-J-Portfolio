@@ -264,7 +264,7 @@ export default function AboutPage() {
                             Graduation: August 2026
                           </p>
                           <p className="font-medium text-navy bg-cream/70 py-1 px-3 rounded-full text-sm">
-                            CGPA: 8.27
+                            CGPA: 8.28
                           </p>
                         </div>
                         <div className="mt-4">
