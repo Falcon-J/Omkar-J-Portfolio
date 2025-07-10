@@ -185,7 +185,7 @@ export default function ContactPage() {
                     icon: Github,
                     label: "GitHub",
                     value: "github.com/omkarjawalikar",
-                    href: "https://github.com/omkarjawalikar",
+                    href: "https://github.com/Falcon-J",
                   },
                 ].map((item, index) => (
                   <a
