@@ -5,14 +5,14 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Loader } from "@/components/ui/loader";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isNavigating, setIsNavigating] = useState(false);
+  const [clickedButton, setClickedButton] = useState<string | null>(null);
   const pathname = usePathname();
   const lastScrollY = useRef(0);
 
@@ -34,7 +34,7 @@ export default function Header() {
 
   useEffect(() => {
     setIsVisible(true);
-    setIsNavigating(false);
+    setClickedButton(null);
   }, [pathname]);
 
   const navItems = [
@@ -52,20 +52,101 @@ export default function Header() {
     if (path !== "/" && pathname.startsWith(path)) return true;
     return false;
   };
-
   const NavLink: React.FC<{
     href: string;
     children: React.ReactNode;
     className?: string;
-  }> = ({ href, children, className }) => {
+    itemName: string;
+  }> = ({ href, children, className, itemName }) => {
+    const isClicked = clickedButton === itemName;
+    const isCurrentActive = isActive(href);
+
     return (
-      <Link
-        href={href}
-        className={className}
-        onClick={() => setIsNavigating(true)}
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ type: "spring", stiffness: 400, damping: 17 }}
       >
-        {children}
-      </Link>
+        <motion.div
+          animate={
+            isClicked
+              ? {
+                  backgroundColor: [
+                    "transparent",
+                    "#ff111110",
+                    "#ff111120",
+                    "transparent",
+                  ],
+                  scale: [1, 0.95, 1.02, 1],
+                }
+              : {}
+          }
+          transition={{
+            duration: 0.6,
+            ease: "easeInOut",
+          }}
+          className={cn(
+            "relative px-3 py-2 rounded-lg transition-all duration-200",
+            isClicked && "bg-[#ff1111]/10"
+          )}
+        >
+          <Link
+            href={href}
+            className={cn(
+              "block text-md font-normal transition-all duration-200",
+              isCurrentActive
+                ? "text-[var(--color-secondary)] font-bold"
+                : cn(
+                    "text-[var(--color-secondary)]/80 hover:text-[var(--color-primary)]",
+                    isClicked && "text-[var(--color-primary)] font-medium"
+                  ),
+              className
+            )}
+            onClick={() => {
+              setClickedButton(itemName);
+              setTimeout(() => setClickedButton(null), 600);
+            }}
+          >
+            {children}
+          </Link>
+
+          {/* Animated underline for non-active items */}
+          {!isCurrentActive && (
+            <motion.div
+              className="absolute bottom-0 left-1/2 h-0.5 bg-[var(--color-primary)]"
+              initial={{ width: 0, x: "-50%" }}
+              animate={
+                isClicked
+                  ? {
+                      width: ["0%", "80%", "0%"],
+                    }
+                  : {}
+              }
+              transition={{ duration: 0.6 }}
+            />
+          )}
+
+          {/* Active indicator */}
+          {isCurrentActive && (
+            <motion.div
+              className="absolute bottom-0 left-1/2 h-0.5 bg-[var(--color-secondary)]"
+              initial={{ width: "80%", x: "-50%" }}
+              animate={
+                isClicked
+                  ? {
+                      backgroundColor: [
+                        "var(--color-secondary)",
+                        "var(--color-primary)",
+                        "var(--color-secondary)",
+                      ],
+                    }
+                  : {}
+              }
+              transition={{ duration: 0.6 }}
+            />
+          )}
+        </motion.div>
+      </motion.div>
     );
   };
   const [dateTime, setDateTime] = useState(new Date());
@@ -94,18 +175,9 @@ export default function Header() {
         </div>
 
         {/* Centered Horizontal Navbar */}
-        <nav className="hidden md:flex gap-6 mx-auto">
+        <nav className="hidden md:flex gap-2 mx-auto">
           {navItems.map((item) => (
-            <NavLink
-              key={item.path}
-              href={item.path}
-              className={cn(
-                "text-md font-normal transition-colors",
-                isActive(item.path)
-                  ? "text-[var(--color-secondary)] font-bold"
-                  : "relative hover:text-[var(--color-primary)] cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-200 before:absolute before:bg-[var(--color-primary)] before:origin-center before:h-[1px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-200 after:absolute after:bg-[var(--color-primary)] after:origin-center after:h-[1px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]"
-              )}
-            >
+            <NavLink key={item.path} href={item.path} itemName={item.name}>
               {item.name}
             </NavLink>
           ))}
@@ -113,14 +185,6 @@ export default function Header() {
 
         {/* Mobile Menu Toggle (Right Aligned) */}
         <div className="flex items-center gap-2">
-          {isNavigating && (
-            <div className="hidden md:flex items-center gap-2">
-              <Loader size="sm" variant="primary" />
-              <span className="text-sm text-[var(--color-secondary)]/70">
-                Loading...
-              </span>
-            </div>
-          )}
           <Button
             variant="ghost"
             size="icon"
@@ -154,22 +218,57 @@ export default function Header() {
           {/* Horizontal Nav Items */}
           <nav className="container bg-white backdrop-blur-lg flex flex-wrap justify-center gap-4 shadow-md border-b border-white/20 dark:border-neutral-800 py-4">
             {navItems.map((item) => (
-              <Link
+              <motion.div
                 key={item.path}
-                href={item.path}
-                className={cn(
-                  "text-base font-medium px-4 rounded transition-colors border-2",
-                  isActive(item.path)
-                    ? "text-[var(--color-secondary)] font-semibold"
-                    : "text-[var(--color-secondary)] hover:text-[var(--color-primary)]"
-                )}
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  setIsNavigating(true);
-                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                {item.name}
-              </Link>
+                <motion.div
+                  animate={
+                    clickedButton === item.name
+                      ? {
+                          backgroundColor: [
+                            "transparent",
+                            "#ff111110",
+                            "#ff111120",
+                            "transparent",
+                          ],
+                          scale: [1, 0.95, 1.02, 1],
+                        }
+                      : {}
+                  }
+                  transition={{
+                    duration: 0.6,
+                    ease: "easeInOut",
+                  }}
+                  className={cn(
+                    "rounded-lg transition-all duration-200",
+                    clickedButton === item.name && "bg-[#ff1111]/10"
+                  )}
+                >
+                  <Link
+                    href={item.path}
+                    className={cn(
+                      "block text-base font-medium px-4 py-2 rounded-lg transition-all duration-200 border-2 border-transparent",
+                      isActive(item.path)
+                        ? "text-[var(--color-secondary)] font-semibold bg-[#ff1111]/5 border-[#ff1111]/20"
+                        : cn(
+                            "text-[var(--color-secondary)] hover:text-[var(--color-primary)] hover:bg-[#ff1111]/5",
+                            clickedButton === item.name &&
+                              "text-[var(--color-primary)] bg-[#ff1111]/10 border-[#ff1111]/20"
+                          )
+                    )}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setClickedButton(item.name);
+                      setTimeout(() => setClickedButton(null), 600);
+                    }}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
+              </motion.div>
             ))}
           </nav>
         </div>
