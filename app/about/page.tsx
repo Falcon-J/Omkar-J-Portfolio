@@ -15,6 +15,179 @@ import Image from "next/image";
 import { Book, Brain, Users, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 
+// Data structures for easier maintenance
+const socialLinks = [
+  {
+    name: "Resume",
+    href: "https://drive.google.com/file/d/1LRDKZ10a6CTIQfSuWdKux2iXmHir1Coy/view",
+    bgColor: "bg-[#6B73FF]",
+    hoverColor: "hover:bg-[#5A63E8]",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "GitHub",
+    href: "https://github.com/Falcon-J",
+    bgColor: "bg-[#333]",
+    hoverColor: "hover:bg-[#24292e]",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+      </svg>
+    ),
+  },
+  {
+    name: "LinkedIn",
+    href: "https://linkedin.com/in/omkar-jawalikar",
+    bgColor: "bg-[#0077B5]",
+    hoverColor: "hover:bg-[#0069a6]",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+      </svg>
+    ),
+  },
+  {
+    name: "Email",
+    href: "mailto:omkarjawalikar04@gmail.com",
+    bgColor: "bg-[#EA4335]",
+    hoverColor: "hover:bg-[#d33426]",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z" />
+      </svg>
+    ),
+  },
+];
+
+const coursework = [
+  "Data Structures & Algorithms",
+  "Software Engineering",
+  "Machine Learning",
+  "Database Management Systems",
+  "Artificial Intelligence",
+  "Web Technologies",
+  "Computer Networks",
+  "Operating Systems",
+];
+
+const certifications = [
+  {
+    id: "mckinsey",
+    title: "McKinsey Forward Program",
+    issuer: "McKinsey & Company",
+    year: "7th July 2025",
+    status: "Current",
+    credentialUrl:
+      "https://www.credly.com/badges/f4530a79-ae37-4ea2-b2a5-9df37f41ddc2/linked_in?t=sz0nx1",
+    description:
+      "A comprehensive business skills program designed to accelerate professional development through McKinsey's proven methodologies and frameworks for problem-solving and leadership.",
+    gradient: "from-blue-600 to-indigo-700",
+    badges: [
+      { text: "Business Strategy", color: "border-blue-500 text-blue-700" },
+      { text: "Problem Solving", color: "border-blue-500 text-blue-700" },
+      { text: "Leadership", color: "border-blue-500 text-blue-700" },
+      { text: "Strategic Thinking", color: "border-blue-500 text-blue-700" },
+    ],
+  },
+  {
+    id: "oracle-gen-ai",
+    title: "Oracle Cloud Infrastructure Generative AI Professional",
+    issuer: "Oracle Corporation",
+    year: "9th July 2025",
+    status: "Current",
+    credentialUrl:
+      "https://catalog-education.oracle.com/ords/certview/sharebadge?id=4EAA05D1470DF9F2F3EAB04361CF6120A4E409A32C80B248D9B742B79CBC1C06",
+    description:
+      "Professional-level certification demonstrating expertise in Oracle Cloud Infrastructure's Generative AI services, including large language models, AI model deployment, and responsible AI practices.",
+    gradient: "from-red-500 to-orange-600",
+    badges: [
+      { text: "Generative AI", color: "border-red-500 text-red-700" },
+      { text: "RAG", color: "border-red-500 text-red-700" },
+      { text: "Large Language Models", color: "border-red-500 text-red-700" },
+      { text: "Vector Databases", color: "border-red-500 text-red-700" },
+    ],
+  },
+  {
+    id: "oracle-ai-foundations",
+    title: "Oracle Cloud Infrastructure AI Foundations Associate",
+    issuer: "Oracle Corporation",
+    year: "27th June 2025",
+    status: "Current",
+    credentialUrl:
+      "https://catalog-education.oracle.com/ords/certview/sharebadge?id=E74803FFF1D0B12D8BDBCC9C80E573ECA8C1A73BFBA31AA733EA960E1EF23517",
+    description:
+      "Associate-level certification validating foundational knowledge of AI concepts, Oracle Cloud Infrastructure AI services, and machine learning fundamentals for cloud-based AI solutions.",
+    gradient: "from-orange-500 to-red-500",
+    badges: [
+      { text: "AI Foundations", color: "border-orange-500 text-orange-700" },
+      { text: "Oracle Cloud", color: "border-orange-500 text-orange-700" },
+      { text: "Machine Learning", color: "border-orange-500 text-orange-700" },
+      { text: "Cloud AI Services", color: "border-orange-500 text-orange-700" },
+    ],
+  },
+];
+
+const approaches = [
+  {
+    title: "Problem Solver",
+    icon: Brain,
+    description:
+      "I approach challenges with analytical thinking and creative problem-solving skills, breaking down complex problems into manageable components to find efficient solutions.",
+  },
+  {
+    title: "Continuous Learner",
+    icon: Book,
+    description:
+      "I'm committed to staying updated with the latest technologies and industry trends, constantly expanding my skill set through self-study, courses, and hands-on projects.",
+  },
+  {
+    title: "Team Player",
+    icon: Users,
+    description:
+      "I thrive in collaborative environments and value diverse perspectives, believing that the best solutions come from combining different viewpoints and expertise.",
+  },
+  {
+    title: "Detail-Oriented",
+    icon: Zap,
+    description:
+      "I pay close attention to details while keeping the big picture in mind, ensuring the quality and coherence of every project I undertake from planning to execution.",
+  },
+];
+
 const drawHexagon = (
   ctx: CanvasRenderingContext2D,
   x: number,
@@ -148,82 +321,20 @@ export default function AboutPage() {
                 </div>
 
                 <div className="flex justify-center items-center space-x-4 mt-4 lg:mt-6">
-                  {/* View Resume Button */}
-                  <motion.a
-                  href="https://drive.google.com/file/d/1LRDKZ10a6CTIQfSuWdKux2iXmHir1Coy/view"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-[#6B73FF] text-white p-3 rounded-full hover:bg-[#5A63E8] transition-colors"
-                  title="View Resume"
-                  >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
-                  </motion.a>
-                  <motion.a
-                  href="https://github.com/Falcon-J"
-                  target="_blank"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-[#333] text-white p-3 rounded-full hover:bg-[#24292e] transition-colors"
-                  >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                  </svg>
-                  </motion.a>
-                  <motion.a
-                  href="https://linkedin.com/in/omkar-jawalikar"
-                  target="_blank"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-[#0077B5] text-white p-3 rounded-full hover:bg-[#0069a6] transition-colors"
-                  >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                  </svg>
-                  </motion.a>
-                  <motion.a
-                  href="mailto:omkarjawalikar04@gmail.com"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-[#EA4335] text-white p-3 rounded-full hover:bg-[#d33426] transition-colors"
-                  >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z" />
-                  </svg>
-                  </motion.a>
+                  {socialLinks.map((link) => (
+                    <motion.a
+                      key={link.name}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ y: -5 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`${link.bgColor} text-white p-3 rounded-full ${link.hoverColor} transition-colors`}
+                      title={link.name}
+                    >
+                      {link.icon}
+                    </motion.a>
+                  ))}
                 </div>
               </motion.div>
             </FadeIn>
@@ -312,83 +423,32 @@ export default function AboutPage() {
                         </CardDescription>
                       </CardHeader>
                       <CardContent>
-                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-4 mb-4">
-                          <p className="text-xs lg:text-sm text-navy/70">
-                            Expected Graduation: August 2026
-                          </p>
-                          <p className="font-medium text-navy bg-cream/70 py-1 px-2 lg:px-3 rounded-full text-xs lg:text-sm w-fit">
+                        <div className="flex flex-col gap-3 mb-4 sm:flex-row sm:items-center sm:justify-between">
+                          <span className="text-sm text-navy/80">
+                            <strong>Expected Graduation:</strong> August 2026
+                          </span>
+                          <span className="text-sm font-semibold text-navy bg-cream/80 py-1 px-3 rounded-full">
                             CGPA: 8.28
-                          </p>
+                          </span>
                         </div>
-                        <div className="mt-4">
-                          <h4 className="text-xs lg:text-sm font-semibold mb-3">
-                            Relevant Coursework:
+                        <div className="mt-2">
+                          <h4 className="text-base font-semibold text-navy mb-2">
+                            Relevant Coursework
                           </h4>
-                          <div className="flex flex-wrap gap-1.5 lg:gap-2">
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-navy text-navy text-xs lg:text-sm px-2 lg:px-3 py-1"
+                          <div className="flex flex-wrap gap-2">
+                            {coursework.map((course) => (
+                              <motion.div
+                                key={course}
+                                whileHover={{ scale: 1.05 }}
                               >
-                                Data Structures & Algorithms
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-navy text-navy text-xs lg:text-sm px-2 lg:px-3 py-1"
-                              >
-                                Software Engineering
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-navy text-navy"
-                              >
-                                Machine Learning
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-navy text-navy"
-                              >
-                                Database Management Systems
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-navy text-navy"
-                              >
-                                Artificial Intelligence
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-navy text-navy"
-                              >
-                                Web Technologies
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-navy text-navy"
-                              >
-                                Computer Networks
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-navy text-navy"
-                              >
-                                Operating Systems
-                              </Badge>
-                            </motion.div>
+                                <Badge
+                                  variant="outline"
+                                  className="border-navy text-navy px-3 py-1 text-xs md:text-sm"
+                                >
+                                  {course}
+                                </Badge>
+                              </motion.div>
+                            ))}
                           </div>
                         </div>
                       </CardContent>
@@ -435,234 +495,63 @@ export default function AboutPage() {
                     </p>
 
                     <div className="grid grid-cols-1 gap-6">
-                      {/* McKinsey Forward Program */}
-                      <Card className="border-beige shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
-                        <div className="h-2 bg-gradient-to-r from-blue-600 to-indigo-700"></div>
-                        <CardHeader>
-                          <CardTitle className="flex items-center justify-between">
-                            <span>McKinsey Forward Program</span>
-                            <Badge
-                              variant="outline"
-                              className="border-green-500 text-green-700 bg-green-50"
-                            >
-                              Current
-                            </Badge>
-                          </CardTitle>
-                          <CardDescription>McKinsey & Company</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="flex justify-between items-center mb-4">
-                            <p className="text-sm text-navy/70">
-                              <strong>Issued:</strong> 2025
+                      {certifications.map((cert) => (
+                        <Card
+                          key={cert.id}
+                          className="border-beige shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden"
+                        >
+                          <div
+                            className={`h-2 bg-gradient-to-r ${cert.gradient}`}
+                          ></div>
+                          <CardHeader>
+                            <CardTitle className="flex items-center justify-between">
+                              <span>{cert.title}</span>
+                              <Badge
+                                variant="outline"
+                                className="border-green-500 text-green-700 bg-green-50"
+                              >
+                                {cert.status}
+                              </Badge>
+                            </CardTitle>
+                            <CardDescription>{cert.issuer}</CardDescription>
+                          </CardHeader>
+                          <CardContent>
+                            <div className="flex justify-between items-center mb-4">
+                              <p className="text-sm text-navy/70">
+                                <strong>Issued:</strong> {cert.year}
+                              </p>
+                            </div>
+                            <div className="mb-4">
+                              <a
+                                href={cert.credentialUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 hover:text-blue-800 text-sm"
+                              >
+                                View Credential →
+                              </a>
+                            </div>
+                            <p className="text-navy/80 leading-relaxed mb-4">
+                              {cert.description}
                             </p>
-                          </div>
-                          <div className="mb-4">
-                            <a
-                              href="https://www.credly.com/badges/f4530a79-ae37-4ea2-b2a5-9df37f41ddc2/linked_in?t=sz0nx1"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-blue-600 hover:text-blue-800 underline text-sm"
-                            >
-                              View Credential →
-                            </a>
-                          </div>
-                          <p className="text-navy/80 leading-relaxed mb-4">
-                            A comprehensive business skills program designed to
-                            accelerate professional development through
-                            McKinsey's proven methodologies and frameworks for
-                            problem-solving and leadership.
-                          </p>
-                          <div className="flex flex-wrap gap-2">
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-blue-500 text-blue-700"
-                              >
-                                Business Strategy
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-blue-500 text-blue-700"
-                              >
-                                Problem Solving
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-blue-500 text-blue-700"
-                              >
-                                Leadership
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-blue-500 text-blue-700"
-                              >
-                                Strategic Thinking
-                              </Badge>
-                            </motion.div>
-                          </div>
-                        </CardContent>
-                      </Card>
-
-                      {/* Oracle Cloud Infrastructure Generative AI Professional */}
-                      <Card className="border-beige shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
-                        <div className="h-2 bg-gradient-to-r from-red-500 to-orange-600"></div>
-                        <CardHeader>
-                          <CardTitle className="flex items-center justify-between">
-                            <span>
-                              Oracle Cloud Infrastructure Generative AI
-                              Professional
-                            </span>
-                            <Badge
-                              variant="outline"
-                              className="border-green-500 text-green-700 bg-green-50"
-                            >
-                              Current
-                            </Badge>
-                          </CardTitle>
-                          <CardDescription>Oracle Corporation</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="flex justify-between items-center mb-4">
-                            <p className="text-sm text-navy/70">
-                              <strong>Issued:</strong> 2025
-                            </p>
-                          </div>
-                          <div className="mb-4">
-                            <a
-                              href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=4EAA05D1470DF9F2F3EAB04361CF6120A4E409A32C80B248D9B742B79CBC1C06"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-blue-600 hover:text-blue-800 underline text-sm"
-                            >
-                              View Credential →
-                            </a>
-                          </div>
-                          <p className="text-navy/80 leading-relaxed mb-4">
-                            Professional-level certification demonstrating
-                            expertise in Oracle Cloud Infrastructure's
-                            Generative AI services, including large language
-                            models, AI model deployment, and responsible AI
-                            practices.
-                          </p>
-                          <div className="flex flex-wrap gap-2">
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-red-500 text-red-700"
-                              >
-                                Generative AI
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-red-500 text-red-700"
-                              >
-                                Oracle Cloud
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-red-500 text-red-700"
-                              >
-                                Large Language Models
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-red-500 text-red-700"
-                              >
-                                AI Model Deployment
-                              </Badge>
-                            </motion.div>
-                          </div>
-                        </CardContent>
-                      </Card>
-
-                      {/* Oracle Cloud Infrastructure AI Foundations Associate */}
-                      <Card className="border-beige shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
-                        <div className="h-2 bg-gradient-to-r from-orange-500 to-red-500"></div>
-                        <CardHeader>
-                          <CardTitle className="flex items-center justify-between">
-                            <span>
-                              Oracle Cloud Infrastructure AI Foundations
-                              Associate
-                            </span>
-                            <Badge
-                              variant="outline"
-                              className="border-green-500 text-green-700 bg-green-50"
-                            >
-                              Current
-                            </Badge>
-                          </CardTitle>
-                          <CardDescription>Oracle Corporation</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="flex justify-between items-center mb-4">
-                            <p className="text-sm text-navy/70">
-                              <strong>Issued:</strong> 2025
-                            </p>
-                          </div>
-                          <div className="mb-4">
-                            <a
-                              href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=E74803FFF1D0B12D8BDBCC9C80E573ECA8C1A73BFBA31AA733EA960E1EF23517"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-blue-600 hover:text-blue-800 underline text-sm"
-                            >
-                              View Credential →
-                            </a>
-                          </div>
-                          <p className="text-navy/80 leading-relaxed mb-4">
-                            Associate-level certification validating
-                            foundational knowledge of AI concepts, Oracle Cloud
-                            Infrastructure AI services, and machine learning
-                            fundamentals for cloud-based AI solutions.
-                          </p>
-                          <div className="flex flex-wrap gap-2">
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-orange-500 text-orange-700"
-                              >
-                                AI Foundations
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-orange-500 text-orange-700"
-                              >
-                                Oracle Cloud AI
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-orange-500 text-orange-700"
-                              >
-                                Machine Learning
-                              </Badge>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }}>
-                              <Badge
-                                variant="outline"
-                                className="border-orange-500 text-orange-700"
-                              >
-                                Cloud AI Services
-                              </Badge>
-                            </motion.div>
-                          </div>
-                        </CardContent>
-                      </Card>
+                            <div className="flex flex-wrap gap-2">
+                              {cert.badges.map((badge, index) => (
+                                <motion.div
+                                  key={index}
+                                  whileHover={{ scale: 1.05 }}
+                                >
+                                  <Badge
+                                    variant="outline"
+                                    className={badge.color}
+                                  >
+                                    {badge.text}
+                                  </Badge>
+                                </motion.div>
+                              ))}
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
                     </div>
                   </motion.div>
                 )}
@@ -681,93 +570,30 @@ export default function AboutPage() {
                     </p>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      <motion.div
-                        whileHover={{ scale: 1.03 }}
-                        transition={{ type: "spring", stiffness: 400 }}
-                      >
-                        <Card className="border-beige bg-gradient-to-br from-white to-cream hover:shadow-md transition-all duration-300 h-full">
-                          <CardHeader className="pb-2">
-                            <CardTitle className="text-navy text-lg flex items-center gap-2">
-                              <Brain className="h-5 w-5 text-primary" />
-                              Problem Solver
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="text-navy/80">
-                              I approach challenges with analytical thinking and
-                              creative problem-solving skills, breaking down
-                              complex problems into manageable components to
-                              find efficient solutions.
-                            </p>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-
-                      <motion.div
-                        whileHover={{ scale: 1.03 }}
-                        transition={{ type: "spring", stiffness: 400 }}
-                      >
-                        <Card className="border-beige bg-gradient-to-br from-white to-cream hover:shadow-md transition-all duration-300 h-full">
-                          <CardHeader className="pb-2">
-                            <CardTitle className="text-navy text-lg flex items-center gap-2">
-                              <Book className="h-5 w-5 text-primary" />
-                              Continuous Learner
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="text-navy/80">
-                              I'm committed to staying updated with the latest
-                              technologies and industry trends, constantly
-                              expanding my skill set through self-study,
-                              courses, and hands-on projects.
-                            </p>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-
-                      <motion.div
-                        whileHover={{ scale: 1.03 }}
-                        transition={{ type: "spring", stiffness: 400 }}
-                      >
-                        <Card className="border-beige bg-gradient-to-br from-white to-cream hover:shadow-md transition-all duration-300 h-full">
-                          <CardHeader className="pb-2">
-                            <CardTitle className="text-navy text-lg flex items-center gap-2">
-                              <Users className="h-5 w-5 text-primary" />
-                              Team Player
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="text-navy/80">
-                              I thrive in collaborative environments and value
-                              diverse perspectives, believing that the best
-                              solutions come from combining different viewpoints
-                              and expertise.
-                            </p>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-
-                      <motion.div
-                        whileHover={{ scale: 1.03 }}
-                        transition={{ type: "spring", stiffness: 400 }}
-                      >
-                        <Card className="border-beige bg-gradient-to-br from-white to-cream hover:shadow-md transition-all duration-300 h-full">
-                          <CardHeader className="pb-2">
-                            <CardTitle className="text-navy text-lg flex items-center gap-2">
-                              <Zap className="h-5 w-5 text-primary" />
-                              Detail-Oriented
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="text-navy/80">
-                              I pay close attention to details while keeping the
-                              big picture in mind, ensuring the quality and
-                              coherence of every project I undertake from
-                              planning to execution.
-                            </p>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
+                      {approaches.map((approach, index) => {
+                        const IconComponent = approach.icon;
+                        return (
+                          <motion.div
+                            key={approach.title}
+                            whileHover={{ scale: 1.03 }}
+                            transition={{ type: "spring", stiffness: 400 }}
+                          >
+                            <Card className="border-beige bg-gradient-to-br from-white to-cream hover:shadow-md transition-all duration-300 h-full">
+                              <CardHeader className="pb-2">
+                                <CardTitle className="text-navy text-lg flex items-center gap-2">
+                                  <IconComponent className="h-5 w-5 text-primary" />
+                                  {approach.title}
+                                </CardTitle>
+                              </CardHeader>
+                              <CardContent>
+                                <p className="text-navy/80">
+                                  {approach.description}
+                                </p>
+                              </CardContent>
+                            </Card>
+                          </motion.div>
+                        );
+                      })}
                     </div>
                   </motion.div>
                 )}
