@@ -12,15 +12,15 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen, Clock } from "lucide-react";
 
 export default function BlogPage() {
-const featuredArticle = {
+  const featuredArticle = {
     title: "Meet Your Digital Pet: Born with RL",
     category: "AI & Machine Learning",
-    date: "December 2024",
-    readTime: "8 min read",
+    date: "8 June 2025",
+    readTime: "13 min read",
     excerpt:
-        "Explore the fascinating world of AI-powered digital pets and how Reinforcement Learning enables intelligent virtual companions. This article discusses the concepts, challenges, and future possibilities in this emerging field.",
+      "Explore the fascinating world of AI-powered digital pets and how Reinforcement Learning enables intelligent virtual companions. This article discusses the concepts, challenges, and future possibilities in this emerging field.",
     link: "https://medium.com/@omkarjawalikar04/meet-your-digital-pet-born-with-rl-d4bb419ee4ef",
-};
+  };
 
   return (
     <PageWrapper>
