@@ -9,7 +9,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Omkar Jawalikar ",
   description:
-    "Computer Science geek specializing in AI/ML, full-stack development, and financial research. Currently AI/ML Intern at ForgeAhead Solutions."
+    "Computer Science geek specializing in AI/ML, full-stack development, and financial research. Currently AI/ML Intern at ForgeAhead Solutions.",
+  icons: {
+    icon: "/favicon-terminal.svg", 
+    apple: "/PFP.png", // Your profile picture for Apple devices
+  },
 };
 
 export default function RootLayout({

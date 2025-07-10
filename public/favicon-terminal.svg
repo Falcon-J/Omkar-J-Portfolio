@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="#111827"/>
+  
+  <!-- Terminal window -->
+  <rect x="3" y="6" width="26" height="20" rx="3" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+  
+  <!-- Terminal header -->
+  <rect x="3" y="6" width="26" height="4" rx="3" fill="#374151"/>
+  
+  <!-- Traffic light buttons -->
+  <circle cx="7" cy="8" r="1" fill="#ef4444"/>
+  <circle cx="10" cy="8" r="1" fill="#f59e0b"/>
+  <circle cx="13" cy="8" r="1" fill="#10b981"/>
+  
+  <!-- Terminal text/code -->
+  <g fill="#10b981" font-family="monospace" font-size="3">
+    <text x="5" y="16">$</text>
+    <text x="8" y="16">npm</text>
+    <text x="5" y="20">{'>'}</text>
+    <text x="8" y="20">dev</text>
+  </g>
+  
+  <!-- Cursor -->
+  <rect x="18" y="17" width="1" height="3" fill="#10b981"/>
+</svg>
