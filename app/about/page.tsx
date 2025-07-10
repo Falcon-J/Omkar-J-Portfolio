@@ -102,11 +102,11 @@ export default function AboutPage() {
         style={{ opacity: 0.7 }}
       />
 
-      <section className="py-20">
-        <div className="container">
+      <section className="py-12 lg:py-20">
+        <div className="container px-4 lg:px-6">
           <FadeIn>
             <motion.h1
-              className="text-5xl font-bold mb-16 text-center text-[var(--color-secondary)] "
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 lg:mb-16 text-center text-[var(--color-secondary)]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -115,15 +115,15 @@ export default function AboutPage() {
             </motion.h1>
           </FadeIn>
 
-          <div className="grid md:grid-cols-3 gap-12 items-start">
-            {/* Profile Section - Now in left column (1/3 width) */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
+            {/* Profile Section - Stacked on mobile, 1/3 width on desktop */}
             <FadeIn delay={0.2}>
               <motion.div
-                className="space-y-6"
+                className="space-y-4 lg:space-y-6"
                 whileHover={{ scale: 1.01 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
+                <div className="relative h-[280px] sm:h-[320px] lg:h-[400px] rounded-lg overflow-hidden shadow-xl mx-auto max-w-sm lg:max-w-none">
                   <Image
                     src="/pfp_side.jpg"
                     alt="Omkar Jawalikar"
@@ -132,23 +132,27 @@ export default function AboutPage() {
                   />
                 </div>
 
-                <h2 className="text-2xl font-bold text-navy">Who I Am</h2>
-                <p className="text-navy/80 leading-relaxed">
-                  I'm a builder at heart, driven by curiosity, shaped by
-                  discipline, and focused on crafting meaningful tech. Whether
-                  it's developing intelligent AI tools, designing immersive
-                  frontend experiences, or optimizing systems end-to-end, I
-                  thrive at the intersection of innovation and execution. I
-                  value clean architecture, user-centric design, and teamwork
-                  that scales impact. Always learning, always shipping.
-                </p>
+                <div className="text-center lg:text-left">
+                  <h2 className="text-xl lg:text-2xl font-bold text-navy mb-3 lg:mb-4">
+                    Who I Am
+                  </h2>
+                  <p className="text-navy/80 leading-relaxed text-sm lg:text-base">
+                    I'm a builder at heart, driven by curiosity, shaped by
+                    discipline, and focused on crafting meaningful tech. Whether
+                    it's developing intelligent AI tools, designing immersive
+                    frontend experiences, or optimizing systems end-to-end, I
+                    thrive at the intersection of innovation and execution. I
+                    value clean architecture, user-centric design, and teamwork
+                    that scales impact. Always learning, always shipping.
+                  </p>
+                </div>
 
                 {/* Download Resume Button */}
-                <div className="flex justify-center mt-6">
+                <div className="flex justify-center lg:justify-center mt-4 lg:mt-6">
                   <motion.a
                     href="/lastest_resume.pdf"
                     download="Omkar_Jawalikar_Resume.pdf"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-navy text-cream rounded-lg font-medium hover:bg-navy/90 transition-colors duration-300 shadow-lg hover:shadow-xl"
+                    className="inline-flex items-center gap-2 px-4 lg:px-6 py-2 lg:py-3 bg-navy text-cream rounded-lg font-medium hover:bg-navy/90 transition-colors duration-300 shadow-lg hover:shadow-xl text-sm lg:text-base"
                     whileHover={{ y: -2, scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -170,7 +174,7 @@ export default function AboutPage() {
                   </motion.a>
                 </div>
 
-                <div className="flex justify-center space-x-4 mt-6">
+                <div className="flex justify-center lg:justify-start space-x-4 mt-4 lg:mt-6">
                   <motion.a
                     href="https://github.com/Falcon-J"
                     target="_blank"
@@ -225,21 +229,21 @@ export default function AboutPage() {
               </motion.div>
             </FadeIn>
 
-            {/* Main Content - Now in right column (2/3 width) */}
-            <div className="md:col-span-2">
+            {/* Main Content - Stacked on mobile, 2/3 width on desktop */}
+            <div className="lg:col-span-2 mt-8 lg:mt-0">
               <FadeIn delay={0.4}>
                 {/* Interactive Tabs */}
-                <div className="mb-8 flex border-b border-beige/30">
+                <div className="mb-6 lg:mb-8 flex border-b border-beige/30 overflow-x-auto">
                   <button
                     onClick={() => setActiveTab("education")}
-                    className={`px-4 py-3 font-medium transition-colors relative ${
+                    className={`px-3 lg:px-4 py-2 lg:py-3 font-medium transition-colors relative whitespace-nowrap text-sm lg:text-base ${
                       activeTab === "education"
                         ? "text-navy"
                         : "text-navy/50 hover:text-navy/70"
                     }`}
                   >
-                    <span className="flex items-center gap-2">
-                      <Book size={18} />
+                    <span className="flex items-center gap-1 lg:gap-2">
+                      <Book size={16} className="lg:w-[18px] lg:h-[18px]" />
                       Education
                     </span>
                     {activeTab === "education" && (
@@ -251,14 +255,14 @@ export default function AboutPage() {
                   </button>
                   <button
                     onClick={() => setActiveTab("certifications")}
-                    className={`px-4 py-3 font-medium transition-colors relative ${
+                    className={`px-3 lg:px-4 py-2 lg:py-3 font-medium transition-colors relative whitespace-nowrap text-sm lg:text-base ${
                       activeTab === "certifications"
                         ? "text-navy"
                         : "text-navy/50 hover:text-navy/70"
                     }`}
                   >
-                    <span className="flex items-center gap-2">
-                      <Zap size={18} />
+                    <span className="flex items-center gap-1 lg:gap-2">
+                      <Zap size={16} className="lg:w-[18px] lg:h-[18px]" />
                       Certifications
                     </span>
                     {activeTab === "certifications" && (
@@ -270,14 +274,14 @@ export default function AboutPage() {
                   </button>
                   <button
                     onClick={() => setActiveTab("approach")}
-                    className={`px-4 py-3 font-medium transition-colors relative ${
+                    className={`px-3 lg:px-4 py-2 lg:py-3 font-medium transition-colors relative whitespace-nowrap text-sm lg:text-base ${
                       activeTab === "approach"
                         ? "text-navy"
                         : "text-navy/50 hover:text-navy/70"
                     }`}
                   >
-                    <span className="flex items-center gap-2">
-                      <Brain size={18} />
+                    <span className="flex items-center gap-1 lg:gap-2">
+                      <Brain size={16} className="lg:w-[18px] lg:h-[18px]" />
                       My Approach
                     </span>
                     {activeTab === "approach" && (
@@ -295,37 +299,37 @@ export default function AboutPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="space-y-8"
+                    className="space-y-6 lg:space-y-8"
                   >
                     <Card className="border-beige shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
                       <div className="h-2 bg-gradient-to-r from-primary to-blue-600"></div>
-                      <CardHeader>
-                        <CardTitle>
+                      <CardHeader className="pb-3 lg:pb-4">
+                        <CardTitle className="text-lg lg:text-xl leading-tight">
                           Bachelor of Technology - Computer Science and
                           Engineering
                         </CardTitle>
-                        <CardDescription className="text-base">
+                        <CardDescription className="text-sm lg:text-base">
                           Vellore Institute of Technology, Vellore
                         </CardDescription>
                       </CardHeader>
                       <CardContent>
-                        <div className="flex justify-between items-center mb-4">
-                          <p className="text-sm text-navy/70">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-4 mb-4">
+                          <p className="text-xs lg:text-sm text-navy/70">
                             Expected Graduation: August 2026
                           </p>
-                          <p className="font-medium text-navy bg-cream/70 py-1 px-3 rounded-full text-sm">
+                          <p className="font-medium text-navy bg-cream/70 py-1 px-2 lg:px-3 rounded-full text-xs lg:text-sm w-fit">
                             CGPA: 8.27
                           </p>
                         </div>
                         <div className="mt-4">
-                          <h4 className="text-sm font-semibold mb-3">
+                          <h4 className="text-xs lg:text-sm font-semibold mb-3">
                             Relevant Coursework:
                           </h4>
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-1.5 lg:gap-2">
                             <motion.div whileHover={{ scale: 1.05 }}>
                               <Badge
                                 variant="outline"
-                                className="border-navy text-navy"
+                                className="border-navy text-navy text-xs lg:text-sm px-2 lg:px-3 py-1"
                               >
                                 Data Structures & Algorithms
                               </Badge>
@@ -333,7 +337,7 @@ export default function AboutPage() {
                             <motion.div whileHover={{ scale: 1.05 }}>
                               <Badge
                                 variant="outline"
-                                className="border-navy text-navy"
+                                className="border-navy text-navy text-xs lg:text-sm px-2 lg:px-3 py-1"
                               >
                                 Software Engineering
                               </Badge>
