@@ -22,17 +22,26 @@ interface Experience {
   responsibilities: string[];
 }
 
+// Awards/Achievements interface
+interface Achievement {
+  year: number;
+  title: string;
+  event: string;
+  location: string;
+  description?: string;
+}
+
 // Professional experience data
 const professionalExperiences: Experience[] = [
   {
     year: 2025,
     title: "AI/ML Intern",
-    company: "Forgeahead Solutions",
+    company: "ForgeAhead Solutions",
     duration: "June 2025 - Present",
     responsibilities: [
-      "Building AI-powered solutions by developing and evaluating machine learning models for production environments.",
-      "Tracked and compared ML experiments using MLflow to ensure reproducibility and performance monitoring.",
-      "Utilized DagsHub for version control of datasets and models in a collaborative development workflow.",
+      "Designing intelligent modules using LLMs and RAG architecture achieving 90% accuracy in data extraction and parsing.",
+      "Contributing to 5+ AI-driven components for keyword enrichment, skills gap analysis, semantic matching, and chatbot interface.",
+      "Utilized MLflow and DagsHub to manage 10+ ML experiments and track dataset/model versions across a team of 4+ engineers in a collaborative workflow.",
     ],
   },
   {
@@ -41,8 +50,9 @@ const professionalExperiences: Experience[] = [
     company: "Wall Street Global Institute",
     duration: "May 2025 - June 2025",
     responsibilities: [
-      "Conducted in-depth research and analysis on the annual reports of Infosys and Asian Paints.",
-      "Extracted key financial data and insights to support research and industry comparisons.",
+      "Validated data across Indian and U.S. annual reports, improving reporting accuracy by 85% contributing to an ISB edition book.",
+      "Analyzed disclosures across 8+ chapters between Indian reports and Microsoft's SEC 10-Ks key presentation differences.",
+      "Reviewed and compared 20+ sections from annual reports of Infosys and Asian Paints, covering ESG, MD&A, and consolidated financial disclosures.",
     ],
   },
   {
@@ -51,9 +61,9 @@ const professionalExperiences: Experience[] = [
     company: "Entrepreneurship Cell, VIT",
     duration: "July 2024 - June 2025",
     responsibilities: [
-      "Driving operational strategy to scale the Entrepreneurship Cell, VIT, optimizing workflows and maximizing impact.",
-      "Mentoring a dynamic team, cultivating an entrepreneurial mindset for innovation and high-impact execution.",
-      "Optimized decision-making, increasing event efficiency and resource allocation by 30%.",
+      "Improving internal workflows efficiency using Google Workspace tools, reducing coordination time by 30%.",
+      "Team coordination across 8 departments to standardize processes, enabling faster event turnaround and improved collaboration.",
+      "Spearheaded operational strategy for a 20-member team, ensuring successful execution of 15+ campus-wide events with 1000+ cumulative attendees.",
     ],
   },
 ];
@@ -68,11 +78,24 @@ const extracurricularExperiences: Experience[] = [
     responsibilities: [
       "Spearheaded the organization of Riviera's largest comedy show, collaborating with 4 renowned Indian performers.",
       "Facilitated a seamless experience for 1000+ attendees, ensuring smooth event execution and high audience engagement.",
+      "Coordinated logistics, vendor management, and technical requirements for a high-profile entertainment event.",
+    ],
+  },
+  {
+    year: 2024,
+    title: "Person of Contact",
+    company:
+      "International Conference on Emerging Trends in Information Technology and Engineering",
+    duration: "June 2023 - March 2024",
+    responsibilities: [
+      "Organized Technext, a technology exhibition, showcasing cutting-edge innovations and emerging trends in IT and engineering.",
+      "Coordinated with multiple stakeholders, speakers, and participants to ensure successful execution of the technology exhibition.",
+      "Facilitated knowledge exchange and networking opportunities for attendees from academia and industry during the conference.",
     ],
   },
   {
     year: 2023,
-    title: "Core Committee",
+    title: "Core Committee Member",
     company: "Entrepreneurship Cell, VIT",
     duration: "February 2023 - July 2024",
     responsibilities: [
@@ -81,39 +104,48 @@ const extracurricularExperiences: Experience[] = [
       "Developed targeted engagement strategies, boosting member participation by 40% and enhancing overall community involvement.",
     ],
   },
+];
+
+// Awards and achievements data
+const achievements: Achievement[] = [
   {
     year: 2023,
-    title: "Event Coordinator - Volunteer",
-    company: "ICETITE'24",
-    duration: "June 2023 - March 2024",
-    responsibilities: [
-      "Led the planning and execution of TECHNEXT, a prominent event at the ic-ETITE'24 Conference.",
-      "Implemented digital marketing campaigns on Instagram and Twitter, increasing event registrations by 40%.",
-      "Collaborated with India's leading venture capitalists and startup innovators to mentor students, helping them convert technology concepts into practical solutions.",
-    ],
+    title: "Best UI/UX Award – Game Development Track",
+    event: "Hackstory Hackathon – VIT",
+    location: "Vellore, IN",
+    description:
+      "Developed 'Mental Quest', an RPG-based mental health awareness game using RPG Maker and Ruby scripting with intuitive design and engaging UX. Presented a full business proposal including monetization strategy and scalability plan.",
+  },
+  {
+    year: 2023,
+    title: "2nd Runner up Cryptic Hunt 2.0",
+    event: "Cryptographic Puzzle Solving Competition - (ACM-VIT Chapter)",
+    location: "Vellore, IN",
+    description:
+      "Placed 3rd among university-wide participants in ACM-VIT's cryptographic puzzle competition during graVITas 2023, demonstrating strong problem-solving and analytical thinking skills.",
   },
 ];
 
 // Updated ExperienceCard component
 const ExperienceCard = ({ experience }: { experience: Experience }) => (
   <div className="group relative">
-    <div className="absolute left-0 top-0 w-16 h-16 bg-navy rounded-full flex items-center justify-center text-cream font-bold z-10 transform group-hover:scale-110 transition-transform duration-300">
-      <span className="text-xl">{experience.year}</span>
+    <div className="absolute left-0 top-0 w-12 h-12 md:w-16 md:h-16 bg-navy rounded-full flex items-center justify-center text-cream font-bold z-10 transform group-hover:scale-110 transition-transform duration-300">
+      <span className="text-sm md:text-xl">{experience.year}</span>
     </div>
-    <div className="pl-24">
+    <div className="pl-16 md:pl-24">
       <Card className="border-2 border-beige bg-white/80 backdrop-blur-sm hover:border-navy transition-all duration-300 transform group-hover:-translate-y-1">
         <CardHeader className="pb-4">
           <div className="flex flex-col gap-2">
-            <div className="flex justify-between items-start">
-              <div>
-                <CardTitle className="text-2xl font-bold text-navy">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+              <div className="flex-1 min-w-0">
+                <CardTitle className="text-lg sm:text-xl md:text-2xl font-bold text-navy leading-tight">
                   {experience.title}
                 </CardTitle>
-                <CardDescription className="text-lg text-navy/70 mt-1">
+                <CardDescription className="text-sm md:text-base text-navy/70 mt-1 break-words">
                   {experience.company}
                 </CardDescription>
               </div>
-              <span className="text-sm font-medium px-4 py-1 rounded-full bg-navy/10 text-navy">
+              <span className="self-start sm:self-auto text-xs sm:text-sm font-normal px-2 py-1 rounded-lg bg-navy/10 text-navy whitespace-nowrap flex-shrink-0">
                 {experience.duration}
               </span>
             </div>
@@ -122,9 +154,12 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => (
         <CardContent>
           <ul className="space-y-3">
             {experience.responsibilities.map((responsibility, index) => (
-              <li key={index} className="flex items-start gap-3 group/item">
-                <div className="mt-1.5 h-2 w-2 rounded-full bg-navy flex-shrink-0 group-hover/item:scale-150 transition-transform duration-300"></div>
-                <span className="text-navy/80 leading-relaxed">
+              <li
+                key={index}
+                className="flex items-start gap-2 md:gap-3 group/item"
+              >
+                <div className="mt-1.5 h-1.5 w-1.5 md:h-2 md:w-2 rounded-full bg-navy flex-shrink-0 group-hover/item:scale-150 transition-transform duration-300"></div>
+                <span className="text-sm md:text-base text-navy/80 leading-relaxed">
                   {responsibility}
                 </span>
               </li>
@@ -136,11 +171,75 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => (
   </div>
 );
 
+// Achievement Card component
+const AchievementCard = ({ achievement }: { achievement: Achievement }) => (
+  <div className="group relative">
+    <div className="absolute left-0 top-0 w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold z-10 transform group-hover:scale-110 transition-transform duration-300">
+      <span className="text-lg md:text-2xl">🏆</span>
+    </div>
+    <div className="pl-16 md:pl-24">
+      <Card className="border-2 border-yellow-200 bg-gradient-to-br from-yellow-50 to-orange-50 hover:border-yellow-400 transition-all duration-300 transform group-hover:-translate-y-1">
+        <CardHeader className="pb-4">
+          <div className="flex flex-col gap-2">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+              <div className="flex-1 min-w-0">
+                <CardTitle className="text-lg sm:text-xl md:text-2xl font-bold text-yellow-800 leading-tight">
+                  {achievement.title}
+                </CardTitle>
+                <CardDescription className="text-sm md:text-base text-yellow-700 mt-1 break-words font-medium">
+                  {achievement.event}
+                </CardDescription>
+              </div>
+              <div className="flex flex-col items-start sm:items-end gap-1">
+                <span className="text-xs sm:text-sm font-medium px-2 py-1 rounded-lg bg-yellow-200 text-yellow-800 whitespace-nowrap">
+                  {achievement.location}
+                </span>
+                <span className="text-xs sm:text-sm font-bold text-yellow-600">
+                  {achievement.year}
+                </span>
+              </div>
+            </div>
+          </div>
+        </CardHeader>
+        {achievement.description && (
+          <CardContent>
+            <p className="text-sm md:text-base text-yellow-800 leading-relaxed">
+              {achievement.description}
+            </p>
+          </CardContent>
+        )}
+      </Card>
+    </div>
+  </div>
+);
+
+// Achievement Section component
+const AchievementSection = ({
+  achievements,
+}: {
+  achievements: Achievement[];
+}) => (
+  <div className="relative">
+    {/* Desktop timeline */}
+    <div className="hidden md:block absolute left-[31px] top-8 bottom-8 w-0.5 bg-gradient-to-b from-yellow-500 via-orange-400 to-yellow-500"></div>
+    {/* Mobile timeline */}
+    <div className="md:hidden absolute left-[23px] top-8 bottom-8 w-0.5 bg-gradient-to-b from-yellow-500 via-orange-400 to-yellow-500"></div>
+    <div className="space-y-8 md:space-y-16">
+      {achievements.map((achievement, index) => (
+        <AchievementCard key={index} achievement={achievement} />
+      ))}
+    </div>
+  </div>
+);
+
 // Updated ExperienceSection component
 const ExperienceSection = ({ experiences }: { experiences: Experience[] }) => (
   <div className="relative">
-    <div className="absolute left-[31px] top-8 bottom-8 w-0.5 bg-gradient-to-b from-navy via-beige to-navy"></div>
-    <div className="space-y-16">
+    {/* Desktop timeline */}
+    <div className="hidden md:block absolute left-[31px] top-8 bottom-8 w-0.5 bg-gradient-to-b from-navy via-beige to-navy"></div>
+    {/* Mobile timeline */}
+    <div className="md:hidden absolute left-[23px] top-8 bottom-8 w-0.5 bg-gradient-to-b from-navy via-beige to-navy"></div>
+    <div className="space-y-8 md:space-y-16">
       {experiences.map((experience, index) => (
         <ExperienceCard key={index} experience={experience} />
       ))}
@@ -186,31 +285,85 @@ export default function ExperiencePage() {
 
     let animationFrameId: number;
     let time = 0;
+    let lastFrameTime = 0;
+    let isVisible = true;
 
-    const animate = () => {
-      time += 0.001;
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Target FPS based on device capabilities
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+    const targetFPS = isMobile ? 30 : 60; // Lower FPS on mobile
+    const frameInterval = 1000 / targetFPS;
 
-      const hexSize = 20;
-      const cols = Math.ceil(canvas.width / (hexSize * 2)) + 2;
-      const rows = Math.ceil(canvas.height / (hexSize * 1.7)) + 2;
+    // Intersection Observer to pause animation when not visible
+    const observer = new IntersectionObserver(
+      (entries) => {
+        isVisible = entries[0].isIntersecting;
+        if (isVisible && !animationFrameId) {
+          animate();
+        }
+      },
+      { threshold: 0.1 }
+    );
 
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
+    observer.observe(canvas);
+
+    // Reduced calculation frequency - cache values that don't change often
+    let cachedCols = 0;
+    let cachedRows = 0;
+    let lastWidth = 0;
+    let lastHeight = 0;
+
+    const animate = (currentTime = 0) => {
+      if (!isVisible) return;
+
+      // Frame rate limiting
+      if (currentTime - lastFrameTime < frameInterval) {
+        animationFrameId = requestAnimationFrame(animate);
+        return;
+      }
+      lastFrameTime = currentTime;
+
+      time += isMobile ? 0.0005 : 0.001; // Slower animation on mobile
+
+      // Only recalculate grid if canvas size changed
+      if (canvas.width !== lastWidth || canvas.height !== lastHeight) {
+        const hexSize = isMobile ? 25 : 20; // Larger hexagons on mobile = fewer calculations
+        cachedCols = Math.ceil(canvas.width / (hexSize * 2)) + 2;
+        cachedRows = Math.ceil(canvas.height / (hexSize * 1.7)) + 2;
+        lastWidth = canvas.width;
+        lastHeight = canvas.height;
+      }
+
+      // Clear canvas efficiently
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const hexSize = isMobile ? 25 : 20;
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+
+      // Batch drawing operations
+      ctx.lineWidth = 1;
+
+      for (let i = 0; i < cachedCols; i++) {
+        for (let j = 0; j < cachedRows; j++) {
           const x = i * hexSize * 2 + (j % 2 === 0 ? 0 : hexSize);
           const y = j * hexSize * 1.7;
 
+          // Skip hexagons that are far from viewport center to reduce calculations
           const distanceFromCenter = Math.sqrt(
-            Math.pow((x - canvas.width / 2) / canvas.width, 2) +
-              Math.pow((y - canvas.height / 2) / canvas.height, 2)
+            Math.pow((x - centerX) / canvas.width, 2) +
+              Math.pow((y - centerY) / canvas.height, 2)
           );
+
+          // Only draw hexagons within a reasonable distance
+          if (distanceFromCenter > 0.8) continue;
 
           const opacity = Math.sin(time + distanceFromCenter * 5) * 0.03 + 0.03;
 
-          ctx.strokeStyle = `rgba(2, 32, 71, ${opacity})`; // navy color with dynamic opacity
-          ctx.lineWidth = 1;
-
+          // Batch similar operations together
+          ctx.strokeStyle = `rgba(2, 32, 71, ${opacity})`;
           drawHexagon(ctx, x, y, hexSize);
           ctx.stroke();
         }
@@ -223,7 +376,10 @@ export default function ExperiencePage() {
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
     };
   }, []);
 
@@ -232,16 +388,16 @@ export default function ExperiencePage() {
       <canvas
         ref={canvasRef}
         className="fixed inset-0 -z-10"
-        style={{ opacity: 1}}
+        style={{ opacity: 1 }}
       />
 
-      <section className="py-20">
-        <div className="container max-w-5xl">
+      <section className="py-12 md:py-20">
+        <div className="container max-w-5xl px-4 md:px-6">
           <FadeIn>
-            <h1 className="text-5xl font-bold mb-8 text-center text-navy">
+            <h1 className="text-3xl md:text-5xl font-bold mb-6 md:mb-8 text-center text-navy">
               Experience
             </h1>
-            <p className="text-center text-navy/70 text-lg mb-16 max-w-2xl mx-auto">
+            <p className="text-center text-navy/70 text-base md:text-lg mb-12 md:mb-16 max-w-2xl mx-auto px-4">
               A chronicle of my professional journey and contributions across
               various roles and organizations.
             </p>
@@ -249,18 +405,27 @@ export default function ExperiencePage() {
 
           <Tabs defaultValue="professional" className="w-full">
             <FadeIn delay={0.2}>
-              <TabsList className="w-full max-w-xs mx-auto grid grid-cols-2 mb-16 bg-cream/50 p-1 rounded-full">
+              <TabsList className="w-full max-w-lg mx-auto grid grid-cols-3 mb-12 md:mb-16 bg-cream/50 p-1 rounded-full">
                 <TabsTrigger
                   value="professional"
-                  className="rounded-full px-8 py-2 data-[state=active]:bg-navy data-[state=active]:text-cream transition-all duration-300"
+                  className="rounded-full px-2 md:px-6 py-2 text-xs md:text-sm data-[state=active]:bg-navy data-[state=active]:text-cream transition-all duration-300"
                 >
-                  Professional
+                  <span className="hidden sm:inline">Professional</span>
+                  <span className="sm:hidden">Work</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="extracurricular"
-                  className="rounded-full px-8 py-2 data-[state=active]:bg-navy data-[state=active]:text-cream transition-all duration-300"
+                  className="rounded-full px-2 md:px-6 py-2 text-xs md:text-sm data-[state=active]:bg-navy data-[state=active]:text-cream transition-all duration-300"
                 >
-                  Extracurricular
+                  <span className="hidden sm:inline">Extracurricular</span>
+                  <span className="sm:hidden">Activities</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="achievements"
+                  className="rounded-full px-2 md:px-6 py-2 text-xs md:text-sm data-[state=active]:bg-navy data-[state=active]:text-cream transition-all duration-300"
+                >
+                  <span className="hidden sm:inline">Achievements</span>
+                  <span className="sm:hidden">Awards</span>
                 </TabsTrigger>
               </TabsList>
             </FadeIn>
@@ -274,6 +439,12 @@ export default function ExperiencePage() {
             <TabsContent value="extracurricular" className="space-y-8">
               <FadeIn delay={0.3}>
                 <ExperienceSection experiences={extracurricularExperiences} />
+              </FadeIn>
+            </TabsContent>
+
+            <TabsContent value="achievements" className="space-y-8">
+              <FadeIn delay={0.3}>
+                <AchievementSection achievements={achievements} />
               </FadeIn>
             </TabsContent>
           </Tabs>

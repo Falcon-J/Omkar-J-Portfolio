@@ -134,11 +134,42 @@ export default function AboutPage() {
 
                 <h2 className="text-2xl font-bold text-navy">Who I Am</h2>
                 <p className="text-navy/80 leading-relaxed">
-                  I'm a Computer Science and Engineering student at Vellore
-                  Institute of Technology, passionate about technology and
-                  entrepreneurship. I strive to create impactful digital
-                  experiences.
+                  I'm a builder at heart, driven by curiosity, shaped by
+                  discipline, and focused on crafting meaningful tech. Whether
+                  it's developing intelligent AI tools, designing immersive
+                  frontend experiences, or optimizing systems end-to-end, I
+                  thrive at the intersection of innovation and execution. I
+                  value clean architecture, user-centric design, and teamwork
+                  that scales impact. Always learning, always shipping.
                 </p>
+
+                {/* Download Resume Button */}
+                <div className="flex justify-center mt-6">
+                  <motion.a
+                    href="/lastest_resume.pdf"
+                    download="Omkar_Jawalikar_Resume.pdf"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-navy text-cream rounded-lg font-medium hover:bg-navy/90 transition-colors duration-300 shadow-lg hover:shadow-xl"
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                    Download Resume
+                  </motion.a>
+                </div>
+
                 <div className="flex justify-center space-x-4 mt-6">
                   <motion.a
                     href="https://github.com/Falcon-J"
@@ -219,6 +250,25 @@ export default function AboutPage() {
                     )}
                   </button>
                   <button
+                    onClick={() => setActiveTab("certifications")}
+                    className={`px-4 py-3 font-medium transition-colors relative ${
+                      activeTab === "certifications"
+                        ? "text-navy"
+                        : "text-navy/50 hover:text-navy/70"
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      <Zap size={18} />
+                      Certifications
+                    </span>
+                    {activeTab === "certifications" && (
+                      <motion.div
+                        layoutId="activeBorder"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                      />
+                    )}
+                  </button>
+                  <button
                     onClick={() => setActiveTab("approach")}
                     className={`px-4 py-3 font-medium transition-colors relative ${
                       activeTab === "approach"
@@ -261,10 +311,20 @@ export default function AboutPage() {
                       <CardContent>
                         <div className="flex justify-between items-center mb-4">
                           <p className="text-sm text-navy/70">
-                            Graduation: August 2026
+                            Expected Graduation: August 2026
                           </p>
                           <p className="font-medium text-navy bg-cream/70 py-1 px-3 rounded-full text-sm">
-                            CGPA: 8.27
+                            CGPA: 8.28
+                          </p>
+                        </div>
+                        <div className="mb-4">
+                          <p className="text-sm text-navy/70 mb-2">
+                            <strong>Location:</strong> Vellore, Tamil Nadu,
+                            India
+                          </p>
+                          <p className="text-sm text-navy/70">
+                            <strong>Program:</strong> Bachelor of Technology -
+                            Computer Science and Engineering
                           </p>
                         </div>
                         <div className="mt-4">
@@ -277,7 +337,7 @@ export default function AboutPage() {
                                 variant="outline"
                                 className="border-navy text-navy"
                               >
-                                Data Structures
+                                Data Structures & Algorithms
                               </Badge>
                             </motion.div>
                             <motion.div whileHover={{ scale: 1.05 }}>
@@ -285,7 +345,7 @@ export default function AboutPage() {
                                 variant="outline"
                                 className="border-navy text-navy"
                               >
-                                Software Methodology
+                                Software Engineering
                               </Badge>
                             </motion.div>
                             <motion.div whileHover={{ scale: 1.05 }}>
@@ -293,7 +353,7 @@ export default function AboutPage() {
                                 variant="outline"
                                 className="border-navy text-navy"
                               >
-                                Algorithms Analysis
+                                Machine Learning
                               </Badge>
                             </motion.div>
                             <motion.div whileHover={{ scale: 1.05 }}>
@@ -301,7 +361,7 @@ export default function AboutPage() {
                                 variant="outline"
                                 className="border-navy text-navy"
                               >
-                                Database Management
+                                Database Management Systems
                               </Badge>
                             </motion.div>
                             <motion.div whileHover={{ scale: 1.05 }}>
@@ -317,7 +377,7 @@ export default function AboutPage() {
                                 variant="outline"
                                 className="border-navy text-navy"
                               >
-                                Internet Technology
+                                Web Technologies
                               </Badge>
                             </motion.div>
                             <motion.div whileHover={{ scale: 1.05 }}>
@@ -325,7 +385,7 @@ export default function AboutPage() {
                                 variant="outline"
                                 className="border-navy text-navy"
                               >
-                                Systems Programming
+                                Computer Networks
                               </Badge>
                             </motion.div>
                             <motion.div whileHover={{ scale: 1.05 }}>
@@ -333,7 +393,7 @@ export default function AboutPage() {
                                 variant="outline"
                                 className="border-navy text-navy"
                               >
-                                Computer Architecture
+                                Operating Systems
                               </Badge>
                             </motion.div>
                           </div>
@@ -361,6 +421,253 @@ export default function AboutPage() {
                             complex problems and turning ideas into reality
                             through code and collaboration.
                           </p>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Certifications Content */}
+                {activeTab === "certifications" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="space-y-6"
+                  >
+                    <p className="text-navy/80 leading-relaxed mb-8">
+                      These certifications demonstrate my commitment to
+                      continuous learning and expertise in emerging
+                      technologies.
+                    </p>
+
+                    <div className="grid grid-cols-1 gap-6">
+                      {/* McKinsey Forward Program */}
+                      <Card className="border-beige shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+                        <div className="h-2 bg-gradient-to-r from-blue-600 to-indigo-700"></div>
+                        <CardHeader>
+                          <CardTitle className="flex items-center justify-between">
+                            <span>McKinsey Forward Program</span>
+                            <Badge
+                              variant="outline"
+                              className="border-green-500 text-green-700 bg-green-50"
+                            >
+                              Current
+                            </Badge>
+                          </CardTitle>
+                          <CardDescription>McKinsey & Company</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="flex justify-between items-center mb-4">
+                            <p className="text-sm text-navy/70">
+                              <strong>Issued:</strong> 2025
+                            </p>
+                          </div>
+                          <div className="mb-4">
+                            <a
+                              href="https://www.credly.com/badges/f4530a79-ae37-4ea2-b2a5-9df37f41ddc2/linked_in?t=sz0nx1"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:text-blue-800 underline text-sm"
+                            >
+                              View Credential →
+                            </a>
+                          </div>
+                          <p className="text-navy/80 leading-relaxed mb-4">
+                            A comprehensive business skills program designed to
+                            accelerate professional development through
+                            McKinsey's proven methodologies and frameworks for
+                            problem-solving and leadership.
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            <motion.div whileHover={{ scale: 1.05 }}>
+                              <Badge
+                                variant="outline"
+                                className="border-blue-500 text-blue-700"
+                              >
+                                Business Strategy
+                              </Badge>
+                            </motion.div>
+                            <motion.div whileHover={{ scale: 1.05 }}>
+                              <Badge
+                                variant="outline"
+                                className="border-blue-500 text-blue-700"
+                              >
+                                Problem Solving
+                              </Badge>
+                            </motion.div>
+                            <motion.div whileHover={{ scale: 1.05 }}>
+                              <Badge
+                                variant="outline"
+                                className="border-blue-500 text-blue-700"
+                              >
+                                Leadership
+                              </Badge>
+                            </motion.div>
+                            <motion.div whileHover={{ scale: 1.05 }}>
+                              <Badge
+                                variant="outline"
+                                className="border-blue-500 text-blue-700"
+                              >
+                                Strategic Thinking
+                              </Badge>
+                            </motion.div>
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      {/* Oracle Cloud Infrastructure Generative AI Professional */}
+                      <Card className="border-beige shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+                        <div className="h-2 bg-gradient-to-r from-red-500 to-orange-600"></div>
+                        <CardHeader>
+                          <CardTitle className="flex items-center justify-between">
+                            <span>
+                              Oracle Cloud Infrastructure Generative AI
+                              Professional
+                            </span>
+                            <Badge
+                              variant="outline"
+                              className="border-green-500 text-green-700 bg-green-50"
+                            >
+                              Current
+                            </Badge>
+                          </CardTitle>
+                          <CardDescription>Oracle Corporation</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="flex justify-between items-center mb-4">
+                            <p className="text-sm text-navy/70">
+                              <strong>Issued:</strong> 2025
+                            </p>
+                          </div>
+                          <div className="mb-4">
+                            <a
+                              href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=4EAA05D1470DF9F2F3EAB04361CF6120A4E409A32C80B248D9B742B79CBC1C06"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:text-blue-800 underline text-sm"
+                            >
+                              View Credential →
+                            </a>
+                          </div>
+                          <p className="text-navy/80 leading-relaxed mb-4">
+                            Professional-level certification demonstrating
+                            expertise in Oracle Cloud Infrastructure's
+                            Generative AI services, including large language
+                            models, AI model deployment, and responsible AI
+                            practices.
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            <motion.div whileHover={{ scale: 1.05 }}>
+                              <Badge
+                                variant="outline"
+                                className="border-red-500 text-red-700"
+                              >
+                                Generative AI
+                              </Badge>
+                            </motion.div>
+                            <motion.div whileHover={{ scale: 1.05 }}>
+                              <Badge
+                                variant="outline"
+                                className="border-red-500 text-red-700"
+                              >
+                                Oracle Cloud
+                              </Badge>
+                            </motion.div>
+                            <motion.div whileHover={{ scale: 1.05 }}>
+                              <Badge
+                                variant="outline"
+                                className="border-red-500 text-red-700"
+                              >
+                                Large Language Models
+                              </Badge>
+                            </motion.div>
+                            <motion.div whileHover={{ scale: 1.05 }}>
+                              <Badge
+                                variant="outline"
+                                className="border-red-500 text-red-700"
+                              >
+                                AI Model Deployment
+                              </Badge>
+                            </motion.div>
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      {/* Oracle Cloud Infrastructure AI Foundations Associate */}
+                      <Card className="border-beige shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+                        <div className="h-2 bg-gradient-to-r from-orange-500 to-red-500"></div>
+                        <CardHeader>
+                          <CardTitle className="flex items-center justify-between">
+                            <span>
+                              Oracle Cloud Infrastructure AI Foundations
+                              Associate
+                            </span>
+                            <Badge
+                              variant="outline"
+                              className="border-green-500 text-green-700 bg-green-50"
+                            >
+                              Current
+                            </Badge>
+                          </CardTitle>
+                          <CardDescription>Oracle Corporation</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="flex justify-between items-center mb-4">
+                            <p className="text-sm text-navy/70">
+                              <strong>Issued:</strong> 2025
+                            </p>
+                          </div>
+                          <div className="mb-4">
+                            <a
+                              href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=E74803FFF1D0B12D8BDBCC9C80E573ECA8C1A73BFBA31AA733EA960E1EF23517"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:text-blue-800 underline text-sm"
+                            >
+                              View Credential →
+                            </a>
+                          </div>
+                          <p className="text-navy/80 leading-relaxed mb-4">
+                            Associate-level certification validating
+                            foundational knowledge of AI concepts, Oracle Cloud
+                            Infrastructure AI services, and machine learning
+                            fundamentals for cloud-based AI solutions.
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            <motion.div whileHover={{ scale: 1.05 }}>
+                              <Badge
+                                variant="outline"
+                                className="border-orange-500 text-orange-700"
+                              >
+                                AI Foundations
+                              </Badge>
+                            </motion.div>
+                            <motion.div whileHover={{ scale: 1.05 }}>
+                              <Badge
+                                variant="outline"
+                                className="border-orange-500 text-orange-700"
+                              >
+                                Oracle Cloud AI
+                              </Badge>
+                            </motion.div>
+                            <motion.div whileHover={{ scale: 1.05 }}>
+                              <Badge
+                                variant="outline"
+                                className="border-orange-500 text-orange-700"
+                              >
+                                Machine Learning
+                              </Badge>
+                            </motion.div>
+                            <motion.div whileHover={{ scale: 1.05 }}>
+                              <Badge
+                                variant="outline"
+                                className="border-orange-500 text-orange-700"
+                              >
+                                Cloud AI Services
+                              </Badge>
+                            </motion.div>
+                          </div>
                         </CardContent>
                       </Card>
                     </div>

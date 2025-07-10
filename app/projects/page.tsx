@@ -101,16 +101,6 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => (
               </li>
             ))}
           </ul>
-          <div className="mt-6">
-            <Button
-              className="w-full bg-navy text-cream hover:bg-navy/90"
-              asChild
-            >
-              <Link href={`/projects/${project.slug}`}>
-                View Project Details
-              </Link>
-            </Button>
-          </div>
         </CardContent>
       </Card>
     </div>
@@ -122,58 +112,59 @@ export default function ProjectsPage() {
     {
       id: 1,
       title: "MemoJar",
-      slug: "memojar",
       description:
-        "A beautiful and interactive memory journaling app with Firebase integration, secure auth, and real-time updates.",
-      image: "/screenshots/memojar.jpg",
+        "A comprehensive journaling web application that allows users to create, edit, and delete entries in real-time, supporting over 100+ entries per user.",
+      image: "/screenshots/Memojar_hero.png",
       tags: [
         "React",
+        "JavaScript",
         "Firebase",
         "Tailwind CSS",
         "Framer Motion",
-        "React Router",
       ],
       features: [
-        "Built a responsive memory journaling app with secure Firebase authentication and real-time database functionality.",
-        "Implemented an interactive UI with mouse-following gradients and smooth animations using Framer Motion.",
-        "Enabled full CRUD operations on user-generated memories with real-time syncing and tag-based filtering.",
+        "Conceptualized and built a journaling web application that allows users to create, edit, and delete entries in real-time, supporting over 100+ entries per user.",
+        "Leveraged Firestore for storage, user management, and real-time syncing to ensure sub-100ms update latency across sessions.",
+        "Integrated secure user authentication, tag-based memory filtering, dark mode, and mobile-first design.",
       ],
       github: "https://github.com/Falcon-J/MemoJar.git",
       live: "https://memo-jar.vercel.app/",
     },
-
     {
       id: 2,
-      title: "URL Shortener",
-      slug: "url-shortener",
+      title: "House Price Predictor",
       description:
-        "A URL shortener built with Node.js and Express, featuring a user-friendly interface and analytics.",
+        "A Flask-based machine learning application using Ridge Regression to predict Bangalore house prices with an R² score of 0.83.",
       image: "/placeholder.svg?height=200&width=400",
-      tags: ["Node.js", "Express", "MongoDB", "REST API"],
-
+      tags: ["Python", "Flask", "Scikit-Learn", "Pandas", "Render", "MLflow"],
       features: [
-        "Developed a URL shortener using Node.js and Express, reducing link length by 70% on average.",
-        "Implemented a user-friendly interface with React, enhancing user experience and engagement.",
-        "Integrated analytics to track link performance, providing users with insights on click rates and demographics.",
+        "Developed a Flask-based ML app using Ridge Regression to predict Bangalore house prices with an R² score of 0.83.",
+        "Implemented continuous deployment of the Flask API using Render and Gunicorn, supporting real-time ML predictions.",
+        "Preprocessed 13,000+ real estate records, engineered features and serialized the model using pandas, scikit-learn, and pickle for real-time predictions.",
       ],
-      github: "https://github.com/Falcon-J/urlshortner",
-      live: "https://url-shortner.vercel.app",
+      github: "https://github.com/Falcon-J/bangalore-house-price-predictor",
+      live: "#",
     },
     {
       id: 3,
       title: "TravelTrouve",
-      slug: "travel-trouve",
       description:
-        "A cross-platform travel photo-sharing platform with real-time categorization and geotagging.",
+        "A full-stack travel photo-sharing platform with secure user authentication, image uploads, and group collaboration features.",
       image: "/placeholder.svg?height=200&width=400",
-      tags: ["ReactJS", "Node.js", "Firebase", "Firestore", "Agile (Scrum)"],
-      features: [
-        "Built TravelTrouve, a cross-platform travel photo-sharing platform.",
-        "Integrated real-time photo categorization and geotagging, improving content organization efficiency by 60%.",
-        "Engineered a collaborative trip-planning feature, allowing users to share itineraries and recommendations, increasing engagement by 35%.",
+      tags: [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Firebase",
+        "Framer Motion",
       ],
-      github: "https://github.com/omkarjawalikar/traveltrouve",
-      live: "https://traveltrouve.vercel.app",
+      features: [
+        "Built a full-stack travel photo-sharing platform with secure user authentication and image uploads via Firestore.",
+        "Designed a scalable architecture with 15+ modular components, real-time listeners, and protected routes for user roles.",
+        "Engineered group collaboration through unique join codes, role-based access, and live photo sharing.",
+      ],
+      github: "https://github.com/Falcon-J/TravelTrouve",
+      live: "#",
     },
   ];
 
