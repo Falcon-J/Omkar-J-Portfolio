@@ -74,8 +74,8 @@ export default function Header() {
               ? {
                   backgroundColor: [
                     "transparent",
-                    "#ff111110",
-                    "#ff111120",
+                    "var(--color-primary)10",
+                    "var(--color-primary)20",
                     "transparent",
                   ],
                   scale: [1, 0.95, 1.02, 1],
@@ -88,7 +88,8 @@ export default function Header() {
           }}
           className={cn(
             "relative px-3 py-2 rounded-lg transition-all duration-200",
-            isClicked && "bg-[#ff1111]/10"
+            isClicked &&
+              "bg-[var(--color-primary)]/10 dark:bg-[var(--color-primary)]/20"
           )}
         >
           <Link
@@ -98,7 +99,7 @@ export default function Header() {
               isCurrentActive
                 ? "text-[var(--color-secondary)] font-bold"
                 : cn(
-                    "text-[var(--color-secondary)]/80 hover:text-[var(--color-primary)]",
+                    "text-[var(--color-text)] dark:text-[var(--color-text)] hover:text-[var(--color-primary)]",
                     isClicked && "text-[var(--color-primary)] font-medium"
                   ),
               className
@@ -202,7 +203,7 @@ export default function Header() {
       {/* Mobile Menu */}
       {/* Mobile Menu (Horizontal Navbar) */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white/60 dark:bg-neutral-900/60 backdrop-blur-lg md:hidden ">
+        <div className="fixed inset-0 z-50 bg-white/90 dark:bg-neutral-900/90 backdrop-blur-lg md:hidden">
           {/* Close Button */}
           <div className="container flex h-16 items-center justify-between">
             <div className="flex-grow"></div>{" "}
@@ -210,7 +211,7 @@ export default function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className=" text-[var(--color-secondary)]"
+              className="text-[var(--color-secondary)]"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <X className="h-6 w-6" />
@@ -218,7 +219,7 @@ export default function Header() {
             </Button>
           </div>
           {/* Horizontal Nav Items */}
-          <nav className="container bg-white backdrop-blur-lg flex flex-wrap justify-center gap-4 shadow-md border-b border-white/20 dark:border-neutral-800 py-4">
+          <nav className="container bg-white/80 dark:bg-neutral-900/80 backdrop-blur-lg flex flex-wrap justify-center gap-4 shadow-md border-b border-white/20 dark:border-neutral-700 py-4">
             {navItems.map((item) => (
               <motion.div
                 key={item.path}
@@ -232,8 +233,8 @@ export default function Header() {
                       ? {
                           backgroundColor: [
                             "transparent",
-                            "#ff111110",
-                            "#ff111120",
+                            "var(--color-primary)10",
+                            "var(--color-primary)20",
                             "transparent",
                           ],
                           scale: [1, 0.95, 1.02, 1],
@@ -246,7 +247,8 @@ export default function Header() {
                   }}
                   className={cn(
                     "rounded-lg transition-all duration-200",
-                    clickedButton === item.name && "bg-[#ff1111]/10"
+                    clickedButton === item.name &&
+                      "bg-[var(--color-primary)]/10 dark:bg-[var(--color-primary)]/20"
                   )}
                 >
                   <Link
@@ -254,11 +256,11 @@ export default function Header() {
                     className={cn(
                       "block text-base font-medium px-4 py-2 rounded-lg transition-all duration-200 border-2 border-transparent",
                       isActive(item.path)
-                        ? "text-[var(--color-secondary)] font-semibold bg-[#ff1111]/5 border-[#ff1111]/20"
+                        ? "text-[var(--color-secondary)] font-semibold bg-[var(--color-primary)]/10 dark:bg-[var(--color-primary)]/20 border-[var(--color-primary)]/30"
                         : cn(
-                            "text-[var(--color-secondary)] hover:text-[var(--color-primary)] hover:bg-[#ff1111]/5",
+                            "text-[var(--color-text)] dark:text-[var(--color-text)] hover:text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 dark:hover:bg-[var(--color-primary)]/20",
                             clickedButton === item.name &&
-                              "text-[var(--color-primary)] bg-[#ff1111]/10 border-[#ff1111]/20"
+                              "text-[var(--color-primary)] bg-[var(--color-primary)]/10 dark:bg-[var(--color-primary)]/20 border-[var(--color-primary)]/30"
                           )
                     )}
                     onClick={() => {
