@@ -7,10 +7,9 @@ import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Omkar Jawalikar - AI/ML Developer & Full-Stack Engineer",
+  title: "Omkar Jawalikar ",
   description:
-    "Computer Science student at VIT Vellore specializing in AI/ML, full-stack development, and financial research. Currently AI/ML Intern at ForgeAhead Solutions.",
-  generator: "v0.dev",
+    "Computer Science geek specializing in AI/ML, full-stack development, and financial research. Currently AI/ML Intern at ForgeAhead Solutions."
 };
 
 export default function RootLayout({

@@ -126,50 +126,105 @@ const achievements: Achievement[] = [
   },
 ];
 
-// Updated ExperienceCard component
-const ExperienceCard = ({ experience }: { experience: Experience }) => (
-  <div className="group relative">
-    <div className="absolute left-0 top-0 w-12 h-12 md:w-16 md:h-16 bg-navy rounded-full flex items-center justify-center text-cream font-bold z-10 transform group-hover:scale-110 transition-transform duration-300">
-      <span className="text-sm md:text-xl">{experience.year}</span>
-    </div>
-    <div className="pl-16 md:pl-24">
-      <Card className="border-2 border-beige bg-white/80 backdrop-blur-sm hover:border-navy transition-all duration-300 transform group-hover:-translate-y-1">
-        <CardHeader className="pb-4">
-          <div className="flex flex-col gap-2">
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
-              <div className="flex-1 min-w-0">
-                <CardTitle className="text-lg sm:text-xl md:text-2xl font-bold text-navy leading-tight">
-                  {experience.title}
-                </CardTitle>
-                <CardDescription className="text-sm md:text-base text-navy/70 mt-1 break-words">
-                  {experience.company}
-                </CardDescription>
-              </div>
-              <span className="self-start sm:self-auto text-xs sm:text-sm font-normal px-2 py-1 rounded-lg bg-navy/10 text-navy whitespace-nowrap flex-shrink-0">
-                {experience.duration}
-              </span>
-            </div>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <ul className="space-y-3">
-            {experience.responsibilities.map((responsibility, index) => (
-              <li
-                key={index}
-                className="flex items-start gap-2 md:gap-3 group/item"
-              >
-                <div className="mt-1.5 h-1.5 w-1.5 md:h-2 md:w-2 rounded-full bg-navy flex-shrink-0 group-hover/item:scale-150 transition-transform duration-300"></div>
-                <span className="text-sm md:text-base text-navy/80 leading-relaxed">
-                  {responsibility}
+// Updated ExperienceCard component with theme support
+const ExperienceCard = ({
+  experience,
+  theme = "professional",
+}: {
+  experience: Experience;
+  theme?: "professional" | "extracurricular";
+}) => {
+  const themeConfig = {
+    professional: {
+      yearBg: "bg-blue-600",
+      yearHoverBg: "hover:bg-blue-700",
+      cardBorder: "border-blue-200",
+      cardBg: "bg-gradient-to-br from-blue-50 to-indigo-50",
+      cardHoverBorder: "hover:border-blue-400",
+      titleColor: "text-blue-800",
+      descriptionColor: "text-blue-700",
+      durationBg: "bg-blue-100",
+      durationColor: "text-blue-800",
+      bulletBg: "bg-blue-600",
+      textColor: "text-blue-800",
+      timelineBg: "from-blue-600 via-blue-300 to-blue-600",
+    },
+    extracurricular: {
+      yearBg: "bg-green-600",
+      yearHoverBg: "hover:bg-green-700",
+      cardBorder: "border-green-200",
+      cardBg: "bg-gradient-to-br from-green-50 to-teal-50",
+      cardHoverBorder: "hover:border-green-400",
+      titleColor: "text-green-800",
+      descriptionColor: "text-green-700",
+      durationBg: "bg-green-100",
+      durationColor: "text-green-800",
+      bulletBg: "bg-green-600",
+      textColor: "text-green-800",
+      timelineBg: "from-green-600 via-green-300 to-green-600",
+    },
+  };
+
+  const config = themeConfig[theme];
+
+  return (
+    <div className="group relative">
+      <div
+        className={`absolute left-0 top-0 w-12 h-12 md:w-16 md:h-16 ${config.yearBg} ${config.yearHoverBg} rounded-full flex items-center justify-center text-white font-bold z-10 transform group-hover:scale-110 transition-all duration-300`}
+      >
+        <span className="text-sm md:text-xl">{experience.year}</span>
+      </div>
+      <div className="pl-16 md:pl-24">
+        <Card
+          className={`border-2 ${config.cardBorder} ${config.cardBg} backdrop-blur-sm ${config.cardHoverBorder} transition-all duration-300 transform group-hover:-translate-y-1 group-hover:shadow-lg`}
+        >
+          <CardHeader className="pb-4">
+            <div className="flex flex-col gap-2">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+                <div className="flex-1 min-w-0">
+                  <CardTitle
+                    className={`text-lg sm:text-xl md:text-2xl font-bold ${config.titleColor} leading-tight`}
+                  >
+                    {experience.title}
+                  </CardTitle>
+                  <CardDescription
+                    className={`text-sm md:text-base ${config.descriptionColor} mt-1 break-words font-medium`}
+                  >
+                    {experience.company}
+                  </CardDescription>
+                </div>
+                <span
+                  className={`self-start sm:self-auto text-xs sm:text-sm font-medium px-3 py-1.5 rounded-lg ${config.durationBg} ${config.durationColor} whitespace-nowrap flex-shrink-0`}
+                >
+                  {experience.duration}
                 </span>
-              </li>
-            ))}
-          </ul>
-        </CardContent>
-      </Card>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-3">
+              {experience.responsibilities.map((responsibility, index) => (
+                <li
+                  key={index}
+                  className="flex items-start gap-2 md:gap-3 group/item"
+                >
+                  <div
+                    className={`mt-1.5 h-1.5 w-1.5 md:h-2 md:w-2 rounded-full ${config.bulletBg} flex-shrink-0 group-hover/item:scale-150 transition-transform duration-300`}
+                  ></div>
+                  <span
+                    className={`text-sm md:text-base ${config.textColor} leading-relaxed`}
+                  >
+                    {responsibility}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 // Achievement Card component
 const AchievementCard = ({ achievement }: { achievement: Achievement }) => (
@@ -232,20 +287,37 @@ const AchievementSection = ({
   </div>
 );
 
-// Updated ExperienceSection component
-const ExperienceSection = ({ experiences }: { experiences: Experience[] }) => (
-  <div className="relative">
-    {/* Desktop timeline */}
-    <div className="hidden md:block absolute left-[31px] top-8 bottom-8 w-0.5 bg-gradient-to-b from-navy via-beige to-navy"></div>
-    {/* Mobile timeline */}
-    <div className="md:hidden absolute left-[23px] top-8 bottom-8 w-0.5 bg-gradient-to-b from-navy via-beige to-navy"></div>
-    <div className="space-y-8 md:space-y-16">
-      {experiences.map((experience, index) => (
-        <ExperienceCard key={index} experience={experience} />
-      ))}
+// Updated ExperienceSection component with theme support
+const ExperienceSection = ({
+  experiences,
+  theme = "professional",
+}: {
+  experiences: Experience[];
+  theme?: "professional" | "extracurricular";
+}) => {
+  const timelineConfig = {
+    professional: "from-blue-600 via-blue-300 to-blue-600",
+    extracurricular: "from-green-600 via-green-300 to-green-600",
+  };
+
+  return (
+    <div className="relative">
+      {/* Desktop timeline */}
+      <div
+        className={`hidden md:block absolute left-[31px] top-8 bottom-8 w-0.5 bg-gradient-to-b ${timelineConfig[theme]}`}
+      ></div>
+      {/* Mobile timeline */}
+      <div
+        className={`md:hidden absolute left-[23px] top-8 bottom-8 w-0.5 bg-gradient-to-b ${timelineConfig[theme]}`}
+      ></div>
+      <div className="space-y-8 md:space-y-16">
+        {experiences.map((experience, index) => (
+          <ExperienceCard key={index} experience={experience} theme={theme} />
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 // Helper function to draw hexagons
 const drawHexagon = (
@@ -432,13 +504,19 @@ export default function ExperiencePage() {
 
             <TabsContent value="professional" className="space-y-8">
               <FadeIn delay={0.3}>
-                <ExperienceSection experiences={professionalExperiences} />
+                <ExperienceSection
+                  experiences={professionalExperiences}
+                  theme="professional"
+                />
               </FadeIn>
             </TabsContent>
 
             <TabsContent value="extracurricular" className="space-y-8">
               <FadeIn delay={0.3}>
-                <ExperienceSection experiences={extracurricularExperiences} />
+                <ExperienceSection
+                  experiences={extracurricularExperiences}
+                  theme="extracurricular"
+                />
               </FadeIn>
             </TabsContent>
 
