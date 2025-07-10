@@ -61,12 +61,12 @@ export default function ContactPage() {
 
   return (
     <PageWrapper backgroundVariant="animated">
-      <section className="py-20 relative z-0">
-        <div className="container max-w-6xl mx-auto px-4">
+      <section className="py-12 md:py-20 relative z-0">
+        <div className="container max-w-6xl mx-auto px-4 sm:px-6">
           <FadeIn>
             <h1
               className={cn(
-                "text-5xl font-bold mb-4 text-center",
+                "text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-center",
                 getThemeStyle("heading")
               )}
             >
@@ -74,7 +74,7 @@ export default function ContactPage() {
             </h1>
             <p
               className={cn(
-                "text-center text-lg mb-16 max-w-2xl mx-auto",
+                "text-center text-base sm:text-lg mb-12 md:mb-16 max-w-2xl mx-auto px-4",
                 getThemeStyle("subheading")
               )}
             >
@@ -83,25 +83,25 @@ export default function ContactPage() {
             </p>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-12 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-stretch">
             {/* Contact Info */}
             <FadeIn delay={0.2}>
               <div
                 className={cn(
-                  "space-y-8 rounded-xl p-8 shadow-lg h-full flex flex-col",
+                  "space-y-6 md:space-y-8 rounded-xl p-6 md:p-8 shadow-lg h-full flex flex-col",
                   getThemeStyle("card")
                 )}
               >
                 <h2
                   className={cn(
-                    "text-2xl font-semibold mb-8",
+                    "text-xl md:text-2xl font-semibold mb-4 md:mb-8",
                     getThemeStyle("heading")
                   )}
                 >
                   Contact Information
                 </h2>
 
-                <div className="flex-1 space-y-6">
+                <div className="flex-1 space-y-4 md:space-y-6">
                   {[
                     {
                       icon: Phone,
@@ -134,22 +134,22 @@ export default function ContactPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={cn(
-                        "flex items-center gap-6 p-4 rounded-xl transition-colors group",
+                        "flex items-center gap-4 md:gap-6 p-3 md:p-4 rounded-xl transition-colors group",
                         getThemeStyle("cardHover")
                       )}
                     >
                       <div
                         className={cn(
-                          "w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform",
+                          "w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0",
                           "bg-portfolio-navy text-portfolio-cream"
                         )}
                       >
-                        <item.icon className="h-5 w-5" />
+                        <item.icon className="h-4 w-4 md:h-5 md:w-5" />
                       </div>
-                      <div>
+                      <div className="min-w-0 flex-1">
                         <p
                           className={cn(
-                            "text-sm font-medium",
+                            "text-xs md:text-sm font-medium",
                             getThemeStyle("muted")
                           )}
                         >
@@ -157,7 +157,7 @@ export default function ContactPage() {
                         </p>
                         <p
                           className={cn(
-                            "font-medium",
+                            "font-medium text-sm md:text-base break-words",
                             getThemeStyle("heading")
                           )}
                         >
@@ -178,31 +178,36 @@ export default function ContactPage() {
                   getThemeStyle("card")
                 )}
               >
-                <CardHeader className="space-y-1">
+                <CardHeader className="space-y-1 p-6 md:p-6">
                   <CardTitle
                     className={cn(
-                      "text-2xl font-semibold",
+                      "text-xl md:text-2xl font-semibold",
                       getThemeStyle("heading")
                     )}
                   >
                     Send Me a Message
                   </CardTitle>
-                  <CardDescription className={getThemeStyle("subheading")}>
+                  <CardDescription
+                    className={cn(
+                      "text-sm md:text-base",
+                      getThemeStyle("subheading")
+                    )}
+                  >
                     Fill out the form below and I'll get back to you as soon as
                     possible.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="flex-1">
+                <CardContent className="flex-1 p-6 md:p-6 pt-0">
                   <form
-                    className="space-y-6 h-full flex flex-col"
+                    className="space-y-4 md:space-y-6 h-full flex flex-col"
                     onSubmit={handleSubmit}
                   >
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                       <div className="space-y-2">
                         <Label
                           htmlFor="name"
                           className={cn(
-                            "font-medium",
+                            "font-medium text-sm md:text-base",
                             getThemeStyle("heading")
                           )}
                         >
@@ -213,14 +218,14 @@ export default function ContactPage() {
                           name="name"
                           required
                           placeholder="Your Name"
-                          className={getThemeStyle("input")}
+                          className={cn("h-10 md:h-11", getThemeStyle("input"))}
                         />
                       </div>
                       <div className="space-y-2">
                         <Label
                           htmlFor="email"
                           className={cn(
-                            "font-medium",
+                            "font-medium text-sm md:text-base",
                             getThemeStyle("heading")
                           )}
                         >
@@ -232,14 +237,17 @@ export default function ContactPage() {
                           type="email"
                           required
                           placeholder="Your Email"
-                          className={getThemeStyle("input")}
+                          className={cn("h-10 md:h-11", getThemeStyle("input"))}
                         />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <Label
                         htmlFor="subject"
-                        className={cn("font-medium", getThemeStyle("heading"))}
+                        className={cn(
+                          "font-medium text-sm md:text-base",
+                          getThemeStyle("heading")
+                        )}
                       >
                         Subject
                       </Label>
@@ -248,13 +256,16 @@ export default function ContactPage() {
                         name="subject"
                         placeholder="Subject"
                         required
-                        className={getThemeStyle("input")}
+                        className={cn("h-10 md:h-11", getThemeStyle("input"))}
                       />
                     </div>
                     <div className="space-y-2 flex-1">
                       <Label
                         htmlFor="message"
-                        className={cn("font-medium", getThemeStyle("heading"))}
+                        className={cn(
+                          "font-medium text-sm md:text-base",
+                          getThemeStyle("heading")
+                        )}
                       >
                         Message
                       </Label>
@@ -262,20 +273,20 @@ export default function ContactPage() {
                         id="message"
                         name="message"
                         placeholder="Your Message"
-                        rows={6}
+                        rows={4}
                         required
                         className={cn(
-                          "resize-none h-32",
+                          "resize-none h-24 md:h-32 min-h-[6rem]",
                           getThemeStyle("input")
                         )}
                       />
                     </div>
-                    <div className="space-y-4 mt-auto">
+                    <div className="space-y-3 md:space-y-4 mt-auto pt-2">
                       <Button
                         type="submit"
                         disabled={loading}
                         className={cn(
-                          "w-full transition-colors duration-300",
+                          "w-full h-11 md:h-12 transition-colors duration-300",
                           getThemeStyle("primaryButton")
                         )}
                       >
@@ -290,7 +301,7 @@ export default function ContactPage() {
                       </Button>
                       {status && (
                         <div
-                          className={`text-center p-3 rounded-lg ${
+                          className={`text-center p-3 rounded-lg text-sm md:text-base ${
                             status.includes("success")
                               ? "bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300"
                               : "bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-300"
