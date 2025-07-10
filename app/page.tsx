@@ -23,13 +23,11 @@ import { PageWrapper } from "@/components/page-wrapper";
 import { FadeIn } from "@/components/fade-in";
 import Interestsection from "@/components/Interestsection";
 import Greeting from "@/components/Greeting";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   return (
-    <PageWrapper>
-      {/* Animated Squares Background */}
-      <div className="fixed inset-0 -z-10 overflow-hidden"></div>
-
+    <PageWrapper backgroundVariant="animated">
       {/* Hero Section */}
       <section className="py-20 md:py-32 bg-transparent relative mb-10">
         <div className="container">
@@ -58,7 +56,7 @@ export default function Home() {
 
             <FadeIn delay={0.2}>
               <div className="space-y-6">
-                <h1 className="text-4xl md:text-6xl font-bold">
+                <h1 className="text-4xl md:text-6xl font-bold text-[var(--color-text)]">
                   <Greeting />
                 </h1>
                 <h1 className="text-4xl md:text-6xl font-bold tracking-wide text-[var(--color-primary)]">
@@ -67,11 +65,11 @@ export default function Home() {
                     I'm Omkar Jawalikar
                   </span>
                 </h1>
-                <p className="text-xl max-w-xl text-[var(--color-secondary)]">
+                <p className="text-xl max-w-xl text-[var(--color-text)]/80">
                   As a tech enthusiast and designer at heart, my curiosity
                   drives me to understand how things work. I thrive in team
-                  environments, whether as a member or a leader passionate about building innovative
-                  solutions.
+                  environments, whether as a member or a leader passionate about
+                  building innovative solutions.
                 </p>
 
                 <div className="flex flex-wrap gap-4">

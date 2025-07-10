@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { PageWrapper } from "@/components/page-wrapper";
 import { FadeIn } from "@/components/fade-in";
 import {
@@ -188,98 +188,16 @@ const approaches = [
   },
 ];
 
-const drawHexagon = (
-  ctx: CanvasRenderingContext2D,
-  x: number,
-  y: number,
-  size: number
-) => {
-  ctx.beginPath();
-  for (let i = 0; i < 6; i++) {
-    const angle = (i * Math.PI) / 3;
-    const xPoint = x + size * Math.cos(angle);
-    const yPoint = y + size * Math.sin(angle);
-    if (i === 0) ctx.moveTo(xPoint, yPoint);
-    else ctx.lineTo(xPoint, yPoint);
-  }
-  ctx.closePath();
-};
-
 export default function AboutPage() {
   const [activeTab, setActiveTab] = useState("education");
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    let animationFrameId: number;
-    let time = 0;
-
-    const animate = () => {
-      time += 0.001;
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      const hexSize = 20;
-      const cols = Math.ceil(canvas.width / (hexSize * 2)) + 2;
-      const rows = Math.ceil(canvas.height / (hexSize * 1.7)) + 2;
-
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          const x = i * hexSize * 2 + (j % 2 === 0 ? 0 : hexSize);
-          const y = j * hexSize * 1.7;
-
-          const distanceFromCenter = Math.sqrt(
-            Math.pow((x - canvas.width / 2) / canvas.width, 2) +
-              Math.pow((y - canvas.height / 2) / canvas.height, 2)
-          );
-
-          const opacity = Math.sin(time + distanceFromCenter * 5) * 0.03 + 0.03;
-          ctx.strokeStyle = `rgba(2, 32, 71, ${opacity})`;
-          ctx.lineWidth = 1;
-
-          drawHexagon(ctx, x, y, hexSize);
-          ctx.stroke();
-        }
-      }
-
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      window.removeEventListener("resize", resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
 
   return (
-    <PageWrapper>
-      {/* Replace the existing animated background with canvas */}
-      <canvas
-        ref={canvasRef}
-        className="fixed inset-0 -z-10"
-        style={{ opacity: 0.7 }}
-      />
-
+    <PageWrapper backgroundVariant="animated">
       <section className="py-12 lg:py-20">
         <div className="container px-4 lg:px-6">
           <FadeIn>
             <motion.h1
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 lg:mb-16 text-center text-[var(--color-secondary)]"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 lg:mb-16 text-center text-portfolio-almost-black"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -306,10 +224,10 @@ export default function AboutPage() {
                 </div>
 
                 <div className="text-center lg:text-left">
-                  <h2 className="text-xl lg:text-2xl font-bold text-navy mb-3 lg:mb-4">
+                  <h2 className="text-xl lg:text-2xl font-bold text-portfolio-almost-black mb-3 lg:mb-4">
                     Who I Am
                   </h2>
-                  <p className="text-navy/80 leading-relaxed text-sm lg:text-base">
+                  <p className="text-portfolio-almost-black/80 leading-relaxed text-sm lg:text-base">
                     I'm a builder at heart, driven by curiosity, shaped by
                     discipline, and focused on crafting meaningful tech. Whether
                     it's developing intelligent AI tools, designing immersive
@@ -343,13 +261,13 @@ export default function AboutPage() {
             <div className="lg:col-span-2 mt-8 lg:mt-0">
               <FadeIn delay={0.4}>
                 {/* Interactive Tabs */}
-                <div className="mb-6 lg:mb-8 flex border-b border-beige/30 overflow-x-auto">
+                <div className="mb-6 lg:mb-8 flex border-b border-portfolio-beige/30 overflow-x-auto">
                   <button
                     onClick={() => setActiveTab("education")}
                     className={`px-3 lg:px-4 py-2 lg:py-3 font-medium transition-colors relative whitespace-nowrap text-sm lg:text-base ${
                       activeTab === "education"
-                        ? "text-navy"
-                        : "text-navy/50 hover:text-navy/70"
+                        ? "text-portfolio-navy"
+                        : "text-portfolio-almost-black/50 hover:text-portfolio-almost-black/70"
                     }`}
                   >
                     <span className="flex items-center gap-1 lg:gap-2">
@@ -359,7 +277,7 @@ export default function AboutPage() {
                     {activeTab === "education" && (
                       <motion.div
                         layoutId="activeBorder"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-portfolio-navy"
                       />
                     )}
                   </button>
@@ -367,8 +285,8 @@ export default function AboutPage() {
                     onClick={() => setActiveTab("certifications")}
                     className={`px-3 lg:px-4 py-2 lg:py-3 font-medium transition-colors relative whitespace-nowrap text-sm lg:text-base ${
                       activeTab === "certifications"
-                        ? "text-navy"
-                        : "text-navy/50 hover:text-navy/70"
+                        ? "text-portfolio-navy"
+                        : "text-portfolio-almost-black/50 hover:text-portfolio-almost-black/70"
                     }`}
                   >
                     <span className="flex items-center gap-1 lg:gap-2">
@@ -378,7 +296,7 @@ export default function AboutPage() {
                     {activeTab === "certifications" && (
                       <motion.div
                         layoutId="activeBorder"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-portfolio-navy"
                       />
                     )}
                   </button>
@@ -386,8 +304,8 @@ export default function AboutPage() {
                     onClick={() => setActiveTab("approach")}
                     className={`px-3 lg:px-4 py-2 lg:py-3 font-medium transition-colors relative whitespace-nowrap text-sm lg:text-base ${
                       activeTab === "approach"
-                        ? "text-navy"
-                        : "text-navy/50 hover:text-navy/70"
+                        ? "text-portfolio-navy"
+                        : "text-portfolio-almost-black/50 hover:text-portfolio-almost-black/70"
                     }`}
                   >
                     <span className="flex items-center gap-1 lg:gap-2">
@@ -397,7 +315,7 @@ export default function AboutPage() {
                     {activeTab === "approach" && (
                       <motion.div
                         layoutId="activeBorder"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-portfolio-navy"
                       />
                     )}
                   </button>
@@ -411,28 +329,28 @@ export default function AboutPage() {
                     transition={{ duration: 0.5 }}
                     className="space-y-6 lg:space-y-8"
                   >
-                    <Card className="border-beige shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
-                      <div className="h-2 bg-gradient-to-r from-primary to-blue-600"></div>
+                    <Card className="border-portfolio-beige shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden bg-portfolio-surface">
+                      <div className="h-2 bg-gradient-to-r from-portfolio-navy to-blue-600"></div>
                       <CardHeader className="pb-3 lg:pb-4">
-                        <CardTitle className="text-lg lg:text-xl leading-tight">
+                        <CardTitle className="text-lg lg:text-xl leading-tight text-portfolio-almost-black">
                           Bachelor of Technology - Computer Science and
                           Engineering
                         </CardTitle>
-                        <CardDescription className="text-sm lg:text-base">
+                        <CardDescription className="text-sm lg:text-base text-portfolio-almost-black/70">
                           Vellore Institute of Technology, Vellore
                         </CardDescription>
                       </CardHeader>
                       <CardContent>
                         <div className="flex flex-col gap-3 mb-4 sm:flex-row sm:items-center sm:justify-between">
-                          <span className="text-sm text-navy/80">
+                          <span className="text-sm text-portfolio-almost-black/80">
                             <strong>Expected Graduation:</strong> August 2026
                           </span>
-                          <span className="text-sm font-semibold text-navy bg-cream/80 py-1 px-3 rounded-full">
+                          <span className="text-sm font-semibold text-portfolio-almost-black bg-portfolio-surface-elevated py-1 px-3 rounded-full">
                             CGPA: 8.28
                           </span>
                         </div>
                         <div className="mt-2">
-                          <h4 className="text-base font-semibold text-navy mb-2">
+                          <h4 className="text-base font-semibold text-portfolio-almost-black mb-2">
                             Relevant Coursework
                           </h4>
                           <div className="flex flex-wrap gap-2">
@@ -443,7 +361,7 @@ export default function AboutPage() {
                               >
                                 <Badge
                                   variant="outline"
-                                  className="border-navy text-navy px-3 py-1 text-xs md:text-sm"
+                                  className="border-portfolio-navy text-portfolio-navy px-3 py-1 text-xs md:text-sm"
                                 >
                                   {course}
                                 </Badge>
@@ -455,19 +373,21 @@ export default function AboutPage() {
                     </Card>
 
                     <div className="mt-6">
-                      <h3 className="text-xl font-bold text-navy mb-4">
+                      <h3 className="text-xl font-bold text-portfolio-almost-black mb-4">
                         Leadership Experience
                       </h3>
-                      <Card className="border-beige shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+                      <Card className="border-portfolio-beige shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden bg-portfolio-surface">
                         <div className="h-2 bg-gradient-to-r from-yellow-500 to-orange-500"></div>
                         <CardHeader>
-                          <CardTitle>Director of Operations</CardTitle>
-                          <CardDescription>
+                          <CardTitle className="text-portfolio-almost-black">
+                            Director of Operations
+                          </CardTitle>
+                          <CardDescription className="text-portfolio-almost-black/70">
                             VIT Entrepreneurship Cell
                           </CardDescription>
                         </CardHeader>
                         <CardContent>
-                          <p className="text-navy/80 leading-relaxed">
+                          <p className="text-portfolio-almost-black/80 leading-relaxed">
                             As the Director of Operations at VIT's
                             Entrepreneurship Cell, I've developed leadership
                             skills and a strategic mindset. I enjoy tackling
@@ -488,7 +408,7 @@ export default function AboutPage() {
                     transition={{ duration: 0.5 }}
                     className="space-y-6"
                   >
-                    <p className="text-navy/80 leading-relaxed mb-8">
+                    <p className="text-portfolio-almost-black/80 leading-relaxed mb-8">
                       These certifications demonstrate my commitment to
                       continuous learning and expertise in emerging
                       technologies.
@@ -498,13 +418,13 @@ export default function AboutPage() {
                       {certifications.map((cert) => (
                         <Card
                           key={cert.id}
-                          className="border-beige shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden"
+                          className="border-portfolio-beige shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden bg-portfolio-surface"
                         >
                           <div
                             className={`h-2 bg-gradient-to-r ${cert.gradient}`}
                           ></div>
                           <CardHeader>
-                            <CardTitle className="flex items-center justify-between">
+                            <CardTitle className="flex items-center justify-between text-portfolio-almost-black">
                               <span>{cert.title}</span>
                               <Badge
                                 variant="outline"
@@ -513,11 +433,13 @@ export default function AboutPage() {
                                 {cert.status}
                               </Badge>
                             </CardTitle>
-                            <CardDescription>{cert.issuer}</CardDescription>
+                            <CardDescription className="text-portfolio-almost-black/70">
+                              {cert.issuer}
+                            </CardDescription>
                           </CardHeader>
                           <CardContent>
                             <div className="flex justify-between items-center mb-4">
-                              <p className="text-sm text-navy/70">
+                              <p className="text-sm text-portfolio-almost-black/70">
                                 <strong>Issued:</strong> {cert.year}
                               </p>
                             </div>
@@ -531,7 +453,7 @@ export default function AboutPage() {
                                 View Credential →
                               </a>
                             </div>
-                            <p className="text-navy/80 leading-relaxed mb-4">
+                            <p className="text-portfolio-almost-black/80 leading-relaxed mb-4">
                               {cert.description}
                             </p>
                             <div className="flex flex-wrap gap-2">
@@ -563,7 +485,7 @@ export default function AboutPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <p className="text-navy/80 leading-relaxed mb-8">
+                    <p className="text-portfolio-almost-black/80 leading-relaxed mb-8">
                       My approach to both technology and problem-solving is
                       guided by these core principles that define how I work and
                       collaborate with others.
@@ -578,15 +500,15 @@ export default function AboutPage() {
                             whileHover={{ scale: 1.03 }}
                             transition={{ type: "spring", stiffness: 400 }}
                           >
-                            <Card className="border-beige bg-gradient-to-br from-white to-cream hover:shadow-md transition-all duration-300 h-full">
+                            <Card className="border-portfolio-beige bg-gradient-to-br from-portfolio-surface to-portfolio-surface-elevated hover:shadow-md transition-all duration-300 h-full">
                               <CardHeader className="pb-2">
-                                <CardTitle className="text-navy text-lg flex items-center gap-2">
-                                  <IconComponent className="h-5 w-5 text-primary" />
+                                <CardTitle className="text-portfolio-almost-black text-lg flex items-center gap-2">
+                                  <IconComponent className="h-5 w-5 text-portfolio-navy" />
                                   {approach.title}
                                 </CardTitle>
                               </CardHeader>
                               <CardContent>
-                                <p className="text-navy/80">
+                                <p className="text-portfolio-almost-black/80">
                                   {approach.description}
                                 </p>
                               </CardContent>

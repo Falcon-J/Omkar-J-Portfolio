@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
 
 // Define interfaces for type safety
 interface Experience {
@@ -136,31 +135,31 @@ const ExperienceCard = ({
 }) => {
   const themeConfig = {
     professional: {
-      yearBg: "bg-blue-600",
-      yearHoverBg: "hover:bg-blue-700",
-      cardBorder: "border-blue-200",
-      cardBg: "bg-gradient-to-br from-blue-50 to-indigo-50",
-      cardHoverBorder: "hover:border-blue-400",
-      titleColor: "text-blue-800",
-      descriptionColor: "text-blue-700",
-      durationBg: "bg-blue-100",
-      durationColor: "text-blue-800",
-      bulletBg: "bg-blue-600",
-      textColor: "text-blue-800",
-      timelineBg: "from-blue-600 via-blue-300 to-blue-600",
+      yearBg: "bg-portfolio-navy",
+      yearHoverBg: "hover:bg-portfolio-navy/90",
+      cardBorder: "border-portfolio-beige",
+      cardBg: "bg-portfolio-surface",
+      cardHoverBorder: "hover:border-portfolio-navy/50",
+      titleColor: "text-portfolio-almost-black",
+      descriptionColor: "text-portfolio-almost-black/80",
+      durationBg: "bg-portfolio-surface-elevated",
+      durationColor: "text-portfolio-almost-black",
+      bulletBg: "bg-portfolio-navy",
+      textColor: "text-portfolio-almost-black/80",
+      timelineBg: "from-portfolio-navy via-portfolio-beige to-portfolio-navy",
     },
     extracurricular: {
       yearBg: "bg-green-600",
       yearHoverBg: "hover:bg-green-700",
-      cardBorder: "border-green-200",
-      cardBg: "bg-gradient-to-br from-green-50 to-teal-50",
+      cardBorder: "border-portfolio-beige",
+      cardBg: "bg-portfolio-surface",
       cardHoverBorder: "hover:border-green-400",
-      titleColor: "text-green-800",
-      descriptionColor: "text-green-700",
+      titleColor: "text-portfolio-almost-black",
+      descriptionColor: "text-portfolio-almost-black/80",
       durationBg: "bg-green-100",
       durationColor: "text-green-800",
       bulletBg: "bg-green-600",
-      textColor: "text-green-800",
+      textColor: "text-portfolio-almost-black/80",
       timelineBg: "from-green-600 via-green-300 to-green-600",
     },
   };
@@ -170,7 +169,7 @@ const ExperienceCard = ({
   return (
     <div className="group relative">
       <div
-        className={`absolute left-0 top-0 w-12 h-12 md:w-16 md:h-16 ${config.yearBg} ${config.yearHoverBg} rounded-full flex items-center justify-center text-white font-bold z-10 transform group-hover:scale-110 transition-all duration-300`}
+        className={`absolute left-0 top-0 w-12 h-12 md:w-16 md:h-16 ${config.yearBg} ${config.yearHoverBg} rounded-full flex items-center justify-center text-portfolio-cream font-bold z-10 transform group-hover:scale-110 transition-all duration-300`}
       >
         <span className="text-sm md:text-xl">{experience.year}</span>
       </div>
@@ -233,15 +232,15 @@ const AchievementCard = ({ achievement }: { achievement: Achievement }) => (
       <span className="text-lg md:text-2xl">🏆</span>
     </div>
     <div className="pl-16 md:pl-24">
-      <Card className="border-2 border-yellow-200 bg-gradient-to-br from-yellow-50 to-orange-50 hover:border-yellow-400 transition-all duration-300 transform group-hover:-translate-y-1">
+      <Card className="border-2 border-portfolio-beige bg-portfolio-surface hover:border-yellow-400 transition-all duration-300 transform group-hover:-translate-y-1">
         <CardHeader className="pb-4">
           <div className="flex flex-col gap-2">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
               <div className="flex-1 min-w-0">
-                <CardTitle className="text-lg sm:text-xl md:text-2xl font-bold text-yellow-800 leading-tight">
+                <CardTitle className="text-lg sm:text-xl md:text-2xl font-bold text-portfolio-almost-black leading-tight">
                   {achievement.title}
                 </CardTitle>
-                <CardDescription className="text-sm md:text-base text-yellow-700 mt-1 break-words font-medium">
+                <CardDescription className="text-sm md:text-base text-portfolio-almost-black/80 mt-1 break-words font-medium">
                   {achievement.event}
                 </CardDescription>
               </div>
@@ -258,7 +257,7 @@ const AchievementCard = ({ achievement }: { achievement: Achievement }) => (
         </CardHeader>
         {achievement.description && (
           <CardContent>
-            <p className="text-sm md:text-base text-yellow-800 leading-relaxed">
+            <p className="text-sm md:text-base text-portfolio-almost-black/80 leading-relaxed">
               {achievement.description}
             </p>
           </CardContent>
@@ -296,7 +295,7 @@ const ExperienceSection = ({
   theme?: "professional" | "extracurricular";
 }) => {
   const timelineConfig = {
-    professional: "from-blue-600 via-blue-300 to-blue-600",
+    professional: "from-portfolio-navy via-portfolio-beige to-portfolio-navy",
     extracurricular: "from-green-600 via-green-300 to-green-600",
   };
 
@@ -319,157 +318,16 @@ const ExperienceSection = ({
   );
 };
 
-// Helper function to draw hexagons
-const drawHexagon = (
-  ctx: CanvasRenderingContext2D,
-  x: number,
-  y: number,
-  size: number
-) => {
-  ctx.beginPath();
-  for (let i = 0; i < 6; i++) {
-    const angle = (i * Math.PI) / 3;
-    const xPoint = x + size * Math.cos(angle);
-    const yPoint = y + size * Math.sin(angle);
-    if (i === 0) ctx.moveTo(xPoint, yPoint);
-    else ctx.lineTo(xPoint, yPoint);
-  }
-  ctx.closePath();
-};
-
 export default function ExperiencePage() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    let animationFrameId: number;
-    let time = 0;
-    let lastFrameTime = 0;
-    let isVisible = true;
-
-    // Target FPS based on device capabilities
-    const isMobile =
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      );
-    const targetFPS = isMobile ? 30 : 60; // Lower FPS on mobile
-    const frameInterval = 1000 / targetFPS;
-
-    // Intersection Observer to pause animation when not visible
-    const observer = new IntersectionObserver(
-      (entries) => {
-        isVisible = entries[0].isIntersecting;
-        if (isVisible && !animationFrameId) {
-          animate();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(canvas);
-
-    // Reduced calculation frequency - cache values that don't change often
-    let cachedCols = 0;
-    let cachedRows = 0;
-    let lastWidth = 0;
-    let lastHeight = 0;
-
-    const animate = (currentTime = 0) => {
-      if (!isVisible) return;
-
-      // Frame rate limiting
-      if (currentTime - lastFrameTime < frameInterval) {
-        animationFrameId = requestAnimationFrame(animate);
-        return;
-      }
-      lastFrameTime = currentTime;
-
-      time += isMobile ? 0.0005 : 0.001; // Slower animation on mobile
-
-      // Only recalculate grid if canvas size changed
-      if (canvas.width !== lastWidth || canvas.height !== lastHeight) {
-        const hexSize = isMobile ? 25 : 20; // Larger hexagons on mobile = fewer calculations
-        cachedCols = Math.ceil(canvas.width / (hexSize * 2)) + 2;
-        cachedRows = Math.ceil(canvas.height / (hexSize * 1.7)) + 2;
-        lastWidth = canvas.width;
-        lastHeight = canvas.height;
-      }
-
-      // Clear canvas efficiently
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const hexSize = isMobile ? 25 : 20;
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
-
-      // Batch drawing operations
-      ctx.lineWidth = 1;
-
-      for (let i = 0; i < cachedCols; i++) {
-        for (let j = 0; j < cachedRows; j++) {
-          const x = i * hexSize * 2 + (j % 2 === 0 ? 0 : hexSize);
-          const y = j * hexSize * 1.7;
-
-          // Skip hexagons that are far from viewport center to reduce calculations
-          const distanceFromCenter = Math.sqrt(
-            Math.pow((x - centerX) / canvas.width, 2) +
-              Math.pow((y - centerY) / canvas.height, 2)
-          );
-
-          // Only draw hexagons within a reasonable distance
-          if (distanceFromCenter > 0.8) continue;
-
-          const opacity = Math.sin(time + distanceFromCenter * 5) * 0.03 + 0.03;
-
-          // Batch similar operations together
-          ctx.strokeStyle = `rgba(2, 32, 71, ${opacity})`;
-          drawHexagon(ctx, x, y, hexSize);
-          ctx.stroke();
-        }
-      }
-
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      window.removeEventListener("resize", resizeCanvas);
-      observer.disconnect();
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-    };
-  }, []);
-
   return (
-    <PageWrapper>
-      <canvas
-        ref={canvasRef}
-        className="fixed inset-0 -z-10"
-        style={{ opacity: 1 }}
-      />
-
+    <PageWrapper backgroundVariant="animated">
       <section className="py-12 md:py-20">
         <div className="container max-w-5xl px-4 md:px-6">
           <FadeIn>
-            <h1 className="text-3xl md:text-5xl font-bold mb-6 md:mb-8 text-center text-navy">
+            <h1 className="text-3xl md:text-5xl font-bold mb-6 md:mb-8 text-center text-portfolio-almost-black">
               Experience
             </h1>
-            <p className="text-center text-navy/70 text-base md:text-lg mb-12 md:mb-16 max-w-2xl mx-auto px-4">
+            <p className="text-center text-portfolio-almost-black/80 text-base md:text-lg mb-12 md:mb-16 max-w-2xl mx-auto px-4">
               A chronicle of my professional journey and contributions across
               various roles and organizations.
             </p>
@@ -477,24 +335,24 @@ export default function ExperiencePage() {
 
           <Tabs defaultValue="professional" className="w-full">
             <FadeIn delay={0.2}>
-              <TabsList className="w-full max-w-lg mx-auto grid grid-cols-3 mb-12 md:mb-16 bg-cream/50 p-1 rounded-full">
+              <TabsList className="w-full max-w-lg mx-auto grid grid-cols-3 mb-12 md:mb-16 bg-portfolio-surface/50 p-1 rounded-full">
                 <TabsTrigger
                   value="professional"
-                  className="rounded-full px-2 md:px-6 py-2 text-xs md:text-sm data-[state=active]:bg-navy data-[state=active]:text-cream transition-all duration-300"
+                  className="rounded-full px-2 md:px-6 py-2 text-xs md:text-sm data-[state=active]:bg-portfolio-navy data-[state=active]:text-portfolio-cream transition-all duration-300 text-center flex items-center justify-center"
                 >
                   <span className="hidden sm:inline">Professional</span>
                   <span className="sm:hidden">Work</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="extracurricular"
-                  className="rounded-full px-2 md:px-6 py-2 text-xs md:text-sm data-[state=active]:bg-navy data-[state=active]:text-cream transition-all duration-300"
+                  className="rounded-full px-2 md:px-6 py-2 text-xs md:text-sm data-[state=active]:bg-portfolio-navy data-[state=active]:text-portfolio-cream transition-all duration-300 text-center flex items-center justify-center"
                 >
                   <span className="hidden sm:inline">Extracurricular</span>
                   <span className="sm:hidden">Activities</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="achievements"
-                  className="rounded-full px-2 md:px-6 py-2 text-xs md:text-sm data-[state=active]:bg-navy data-[state=active]:text-cream transition-all duration-300"
+                  className="rounded-full px-2 md:px-6 py-2 text-xs md:text-sm data-[state=active]:bg-portfolio-navy data-[state=active]:text-portfolio-cream transition-all duration-300 text-center flex items-center justify-center"
                 >
                   <span className="hidden sm:inline">Achievements</span>
                   <span className="sm:hidden">Awards</span>

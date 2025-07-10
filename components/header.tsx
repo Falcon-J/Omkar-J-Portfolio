@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { SimpleThemeToggle } from "@/components/theme-toggle";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -183,8 +184,9 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Mobile Menu Toggle (Right Aligned) */}
+        {/* Mobile Menu Toggle and Theme Toggle (Right Aligned) */}
         <div className="flex items-center gap-2">
+          <SimpleThemeToggle />
           <Button
             variant="ghost"
             size="icon"

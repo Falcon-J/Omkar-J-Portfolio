@@ -25,11 +25,23 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        // Custom colors based on the provided hex codes
-        cream: "#F1EFEC", // rgb(241, 239, 236)
-        beige: "#D4C9BE", // rgb(212, 201, 190)
-        navy: "#123458", // rgb(18, 52, 88)
-        "almost-black": "#030303", // rgb(3, 3, 3)
+
+        // Custom Portfolio Colors (Theme-aware)
+        "portfolio-navy": "hsl(var(--portfolio-navy))",
+        "portfolio-cream": "hsl(var(--portfolio-cream))",
+        "portfolio-beige": "hsl(var(--portfolio-beige))",
+        "portfolio-almost-black": "hsl(var(--portfolio-almost-black))",
+        "portfolio-surface": "hsl(var(--portfolio-surface))",
+        "portfolio-surface-elevated": "hsl(var(--portfolio-surface-elevated))",
+        "portfolio-navy-light": "hsl(var(--portfolio-navy-light))",
+        "portfolio-navy-dark": "hsl(var(--portfolio-navy-dark))",
+
+        // Legacy colors (for gradual migration)
+        cream: "#F1EFEC",
+        beige: "#D4C9BE",
+        navy: "#123458",
+        "almost-black": "#030303",
+
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { PageWrapper } from "@/components/page-wrapper";
 import { FadeIn } from "@/components/fade-in";
 import {
@@ -14,23 +14,6 @@ import {
   Terminal,
 } from "lucide-react";
 import { motion } from "framer-motion";
-
-const drawHexagon = (
-  ctx: CanvasRenderingContext2D,
-  x: number,
-  y: number,
-  size: number
-) => {
-  ctx.beginPath();
-  for (let i = 0; i < 6; i++) {
-    const angle = (i * Math.PI) / 3;
-    const xPoint = x + size * Math.cos(angle);
-    const yPoint = y + size * Math.sin(angle);
-    if (i === 0) ctx.moveTo(xPoint, yPoint);
-    else ctx.lineTo(xPoint, yPoint);
-  }
-  ctx.closePath();
-};
 
 export default function SkillsPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -123,65 +106,6 @@ export default function SkillsPage() {
     },
   ];
 
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    let animationFrameId: number;
-    let time = 0;
-
-    const animate = () => {
-      time += 0.001;
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      const hexSize = 20;
-      const cols = Math.ceil(canvas.width / (hexSize * 2)) + 2;
-      const rows = Math.ceil(canvas.height / (hexSize * 1.7)) + 2;
-
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          const x = i * hexSize * 2 + (j % 2 === 0 ? 0 : hexSize);
-          const y = j * hexSize * 1.7;
-
-          const distanceFromCenter = Math.sqrt(
-            Math.pow((x - canvas.width / 2) / canvas.width, 2) +
-              Math.pow((y - canvas.height / 2) / canvas.height, 2)
-          );
-
-          const opacity = Math.sin(time + distanceFromCenter * 5) * 0.03 + 0.03;
-          ctx.strokeStyle = `rgba(2, 32, 71, ${opacity})`;
-          ctx.lineWidth = 1;
-
-          drawHexagon(ctx, x, y, hexSize);
-          ctx.stroke();
-        }
-      }
-
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      window.removeEventListener("resize", resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
   const normalizeIndex = (index: number) => {
     const length = skillCategories.length;
     return ((index % length) + length) % length;
@@ -193,8 +117,8 @@ export default function SkillsPage() {
       diff < -skillCategories.length / 2
         ? diff + skillCategories.length
         : diff > skillCategories.length / 2
-          ? diff - skillCategories.length
-          : diff;
+        ? diff - skillCategories.length
+        : diff;
     // Adjust spacing based on screen size
     return (
       normalizedDiff *
@@ -203,20 +127,14 @@ export default function SkillsPage() {
   };
 
   return (
-    <PageWrapper>
-      <canvas
-        ref={canvasRef}
-        className="fixed inset-0 -z-10"
-        style={{ opacity: 0.7 }}
-      />
-
+    <PageWrapper backgroundVariant="animated">
       <section className="py-12 md:py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <h1 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4 text-center text-navy">
+            <h1 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4 text-center text-portfolio-almost-black">
               Technical Stack
             </h1>
-            <p className="text-center text-navy/70 text-base md:text-lg mb-12 md:mb-16 max-w-2xl mx-auto px-4">
+            <p className="text-center text-portfolio-almost-black/80 text-base md:text-lg mb-12 md:mb-16 max-w-2xl mx-auto px-4">
               A detailed breakdown of my technical expertise across different
               domains
             </p>
@@ -229,13 +147,13 @@ export default function SkillsPage() {
                 onClick={handlePrev}
                 disabled={isTransitioning}
                 className="absolute left-0 md:left-[20%] lg:left-[30%] top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 
-                bg-white/10 backdrop-blur-md border border-white/20 rounded-full
-                hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed 
+                bg-portfolio-surface/80 backdrop-blur-md border border-portfolio-beige/30 rounded-full
+                hover:bg-portfolio-surface disabled:opacity-50 disabled:cursor-not-allowed 
                 transition-all duration-300 group"
                 aria-label="Previous skill"
               >
                 <motion.span
-                  className="text-navy block text-lg md:text-xl"
+                  className="text-portfolio-navy block text-lg md:text-xl"
                   whileHover={{ x: -2 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
@@ -248,13 +166,13 @@ export default function SkillsPage() {
                 onClick={handleNext}
                 disabled={isTransitioning}
                 className="absolute right-0 md:right-[20%] lg:right-[30%] top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 
-                bg-white/10 backdrop-blur-md border border-white/20 rounded-full
-                hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed 
+                bg-portfolio-surface/80 backdrop-blur-md border border-portfolio-beige/30 rounded-full
+                hover:bg-portfolio-surface disabled:opacity-50 disabled:cursor-not-allowed 
                 transition-all duration-300 group"
                 aria-label="Next skill"
               >
                 <motion.span
-                  className="text-navy block text-lg md:text-xl"
+                  className="text-portfolio-navy block text-lg md:text-xl"
                   whileHover={{ x: 2 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
@@ -303,15 +221,19 @@ export default function SkillsPage() {
                     }}
                   >
                     <div
-                      className={`relative overflow-hidden rounded-2xl border border-white/20 
-                      bg-white/10 backdrop-blur-md p-4 md:p-6 transition-all duration-500
-                      ${normalizeIndex(index - currentIndex) === 0 ? "hover:shadow-xl" : "pointer-events-none"}`}
+                      className={`relative overflow-hidden rounded-2xl border border-portfolio-beige/30 
+                      bg-portfolio-surface/80 backdrop-blur-md p-4 md:p-6 transition-all duration-500
+                      ${
+                        normalizeIndex(index - currentIndex) === 0
+                          ? "hover:shadow-xl"
+                          : "pointer-events-none"
+                      }`}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-portfolio-surface/10 to-transparent pointer-events-none" />
 
                       <div className="relative">
                         <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                          <div className="p-2.5 md:p-3.5 rounded-xl bg-navy/90 text-cream ring-1 ring-white/20 shadow-lg">
+                          <div className="p-2.5 md:p-3.5 rounded-xl bg-portfolio-navy text-portfolio-cream ring-1 ring-portfolio-beige/20 shadow-lg">
                             {React.createElement(category.icon, {
                               size:
                                 typeof window !== "undefined" &&
@@ -321,10 +243,10 @@ export default function SkillsPage() {
                             })}
                           </div>
                           <div>
-                            <h2 className="text-lg md:text-xl font-bold text-navy">
+                            <h2 className="text-lg md:text-xl font-bold text-portfolio-almost-black">
                               {category.title}
                             </h2>
-                            <p className="text-xs md:text-sm text-navy/60">
+                            <p className="text-xs md:text-sm text-portfolio-almost-black/70">
                               {category.description}
                             </p>
                           </div>
@@ -334,9 +256,9 @@ export default function SkillsPage() {
                           {category.skills.map((skill) => (
                             <span
                               key={skill}
-                              className="px-2 md:px-3 py-1 md:py-1.5 bg-navy/5 text-navy rounded-lg 
-                              text-xs md:text-sm font-medium backdrop-blur-sm hover:bg-navy hover:text-cream 
-                              ring-1 ring-navy/10 transition-all duration-300"
+                              className="px-2 md:px-3 py-1 md:py-1.5 bg-portfolio-navy/10 text-portfolio-almost-black rounded-lg 
+                              text-xs md:text-sm font-medium backdrop-blur-sm hover:bg-portfolio-navy hover:text-portfolio-cream 
+                              ring-1 ring-portfolio-navy/20 transition-all duration-300"
                             >
                               {skill}
                             </span>
@@ -356,8 +278,8 @@ export default function SkillsPage() {
                   key={index}
                   className={`h-1.5 md:h-2 rounded-full transition-all duration-300 ${
                     index === currentIndex
-                      ? "w-5 md:w-6 bg-navy"
-                      : "w-1.5 md:w-2 bg-navy/30"
+                      ? "w-5 md:w-6 bg-portfolio-navy"
+                      : "w-1.5 md:w-2 bg-portfolio-navy/30"
                   }`}
                 />
               ))}
@@ -365,8 +287,8 @@ export default function SkillsPage() {
           </div>
 
           <FadeIn delay={0.4}>
-            <div className="mt-12 md:mt-16 p-4 md:p-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl text-center">
-              <p className="text-sm md:text-base text-navy/80 max-w-2xl mx-auto leading-relaxed">
+            <div className="mt-12 md:mt-16 p-4 md:p-6 bg-portfolio-surface/80 backdrop-blur-md border border-portfolio-beige/30 rounded-2xl text-center">
+              <p className="text-sm md:text-base text-portfolio-almost-black/80 max-w-2xl mx-auto leading-relaxed">
                 Navigate through my technical expertise using the arrows
               </p>
             </div>

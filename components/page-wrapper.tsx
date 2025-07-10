@@ -3,11 +3,31 @@
 import { motion } from "framer-motion";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import {
+  PageBackground,
+  AnimatedPageBackground,
+  GradientPageBackground,
+} from "@/components/unified-background";
 import type { ReactNode } from "react";
 
-export function PageWrapper({ children }: { children: ReactNode }) {
+interface PageWrapperProps {
+  children: ReactNode;
+  backgroundVariant?: "default" | "animated" | "gradient";
+}
+
+export function PageWrapper({
+  children,
+  backgroundVariant = "default",
+}: PageWrapperProps) {
+  const BackgroundComponent =
+    backgroundVariant === "animated"
+      ? AnimatedPageBackground
+      : backgroundVariant === "gradient"
+      ? GradientPageBackground
+      : PageBackground;
+
   return (
-    <div className="min-h-screen  text-almost-black">
+    <BackgroundComponent>
       <motion.main
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -18,6 +38,6 @@ export function PageWrapper({ children }: { children: ReactNode }) {
         {children}
         <Footer />
       </motion.main>
-    </div>
+    </BackgroundComponent>
   );
 }

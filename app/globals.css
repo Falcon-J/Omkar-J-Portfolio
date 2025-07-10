@@ -14,87 +14,126 @@ body {
 
 @layer base {
   :root {
-    --color-dark: #000000;
-    --color-primary: #ff1111;
-    --color-secondary: #221e72f3;
+    /* Primary Color Theme - Blue and Red */
+    --color-primary: #3b82f6; /* Blue */
+    --color-secondary: #ef4444; /* Red */
     --color-light: #ffffff;
-    --color-bglight: rgba(163, 153, 224, 0.9) 100%;
+    --color-dark: #000000;
+    --color-text: #1f2937; /* Dark gray for text */
+    --color-text-light: #6b7280; /* Light gray for secondary text */
+    --color-bglight: rgba(163, 153, 224, 0.1);
 
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Custom Portfolio Colors - Light Theme */
+    --portfolio-navy: 213 75% 21%; /* #123458 */
+    --portfolio-cream: 40 25% 94%; /* #F1EFEC */
+    --portfolio-beige: 33 13% 79%; /* #D4C9BE */
+    --portfolio-almost-black: 0 0% 1%; /* #030303 */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Brand Color Variants */
+    --portfolio-navy-light: 213 65% 35%;
+    --portfolio-navy-dark: 213 85% 15%;
+    --portfolio-surface: 40 30% 97%;
+    --portfolio-surface-elevated: 0 0% 100%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Shadcn/ui Variables - Light Theme */
+    --background: var(--portfolio-cream);
+    --foreground: var(--portfolio-navy);
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --card: var(--portfolio-surface-elevated);
+    --card-foreground: var(--portfolio-navy);
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --popover: var(--portfolio-surface-elevated);
+    --popover-foreground: var(--portfolio-navy);
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --primary: var(--portfolio-navy);
+    --primary-foreground: var(--portfolio-cream);
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --secondary: var(--portfolio-beige);
+    --secondary-foreground: var(--portfolio-navy);
+
+    --muted: var(--portfolio-beige);
+    --muted-foreground: 213 25% 45%;
+
+    --accent: var(--portfolio-surface);
+    --accent-foreground: var(--portfolio-navy);
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: var(--portfolio-cream);
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 33 13% 85%;
+    --input: 33 13% 85%;
+    --ring: var(--portfolio-navy);
 
     --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: var(--portfolio-surface);
+    --sidebar-foreground: var(--portfolio-navy);
+    --sidebar-primary: var(--portfolio-navy);
+    --sidebar-primary-foreground: var(--portfolio-cream);
+    --sidebar-accent: var(--portfolio-beige);
+    --sidebar-accent-foreground: var(--portfolio-navy);
+    --sidebar-border: 33 13% 85%;
+    --sidebar-ring: var(--portfolio-navy);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Primary Color Theme - Blue and Red (Dark Mode) */
+    --color-primary: #60a5fa; /* Lighter blue for dark mode */
+    --color-secondary: #f87171; /* Lighter red for dark mode */
+    --color-light: #ffffff;
+    --color-dark: #000000;
+    --color-text: #f9fafb; /* Light text for dark mode */
+    --color-text-light: #d1d5db; /* Lighter gray for secondary text */
+    --color-bglight: rgba(163, 153, 224, 0.2);
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    /* Custom Portfolio Colors - Dark Theme */
+    --portfolio-navy: 210 70% 85%; /* Bright light blue for text */
+    --portfolio-cream: 213 35% 6%; /* Very dark navy background */
+    --portfolio-beige: 213 25% 12%; /* Dark surface */
+    --portfolio-almost-black: 40 20% 98%; /* Almost white text */
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    /* Brand Color Variants - Dark Theme */
+    --portfolio-navy-light: 210 60% 90%;
+    --portfolio-navy-dark: 210 80% 75%;
+    --portfolio-surface: 213 30% 9%;
+    --portfolio-surface-elevated: 213 20% 15%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Shadcn/ui Variables - Dark Theme */
+    --background: var(--portfolio-cream);
+    --foreground: var(--portfolio-almost-black);
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --card: var(--portfolio-surface-elevated);
+    --card-foreground: var(--portfolio-almost-black);
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --popover: var(--portfolio-surface-elevated);
+    --popover-foreground: var(--portfolio-almost-black);
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --primary: var(--portfolio-navy);
+    --primary-foreground: var(--portfolio-cream);
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --secondary: var(--portfolio-surface);
+    --secondary-foreground: var(--portfolio-almost-black);
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --muted: var(--portfolio-beige);
+    --muted-foreground: 210 40% 75%;
+
+    --accent: var(--portfolio-surface);
+    --accent-foreground: var(--portfolio-almost-black);
+
+    --destructive: 0 70% 65%;
+    --destructive-foreground: var(--portfolio-almost-black);
+
+    --border: var(--portfolio-beige);
+    --input: var(--portfolio-beige);
+    --ring: var(--portfolio-navy);
+
+    --sidebar-background: var(--portfolio-surface);
+    --sidebar-foreground: var(--portfolio-almost-black);
+    --sidebar-primary: var(--portfolio-navy);
+    --sidebar-primary-foreground: var(--portfolio-cream);
+    --sidebar-accent: var(--portfolio-beige);
+    --sidebar-accent-foreground: var(--portfolio-almost-black);
+    --sidebar-border: var(--portfolio-beige);
+    --sidebar-ring: var(--portfolio-navy);
   }
 }
 
@@ -151,15 +190,14 @@ body {
 @keyframes glow {
   0%,
   100% {
-    filter: drop-shadow(0 0 5px rgba(255, 17, 17, 0.5));
+    filter: drop-shadow(0 0 5px hsl(var(--portfolio-navy) / 0.5));
   }
   50% {
-    filter: drop-shadow(0 0 20px rgba(71, 0, 125, 0.7));
+    filter: drop-shadow(0 0 20px hsl(var(--portfolio-navy) / 0.7));
   }
 }
 
-/* Add to your existing CSS */
-
+/* Theme-aware skill animations */
 .skill-grid {
   position: absolute;
   inset: 0;
@@ -171,7 +209,7 @@ body {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--color-primary);
+  background: hsl(var(--portfolio-navy));
   opacity: 0.15;
   animation: float-dot linear infinite;
 }
@@ -197,7 +235,7 @@ body {
   }
 }
 
-/* About page background animations */
+/* About page background animations - theme aware */
 .about-pattern {
   position: absolute;
   inset: 0;
@@ -209,7 +247,7 @@ body {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--color-primary);
+  background: hsl(var(--portfolio-navy));
   opacity: 0.1;
   filter: blur(1px);
   animation: float-particle ease-in-out infinite;
