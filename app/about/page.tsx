@@ -314,17 +314,7 @@ export default function AboutPage() {
                             Expected Graduation: August 2026
                           </p>
                           <p className="font-medium text-navy bg-cream/70 py-1 px-3 rounded-full text-sm">
-                            CGPA: 8.28
-                          </p>
-                        </div>
-                        <div className="mb-4">
-                          <p className="text-sm text-navy/70 mb-2">
-                            <strong>Location:</strong> Vellore, Tamil Nadu,
-                            India
-                          </p>
-                          <p className="text-sm text-navy/70">
-                            <strong>Program:</strong> Bachelor of Technology -
-                            Computer Science and Engineering
+                            CGPA: 8.27
                           </p>
                         </div>
                         <div className="mt-4">
