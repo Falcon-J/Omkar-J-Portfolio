@@ -38,9 +38,9 @@ const professionalExperiences: Experience[] = [
     company: "ForgeAhead Solutions",
     duration: "June 2025 - Present",
     responsibilities: [
-      "Designing intelligent modules using LLMs and RAG architecture achieving 90% accuracy in data extraction and parsing.",
-      "Contributing to 5+ AI-driven components for keyword enrichment, skills gap analysis, semantic matching, and chatbot interface.",
-      "Utilized MLflow and DagsHub to manage 10+ ML experiments and track dataset/model versions across a team of 4+ engineers in a collaborative workflow.",
+      "Developing agentic AI pipeline with RAG to parse job data with 90%+ accuracy and enable real-time scoring.",
+      "Refined keyword enrichment module by integrating S-BERT embeddings with 15% improvement in keyword semantic matching.",
+      "Utilized MLflow and DagsHub to manage 5+ ML experiments and track dataset/model versions across a team of 4+ engineers in a collaborative workflow.",
     ],
   },
   {
