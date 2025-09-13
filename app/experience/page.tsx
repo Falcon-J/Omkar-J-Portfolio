@@ -36,11 +36,11 @@ const professionalExperiences: Experience[] = [
     year: 2025,
     title: "AI/ML Intern",
     company: "ForgeAhead Solutions",
-    duration: "June 2025 - Present",
+    duration: "June 2025 - August 2025",
     responsibilities: [
-      "Developing agentic AI pipeline with RAG to parse job data with 90%+ accuracy and enable real-time scoring.",
-      "Refined keyword enrichment module by integrating S-BERT embeddings with 15% improvement in keyword semantic matching.",
-      "Utilized MLflow and DagsHub to manage 5+ ML experiments and track dataset/model versions across a team of 4+ engineers in a collaborative workflow.",
+      "Building an agentic AI pipeline using OpenRouter API to parse job data, enabling real-time scoring with over 80% accuracy.",
+      "Integrated S-BERT embeddings and OCR pipelines to extract keywords, improving semantic matching by 15%.",
+      "Managed and tracked multiple ML dataset and model versions using MLflow and DagsHub across a 4-person team.",
     ],
   },
   {
@@ -49,9 +49,9 @@ const professionalExperiences: Experience[] = [
     company: "Wall Street Global Institute",
     duration: "May 2025 - June 2025",
     responsibilities: [
-      "Validated data across Indian and U.S. annual reports, improving reporting accuracy by 85% contributing to an ISB edition book.",
-      "Analyzed disclosures across 8+ chapters between Indian reports and Microsoft's SEC 10-Ks key presentation differences.",
-      "Reviewed and compared 20+ sections from annual reports of Infosys and Asian Paints, covering ESG, MD&A, and consolidated financial disclosures.",
+      "Validated financial data from Indian and U.S. annual reports, increasing reporting accuracy by 85% and contributing to an ISB edition book.",
+      "Compared disclosures across 8 chapters, highlighting key differences between Indian reports and Microsoft's SEC 10-K filings.",
+      "Reviewed 20+ sections from Infosys and Asian Paints annual reports, covering ESG, MD&A, and consolidated financial statements for insights.",
     ],
   },
   {
@@ -60,9 +60,9 @@ const professionalExperiences: Experience[] = [
     company: "Entrepreneurship Cell, VIT",
     duration: "July 2024 - June 2025",
     responsibilities: [
-      "Improving internal workflows efficiency using Google Workspace tools, reducing coordination time by 30%.",
-      "Team coordination across 8 departments to standardize processes, enabling faster event turnaround and improved collaboration.",
-      "Spearheaded operational strategy for a 20-member team, ensuring successful execution of 15+ campus-wide events with 1000+ cumulative attendees.",
+      "Optimized internal workflows using Google Workspace, reducing coordination time by 30%.",
+      "Coordinated across 8 departments to standardize processes, enabling faster event execution and improved collaboration.",
+      "Led a 20-member team to successfully execute 15+ campus-wide events with 1000+ cumulative attendees.",
     ],
   },
 ];
@@ -107,6 +107,7 @@ const extracurricularExperiences: Experience[] = [
 
 // Awards and achievements data
 const achievements: Achievement[] = [
+  
   {
     year: 2023,
     title: "Best UI/UX Award – Game Development Track",

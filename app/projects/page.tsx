@@ -96,6 +96,42 @@ export default function ProjectsPage() {
   const projects = [
     {
       id: 1,
+      title: "DocuMind",
+      description:
+        "A comprehensive document intelligence system supporting multi-format ingestion with semantic search and Q&A capabilities.",
+      image: "/placeholder.svg?height=200&width=400",
+      tags: ["Python", "FastAPI", "Next.js", "LangChain", "OCR"],
+      features: [
+        "Designed a document intelligence system supporting multi-format ingestion (PDFs, Word, scanned docs via OCR).",
+        "Implemented semantic search & Q&A with LangChain + vector embeddings, achieving 80% query relevance.",
+        "Built a Next.js dashboard for real-time insights, including summaries, keyword extraction, and evaluation metrics.",
+      ],
+      github: "https://github.com/Falcon-J/DocuMind",
+      live: "#",
+    },
+    {
+      id: 2,
+      title: "Saathi",
+      description:
+        "A collaborative task manager with real-time synchronization using Redis Streams and Server-Sent Events for low-latency updates.",
+      image: "/placeholder.svg?height=200&width=400",
+      tags: [
+        "Next.js",
+        "TypeScript",
+        "Upstash Redis",
+        "Server-Sent Events",
+        "Server Actions",
+      ],
+      features: [
+        "Built a collaborative task manager with real-time synchronization using Redis Streams.",
+        "Leveraged Server-Sent Events to deliver low-latency task synchronization and simplifying state management.",
+        "Designed serverless workflows with Next.js Server Actions, simplifying backend logic and supporting on-demand scalability.",
+      ],
+      github: "https://github.com/Falcon-J/Saathi",
+      live: "#",
+    },
+    {
+      id: 3,
       title: "PriceSight",
       description:
         "An advanced machine learning application with ensemble regression models trained on 13K+ Bangalore housing records, achieving an R² Score of 0.85.",
@@ -118,7 +154,7 @@ export default function ProjectsPage() {
       live: "#",
     },
     {
-      id: 2,
+      id: 4,
       title: "MemoJar",
       description:
         "An encrypted journaling app with Firestore sync and offline-first support, featuring AI-based sentiment analysis and emotional insights.",
@@ -140,7 +176,7 @@ export default function ProjectsPage() {
       live: "https://memo-jar.vercel.app/",
     },
     {
-      id: 3,
+      id: 5,
       title: "TravelTrouve",
       description:
         "A scalable photo-sharing app supporting 50+ users and 100+ uploads per trip with secure Firebase authentication and real-time synchronization.",

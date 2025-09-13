@@ -142,6 +142,23 @@ const certifications = [
     ],
   },
   {
+    id: "ibm-gen-ai",
+    title: "IBM Generative AI and LLMs: Architecture and Data Preparation",
+    issuer: "IBM",
+    year: "2025",
+    status: "Current",
+    credentialUrl: "https://www.coursera.org/account/accomplishments/verify/VYE081TE2HBI",
+    description:
+      "Specialized training in Large Language Models architecture, data preparation techniques, and generative AI implementation focusing on enterprise-level AI solutions.",
+    gradient: "from-blue-500 to-purple-600",
+    badges: [
+      { text: "LLM Architecture", color: "border-blue-500 text-blue-700" },
+      { text: "Data Preparation", color: "border-blue-500 text-blue-700" },
+      { text: "Generative AI", color: "border-blue-500 text-blue-700" },
+      { text: "Enterprise AI", color: "border-blue-500 text-blue-700" },
+    ],
+  },
+  {
     id: "oracle-ai-foundations",
     title: "Oracle Cloud Infrastructure AI Foundations Associate",
     issuer: "Oracle Corporation",
@@ -343,7 +360,7 @@ export default function AboutPage() {
                       <CardContent>
                         <div className="flex flex-col gap-3 mb-4 sm:flex-row sm:items-center sm:justify-between">
                           <span className="text-sm text-portfolio-almost-black/80">
-                            <strong>Expected Graduation:</strong> August 2026
+                            <strong>Expected Graduation:</strong> July 2026
                           </span>
                           <span className="text-sm font-semibold text-portfolio-almost-black bg-portfolio-surface-elevated py-1 px-3 rounded-full">
                             CGPA: 8.28
