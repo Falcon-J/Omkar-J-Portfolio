@@ -12,10 +12,23 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+type Project = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  features: string[];
+  github: string;
+  live: string;
+};
 
-const ProjectCard = ({ project, index }: { project: any; index: number }) => (
+type ProjectCardProps = {
+  project: Project;
+  index: number;
+};
+
+const ProjectCard = ({ project, index }: ProjectCardProps) => (
   <div className="relative">
     <div className="absolute left-0 top-0 w-12 h-12 md:w-16 md:h-16 bg-portfolio-navy rounded-full flex items-center justify-center text-portfolio-cream font-bold z-10">
       <span>0{index + 1}</span>
@@ -93,18 +106,18 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => (
 );
 
 export default function ProjectsPage() {
-  const projects = [
+  const projects: Project[] = [
     {
       id: 1,
       title: "DocuMind",
       description:
-        "A comprehensive document intelligence system supporting multi-format ingestion with semantic search and Q&A capabilities.",
+        "Document intelligence platform combining OCR, semantic search, and summarization to accelerate reporting.",
       image: "/placeholder.svg?height=200&width=400",
       tags: ["Python", "FastAPI", "Next.js", "LangChain", "OCR"],
       features: [
-        "Designed a document intelligence system supporting multi-format ingestion (PDFs, Word, scanned docs via OCR).",
-        "Implemented semantic search & Q&A with LangChain + vector embeddings, achieving 80% query relevance.",
-        "Built a Next.js dashboard for real-time insights, including summaries, keyword extraction, and evaluation metrics.",
+        "Developed a semantic search system using LangChain & OCR achieving 80%+ query relevance.",
+        "Generated cross-document summaries from 50+ documents, speeding up report creation by 60%.",
+        "Designed a Next.js dashboard for real-time query, keyword extraction, and results, enabling 30% faster user decisions.",
       ],
       github: "https://github.com/Falcon-J/DocuMind",
       live: "#",
@@ -123,77 +136,26 @@ export default function ProjectsPage() {
         "Server Actions",
       ],
       features: [
-        "Built a collaborative task manager with real-time synchronization using Redis Streams.",
-        "Leveraged Server-Sent Events to deliver low-latency task synchronization and simplifying state management.",
-        "Designed serverless workflows with Next.js Server Actions, simplifying backend logic and supporting on-demand scalability.",
+        "Built a task manager with real-time synchronization using Redis Streams, supporting 200+ users without lag.",
+        "Applied Server-Sent Events to reduce update latency by 70%, improving collaboration.",
+        "Implemented serverless workflows with Next.js Server Actions, simplifying backend code by 40% and enabling on-demand scaling.",
       ],
       github: "https://github.com/Falcon-J/Saathi",
       live: "#",
     },
     {
       id: 3,
-      title: "PriceSight",
+      title: "Platz",
       description:
-        "An advanced machine learning application with ensemble regression models trained on 13K+ Bangalore housing records, achieving an R² Score of 0.85.",
+        "Serverless booking system delivering transaction-safe reservations and real-time availability across events.",
       image: "/placeholder.svg?height=200&width=400",
-      tags: [
-        "Python",
-        "Streamlit",
-        "Scikit-Learn",
-        "MLflow",
-        "SHAP",
-        "Pandas",
-        "Render",
-      ],
+      tags: ["Go", "Fiber", "CockroachDB", "React"],
       features: [
-        "Trained ensemble regression models on 13K+ Bangalore housing records, achieving an R² Score of 0.85.",
-        "Launched Streamlit app with 3 core tools: EMI calculator, risk score visualizer and SHAP explanations.",
-        "Reduced model evaluation latency to 500ms and improved price prediction accuracy by 25% after tuning hyperparameters.",
+        "Optimized booking workflow with transaction-safe reservations and wallet payments, eliminating conflicts.",
+        "Orchestrated a CockroachDB cluster, boosting uptime by 40% and fault tolerance under load.",
+        "Created a React frontend for real-time conference search and reservations, supporting 200+ concurrent users.",
       ],
-      github: "https://github.com/Falcon-J/bangalore-house-price-predictor",
-      live: "#",
-    },
-    {
-      id: 4,
-      title: "MemoJar",
-      description:
-        "An encrypted journaling app with Firestore sync and offline-first support, featuring AI-based sentiment analysis and emotional insights.",
-      image: "/screenshots/Memojar_hero.png",
-      tags: [
-        "React.js",
-        "JavaScript",
-        "Firebase",
-        "Tailwind CSS",
-        "Framer Motion",
-        "Flask",
-      ],
-      features: [
-        "Built an encrypted journaling app with Firestore sync and offline-first support, enabling 100+ entries/user.",
-        "Enhanced user experience with 5+ responsive components, tag filters, and dark mode raising session time by 40%.",
-        "Integrated an AI-based sentiment analyzer to offer emotional insights and tag suggestions for each journal entry boosting return engagement by 35%.",
-      ],
-      github: "https://github.com/Falcon-J/MemoJar.git",
-      live: "https://memo-jar.vercel.app/",
-    },
-    {
-      id: 5,
-      title: "TravelTrouve",
-      description:
-        "A scalable photo-sharing app supporting 50+ users and 100+ uploads per trip with secure Firebase authentication and real-time synchronization.",
-      image: "/placeholder.svg?height=200&width=400",
-      tags: [
-        "Next.js",
-        "TypeScript",
-        "Firebase",
-        "Tailwind CSS",
-        "Framer Motion",
-      ],
-      features: [
-        "Built a scalable photo-sharing app supporting 50+ users, 100+ uploads/trip and secure access via Firebase Auth.",
-        "Achieved 100ms sync time across devices using real-time Firestore listeners and optimized subscription logic.",
-        "Designed a chronological 'Story View' with smooth transitions, enhancing user recall and boosting engagement by 60%.",
-      ],
-      github: "https://github.com/Falcon-J/TravelTrouve",
+      github: "#",
       live: "#",
     },
   ];
