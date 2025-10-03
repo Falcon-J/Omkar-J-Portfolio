@@ -109,17 +109,17 @@ export default function ProjectsPage() {
   const projects: Project[] = [
     {
       id: 1,
-      title: "DocuMind",
+      title: "AI2SQL",
       description:
-        "Document intelligence platform combining OCR, semantic search, and summarization to accelerate reporting.",
+        "Intelligent SQL Query Generator that converts natural language into optimized SQL queries using NLP.",
       image: "/placeholder.svg?height=200&width=400",
-      tags: ["Python", "FastAPI", "Next.js", "LangChain", "OCR"],
+      tags: ["Python", "Flask", "NLP", "NLTK", "MySQL", "SQLAlchemy"],
       features: [
-        "Developed a semantic search system using LangChain & OCR achieving 80%+ query relevance.",
-        "Generated cross-document summaries from 50+ documents, speeding up report creation by 60%.",
-        "Designed a Next.js dashboard for real-time query, keyword extraction, and results, enabling 30% faster user decisions.",
+        "Automated SQL scripting to streamline data extraction and manipulation, reducing errors and saving time.",
+        "Converted natural language into optimized SQL queries, boosting productivity and efficiency in data analysis.",
+        "Implemented NLP processing with NLTK to understand user intent and generate accurate database queries.",
       ],
-      github: "https://github.com/Falcon-J/DocuMind",
+      github: "#",
       live: "#",
     },
     {
