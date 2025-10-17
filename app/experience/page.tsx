@@ -36,9 +36,9 @@ const professionalExperiences: Experience[] = [
     year: 2025,
     title: "AI/ML Intern",
     company: "ForgeAhead Solutions",
-    duration: "June 2025 - August 2025",
+    duration: "June 2025 - September 2025",
     responsibilities: [
-      "Building an agentic AI pipeline using OpenRouter API to parse job data, enabling real-time scoring with over 80% accuracy.",
+      "Developed an agentic AI pipeline within the Product Engineering Unit’s AI/ML stack, leveraging OpenRouter API for job data parsing and achieving 80% real-time scoring accuracy.",
       "Integrated S-BERT embeddings and OCR pipelines to extract keywords, improving semantic matching by 15%.",
       "Managed and tracked multiple ML dataset and model versions using MLflow and DagsHub across a 4-person team.",
     ],
@@ -50,7 +50,7 @@ const professionalExperiences: Experience[] = [
     duration: "May 2025 - June 2025",
     responsibilities: [
       "Validated financial data from Indian and U.S. annual reports, increasing reporting accuracy by 85% and contributing to an ISB edition book.",
-      "Compared disclosures across 8 chapters, highlighting key differences between Indian reports and Microsoft's SEC 10-K filings.",
+      "Compared disclosures across 8 chapters, highlighting key differences between Indian reports and Microsoft’s SEC 10-K filings.",
       "Reviewed 20+ sections from Infosys and Asian Paints annual reports, covering ESG, MD&A, and consolidated financial statements for insights.",
     ],
   },
@@ -66,6 +66,7 @@ const professionalExperiences: Experience[] = [
     ],
   },
 ];
+
 
 // Extracurricular experience data
 const extracurricularExperiences: Experience[] = [
