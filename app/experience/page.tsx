@@ -34,6 +34,17 @@ interface Achievement {
 const professionalExperiences: Experience[] = [
   {
     year: 2025,
+    title: "Intern",
+    company: "Anacity",
+    duration: "December 2025 - Present",
+    responsibilities: [
+      "Design and maintain scalable backend services and APIs using Python to support AI-assisted application workflows.",
+      "Implement state management, context handling, and service orchestration using LangGraph and LangChain.",
+      "Improve system reliability, data pipelines, and integration layers for production-grade agentic AI and LLM adoption.",
+    ],
+  }, 
+  {
+    year: 2025,
     title: "AI/ML Intern",
     company: "ForgeAhead Solutions",
     duration: "June 2025 - September 2025",
