@@ -33,49 +33,15 @@ interface Achievement {
 // Professional experience data
 const professionalExperiences: Experience[] = [
   {
-    year: 2025,
-    title: "Intern",
-    company: "Anacity",
-    duration: "December 2025 - Present",
-    responsibilities: [
-      "Design and maintain scalable backend services and APIs using Python to support AI-assisted application workflows.",
-      "Implement state management, context handling, and service orchestration using LangGraph and LangChain.",
-      "Improve system reliability, data pipelines, and integration layers for production-grade agentic AI and LLM adoption.",
-    ],
-  }, 
-  {
-    year: 2025,
-    title: "AI/ML Intern",
-    company: "ForgeAhead Solutions",
-    duration: "June 2025 - September 2025",
-    responsibilities: [
-      "Developed an agentic AI pipeline within the Product Engineering Unit’s AI/ML stack, leveraging OpenRouter API for job data parsing and achieving 80% real-time scoring accuracy.",
-      "Integrated S-BERT embeddings and OCR pipelines to extract keywords, improving semantic matching by 15%.",
-      "Managed and tracked multiple ML dataset and model versions using MLflow and DagsHub across a 4-person team.",
-    ],
-  },
-  {
-    year: 2025,
-    title: "Financial Research Intern",
-    company: "Wall Street Global Institute",
-    duration: "May 2025 - June 2025",
-    responsibilities: [
-      "Validated financial data from Indian and U.S. annual reports, increasing reporting accuracy by 85% and contributing to an ISB edition book.",
-      "Compared disclosures across 8 chapters, highlighting key differences between Indian reports and Microsoft’s SEC 10-K filings.",
-      "Reviewed 20+ sections from Infosys and Asian Paints annual reports, covering ESG, MD&A, and consolidated financial statements for insights.",
-    ],
-  },
-  {
-    year: 2024,
-    title: "Director of Operations",
-    company: "Entrepreneurship Cell, VIT",
-    duration: "July 2024 - June 2025",
-    responsibilities: [
-      "Optimized internal workflows using Google Workspace, reducing coordination time by 30%.",
-      "Coordinated across 8 departments to standardize processes, enabling faster event execution and improved collaboration.",
-      "Led a 20-member team to successfully execute 15+ campus-wide events with 1000+ cumulative attendees.",
-    ],
-  },
+    "year": 2026,
+    "title": "Senior Engineer (Test)",
+    "company": "ResumeSync Inc",
+    "duration": "Present",
+    "responsibilities": [
+      "Automated everything",
+      "Deployed via API"
+    ]
+  }
 ];
 
 
