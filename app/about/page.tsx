@@ -363,7 +363,7 @@ export default function AboutPage() {
                             <strong>Expected Graduation:</strong> July 2026
                           </span>
                           <span className="text-sm font-semibold text-portfolio-almost-black bg-portfolio-surface-elevated py-1 px-3 rounded-full">
-                            CGPA: 8.28
+                            CGPA: 8.3
                           </span>
                         </div>
                         <div className="mt-2">
