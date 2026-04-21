@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BookOpen, Clock } from "lucide-react";
+import { ArrowRight, BookOpen, Clock, Linkedin } from "lucide-react";
 
 // Data structure for blog articles
 interface Article {
@@ -22,6 +22,16 @@ interface Article {
   link: string;
   platform: string;
   featured: boolean;
+}
+
+// Data structure for LinkedIn posts
+interface LinkedInPost {
+  id: string;
+  title: string;
+  category: string;
+  date: string;
+  excerpt: string;
+  link: string;
 }
 
 // Blog data store
@@ -38,6 +48,17 @@ const blogData = {
       link: "https://medium.com/@omkarjawalikar04/meet-your-digital-pet-born-with-rl-d4bb419ee4ef",
       platform: "Medium",
       featured: true,
+    },
+  ],
+  linkedInPosts: [
+    {
+      id: "forward-request-ui-enhancement",
+      title: "Forward Request UI Enhancement",
+      category: "Product & UX",
+      date: "Dec 2024",
+      excerpt:
+        "Sharing insights on a meaningful UI enhancement for forward request flows — improving user experience through thoughtful design decisions and iterative feedback.",
+      link: "https://www.linkedin.com/posts/omkar-jawalikar_forward-request-ui-enhancement-activity-7452223344994615296-p5Ft?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD4TY2MBV-CwGp0UiUxMKZCoG6-gEEDdlnQ",
     },
   ],
   upcomingTopics: [
@@ -67,6 +88,7 @@ const getAllArticles = (): Article[] => {
 
 export default function BlogPage() {
   const featuredArticle = getFeaturedArticle();
+  const linkedInPosts = blogData.linkedInPosts;
 
   return (
     <PageWrapper backgroundVariant="default">
@@ -135,6 +157,65 @@ export default function BlogPage() {
                     </Button>
                   </div>
                 </Card>
+              </div>
+            </FadeIn>
+          )}
+
+          {/* LinkedIn Posts */}
+          {linkedInPosts.length > 0 && (
+            <FadeIn delay={0.35}>
+              <div className="mb-16">
+                <div className="flex items-center gap-3 mb-8 max-w-4xl mx-auto">
+                  <Linkedin className="h-6 w-6 text-[#0A66C2]" />
+                  <h2 className="text-2xl font-bold text-portfolio-almost-black">
+                    LinkedIn Posts
+                  </h2>
+                </div>
+                <div className="grid grid-cols-1 gap-6 max-w-4xl mx-auto">
+                  {linkedInPosts.map((post) => (
+                    <Card
+                      key={post.id}
+                      className="overflow-hidden border-portfolio-beige hover:shadow-xl transition-all duration-500 group bg-portfolio-surface"
+                    >
+                      <div className="p-6 md:p-8">
+                        <CardHeader className="p-0 mb-4">
+                          <div className="flex flex-wrap gap-2 mb-3">
+                            <Badge className="bg-portfolio-navy text-portfolio-cream text-sm px-3 py-1">
+                              {post.category}
+                            </Badge>
+                            <Badge className="bg-[#0A66C2] text-white text-sm px-3 py-1">
+                              LinkedIn
+                            </Badge>
+                          </div>
+                          <CardTitle className="text-xl md:text-2xl font-bold text-portfolio-almost-black group-hover:text-portfolio-almost-black/80 transition-colors mb-2">
+                            {post.title}
+                          </CardTitle>
+                          <CardDescription className="text-base text-portfolio-almost-black/70">
+                            {post.date}
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="p-0 mb-6">
+                          <p className="text-portfolio-almost-black/80 leading-relaxed text-base">
+                            {post.excerpt}
+                          </p>
+                        </CardContent>
+                        <Button
+                          className="w-full sm:w-auto bg-[#0A66C2] text-white hover:bg-[#004182] transition-all duration-300 transform hover:scale-105 px-8 py-3"
+                          asChild
+                        >
+                          <a
+                            href={post.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            View on LinkedIn{" "}
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </a>
+                        </Button>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
               </div>
             </FadeIn>
           )}
