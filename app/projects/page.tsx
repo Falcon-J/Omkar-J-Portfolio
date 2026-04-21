@@ -107,59 +107,58 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
 
 export default function ProjectsPage() {
   const projects: Project[] = [
-    {
-      id: 1,
-      title: "AI2SQL",
-      description:
-        "Intelligent SQL Query Generator that converts natural language into optimized SQL queries using NLP.",
-      image: "/placeholder.svg?height=200&width=400",
-      tags: ["Python", "Flask", "NLP", "NLTK", "MySQL", "SQLAlchemy"],
-      features: [
-        "Automated SQL scripting to streamline data extraction and manipulation, reducing errors and saving time.",
-        "Converted natural language into optimized SQL queries, boosting productivity and efficiency in data analysis.",
-        "Implemented NLP processing with NLTK to understand user intent and generate accurate database queries.",
-      ],
-      github: "#",
-      live: "#",
-    },
-    {
-      id: 2,
-      title: "Saathi",
-      description:
-        "A collaborative task manager with real-time synchronization using Redis Streams and Server-Sent Events for low-latency updates.",
-      image: "/placeholder.svg?height=200&width=400",
-      tags: [
-        "Next.js",
-        "TypeScript",
-        "Upstash Redis",
-        "Server-Sent Events",
-        "Server Actions",
-      ],
-      features: [
-        "Built a task manager with real-time synchronization using Redis Streams, supporting 200+ users without lag.",
-        "Applied Server-Sent Events to reduce update latency by 70%, improving collaboration.",
-        "Implemented serverless workflows with Next.js Server Actions, simplifying backend code by 40% and enabling on-demand scaling.",
-      ],
-      github: "https://github.com/Falcon-J/Saathi",
-      live: "#",
-    },
-    {
-      id: 3,
-      title: "Platz",
-      description:
-        "Serverless booking system delivering transaction-safe reservations and real-time availability across events.",
-      image: "/placeholder.svg?height=200&width=400",
-      tags: ["Go", "Fiber", "CockroachDB", "React"],
-      features: [
-        "Optimized booking workflow with transaction-safe reservations and wallet payments, eliminating conflicts.",
-        "Orchestrated a CockroachDB cluster, boosting uptime by 40% and fault tolerance under load.",
-        "Created a React frontend for real-time conference search and reservations, supporting 200+ concurrent users.",
-      ],
-      github: "#",
-      live: "#",
-    },
-  ];
-
+  {
+    id: 1,
+    title: "AtlasPay",
+    description:
+      "Distributed payment platform with event-driven checkout and fault-tolerant transaction handling.",
+    image: "/placeholder.svg?height=200&width=400",
+    tags: ["Go", "Kafka", "PostgreSQL", "Redis", "Docker", "k6"],
+    features: [
+      "Built a Kafka-backed checkout system across 4 services handling ~12.5k RPM in load tests.",
+      "Implemented idempotency, retries, and failure handling for reliable payment workflows.",
+      "Validated 10+ service interaction scenarios using Docker-based integration testing.",
+    ],
+    github: "#",
+    live: "#",
+  },
+  {
+    id: 2,
+    title: "AgentArena",
+    description:
+      "Multi-agent orchestration platform enabling concurrent execution and shared state across AI agents.",
+    image: "/placeholder.svg?height=200&width=400",
+    tags: ["Python", "FastAPI", "React", "PostgreSQL", "WebSockets"],
+    features: [
+      "Engineered coordination layer for 15+ agents with shared state and parallel execution.",
+      "Handled secure in-memory credential management for external APIs without persistence.",
+      "Enabled real-time tracking of agent activity using WebSockets.",
+    ],
+    github: "#",
+    live: "#",
+  },
+  {
+    id: 3,
+    title: "Saathi",
+    description:
+      "Collaborative task manager with real-time updates using Redis Streams and Server-Sent Events.",
+    image: "/placeholder.svg?height=200&width=400",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Redis",
+      "Server-Sent Events",
+      "Server Actions",
+    ],
+    features: [
+      "Built event-driven backend supporting 200+ concurrent users in testing.",
+      "Achieved ~50ms real-time updates using Server-Sent Events.",
+      "Designed serverless workflows with Next.js Server Actions.",
+    ],
+    github: "https://github.com/Falcon-J/Saathi",
+    live: "#",
+  },
+];
   return (
     <PageWrapper backgroundVariant="animated">
       <section className="py-20">
