@@ -34,13 +34,14 @@ interface Achievement {
 const professionalExperiences: Experience[] = [
   {
     year: 2025,
-    title: "Intern",
+    title: "SWE Intern",
     company: "Anacity",
     duration: "December 2025 - Present",
     responsibilities: [
-      "Design and maintain scalable backend services and APIs using Python to support AI-assisted application workflows.",
-      "Implement state management, context handling, and service orchestration using LangGraph and LangChain.",
-      "Improve system reliability, data pipelines, and integration layers for production-grade agentic AI and LLM adoption.",
+      "Built backend services for AI-driven and automation workflows supporting 3+ use cases and improving API reliability",
+      "Orchestrated agent state and context management using LangGraph and LangChain for multi-step chatbot systems,
+      "Contributed to system design of chatbot and booking workflows, and worked on AI-based web automation using Playwright.",
+  
     ],
   }, 
   {
