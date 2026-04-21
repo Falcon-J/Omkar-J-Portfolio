@@ -39,7 +39,7 @@ const professionalExperiences: Experience[] = [
     duration: "December 2025 - Present",
     responsibilities: [
       "Built backend services for AI-driven and automation workflows supporting 3+ use cases and improving API reliability",
-      "Orchestrated agent state and context management using LangGraph and LangChain for multi-step chatbot systems,
+      "Orchestrated agent state and context management using LangGraph and LangChain for multi-step chatbot systems",
       "Contributed to system design of chatbot and booking workflows, and worked on AI-based web automation using Playwright.",
   
     ],
