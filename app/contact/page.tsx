@@ -119,7 +119,7 @@ export default function ContactPage() {
                       icon: Linkedin,
                       label: "LinkedIn",
                       value: "linkedin.com/in/omkar-jawalikar",
-                      href: "https://linkedin.com/in/omkar-jawalikar",
+                      href: "https://www.linkedin.com/in/omkar-jawalikar/",
                     },
                     {
                       icon: Github,

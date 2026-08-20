@@ -66,10 +66,10 @@ export default function Home() {
                   </span>
                 </h1>
                 <p className="text-xl max-w-xl text-[var(--color-text)]/80">
-                  As a tech enthusiast and designer at heart, my curiosity
-                  drives me to understand how things work. I thrive in team
-                  environments, whether as a member or a leader passionate about
-                  building innovative solutions.
+                  I&apos;m a software engineer focused on backend systems and
+                  production AI. I build backend-heavy AI products, agentic
+                  systems, and full-stack prototypes grounded in production
+                  architecture, modular design, and real-world workflows.
                 </p>
 
                 <div className="flex flex-wrap gap-4">

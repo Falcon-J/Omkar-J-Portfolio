@@ -13,7 +13,7 @@ export default function Footer() {
           </div>
           <div className="flex gap-4">
             <Link
-              href="https://linkedin.com/in/omkar-jawalikar"
+              href="https://www.linkedin.com/in/omkar-jawalikar/"
               target="_blank"
               rel="noopener noreferrer"
             >

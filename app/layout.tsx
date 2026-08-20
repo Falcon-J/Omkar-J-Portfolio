@@ -7,9 +7,9 @@ import { Analytics } from '@vercel/analytics/next';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Omkar Jawalikar ",
+  title: "Omkar Jawalikar | Software Engineer",
   description:
-    "Computer Science geek specializing in AI/ML, full-stack development, and financial research. Currently AI/ML Intern at ForgeAhead Solutions.",
+    "Software engineer focused on backend systems and production AI. I build backend-heavy AI products, agentic systems, and full-stack prototypes for real-world workflows.",
   icons: {
     icon: "/favicon-terminal.svg", 
     apple: "/PFP.png", // Your profile picture for Apple devices

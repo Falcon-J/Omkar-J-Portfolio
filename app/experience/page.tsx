@@ -33,37 +33,36 @@ interface Achievement {
 // Professional experience data
 const professionalExperiences: Experience[] = [
   {
-    year: 2025,
-    title: "SWE Intern",
-    company: "Anacity",
-    duration: "December 2025 - Present",
+    year: 2026,
+    title: "Software Development Engineer I",
+    company: "Anarock",
+    duration: "July 2026 - Present",
     responsibilities: [
-      "Built backend services for AI-driven and automation workflows supporting 3+ use cases and improving API reliability",
-      "Orchestrated agent state and context management using LangGraph and LangChain for multi-step chatbot systems",
-      "Contributed to system design of chatbot and booking workflows, and worked on AI-based web automation using Playwright.",
-  
+      "Lead backend architecture for an authenticated, production-grade AI assistant hosted on AWS.",
+      "Engineer orchestration using FastAPI, LangGraph, Redis, and PostgreSQL for reliable multi-turn execution.",
+      "Establish API contracts, observability, and quality gates to improve reliability across mobile integrations.",
     ],
-  }, 
+  },
+  {
+    year: 2025,
+    title: "Software Engineering Intern",
+    company: "Anarock",
+    duration: "December 2025 - June 2026",
+    responsibilities: [
+      "Built backend services using FastAPI for AI-driven community workflows supporting 5+ use cases.",
+      "Engineered LangGraph and LangChain orchestration for 4 facility agents, enabling multi-step conversational workflows.",
+      "Orchestrated a deterministic and stateful conversational assistant through intent routing with Redis-backed session restoration.",
+    ],
+  },
   {
     year: 2025,
     title: "AI/ML Intern",
     company: "ForgeAhead Solutions",
     duration: "June 2025 - September 2025",
     responsibilities: [
-      "Developed an agentic AI pipeline within the Product Engineering Unit’s AI/ML stack, leveraging OpenRouter API for job data parsing and achieving 80% real-time scoring accuracy.",
-      "Integrated S-BERT embeddings and OCR pipelines to extract keywords, improving semantic matching by 15%.",
-      "Managed and tracked multiple ML dataset and model versions using MLflow and DagsHub across a 4-person team.",
-    ],
-  },
-  {
-    year: 2025,
-    title: "Financial Research Intern",
-    company: "Wall Street Global Institute",
-    duration: "May 2025 - June 2025",
-    responsibilities: [
-      "Validated financial data from Indian and U.S. annual reports, increasing reporting accuracy by 85% and contributing to an ISB edition book.",
-      "Compared disclosures across 8 chapters, highlighting key differences between Indian reports and Microsoft’s SEC 10-K filings.",
-      "Reviewed 20+ sections from Infosys and Asian Paints annual reports, covering ESG, MD&A, and consolidated financial statements for insights.",
+      "Developed an agentic AI pipeline leveraging the OpenRouter API for job data parsing, achieving 80% accuracy.",
+      "Integrated S-BERT embeddings and OCR pipelines to extract keywords, improving semantic matching precision by 15%.",
+      "Managed and tracked 5+ ML dataset versions using MLflow and DagsHub across a 4-person engineering team.",
     ],
   },
   {

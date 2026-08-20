@@ -59,7 +59,7 @@ const socialLinks = [
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/omkar-jawalikar",
+    href: "https://www.linkedin.com/in/omkar-jawalikar/",
     bgColor: "bg-[#0077B5]",
     hoverColor: "hover:bg-[#0069a6]",
     icon: (
@@ -105,6 +105,21 @@ const coursework = [
 ];
 
 const certifications = [
+  {
+    id: "google-gen-ai-leader",
+    title: "Google Cloud Certified Generative AI Leader",
+    issuer: "Google Cloud",
+    year: "April 2026",
+    status: "Current",
+    credentialUrl: "",
+    description:
+      "Certification focused on generative AI leadership and the practical adoption of AI in organizations.",
+    gradient: "from-blue-500 to-cyan-500",
+    badges: [
+      { text: "Generative AI", color: "border-blue-500 text-blue-700" },
+      { text: "AI Strategy", color: "border-blue-500 text-blue-700" },
+    ],
+  },
   {
     id: "mckinsey",
     title: "McKinsey Forward Program",
@@ -159,21 +174,18 @@ const certifications = [
     ],
   },
   {
-    id: "oracle-ai-foundations",
-    title: "Oracle Cloud Infrastructure AI Foundations Associate",
-    issuer: "Oracle Corporation",
-    year: "27th June 2025",
+    id: "nvidia-ai-for-all",
+    title: "NVIDIA AI for All: From Basics to GenAI Practice",
+    issuer: "NVIDIA",
+    year: "Date not provided",
     status: "Current",
-    credentialUrl:
-      "https://catalog-education.oracle.com/ords/certview/sharebadge?id=E74803FFF1D0B12D8BDBCC9C80E573ECA8C1A73BFBA31AA733EA960E1EF23517",
+    credentialUrl: "",
     description:
-      "Associate-level certification validating foundational knowledge of AI concepts, Oracle Cloud Infrastructure AI services, and machine learning fundamentals for cloud-based AI solutions.",
-    gradient: "from-orange-500 to-red-500",
+      "Program covering foundational AI concepts and practical generative AI applications.",
+    gradient: "from-green-500 to-emerald-600",
     badges: [
-      { text: "AI Foundations", color: "border-orange-500 text-orange-700" },
-      { text: "Oracle Cloud", color: "border-orange-500 text-orange-700" },
-      { text: "Machine Learning", color: "border-orange-500 text-orange-700" },
-      { text: "Cloud AI Services", color: "border-orange-500 text-orange-700" },
+      { text: "AI Foundations", color: "border-green-500 text-green-700" },
+      { text: "Generative AI", color: "border-green-500 text-green-700" },
     ],
   },
 ];
@@ -245,13 +257,11 @@ export default function AboutPage() {
                     Who I Am
                   </h2>
                   <p className="text-portfolio-almost-black/80 leading-relaxed text-sm lg:text-base">
-                    I'm a builder at heart, driven by curiosity, shaped by
-                    discipline, and focused on crafting meaningful tech. Whether
-                    it's developing intelligent AI tools, designing immersive
-                    frontend experiences, or optimizing systems end-to-end, I
-                    thrive at the intersection of innovation and execution. I
-                    value clean architecture, user-centric design, and teamwork
-                    that scales impact. Always learning, always shipping.
+                    I&apos;m a software engineer focused on backend systems and
+                    production AI. I build backend-heavy AI products, agentic
+                    systems, and full-stack prototypes with an emphasis on
+                    production architecture, modular design, and real-world
+                    workflows.
                   </p>
                 </div>
 
@@ -363,7 +373,7 @@ export default function AboutPage() {
                             <strong>Expected Graduation:</strong> July 2026
                           </span>
                           <span className="text-sm font-semibold text-portfolio-almost-black bg-portfolio-surface-elevated py-1 px-3 rounded-full">
-                            CGPA: 8.3
+                            CGPA: 8.33
                           </span>
                         </div>
                         <div className="mt-2">
@@ -460,16 +470,18 @@ export default function AboutPage() {
                                 <strong>Issued:</strong> {cert.year}
                               </p>
                             </div>
-                            <div className="mb-4">
-                              <a
-                                href={cert.credentialUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-600 hover:text-blue-800 text-sm"
-                              >
-                                View Credential →
-                              </a>
-                            </div>
+                            {cert.credentialUrl && (
+                              <div className="mb-4">
+                                <a
+                                  href={cert.credentialUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-blue-600 hover:text-blue-800 text-sm"
+                                >
+                                  View Credential →
+                                </a>
+                              </div>
+                            )}
                             <p className="text-portfolio-almost-black/80 leading-relaxed mb-4">
                               {cert.description}
                             </p>

@@ -20,7 +20,7 @@ type Project = {
   tags: string[];
   features: string[];
   github: string;
-  live: string;
+  live: string | null;
 };
 
 type ProjectCardProps = {
@@ -68,20 +68,22 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
                   <Github className="h-4 w-4" />
                 </a>
               </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 text-portfolio-navy hover:bg-portfolio-beige hover:text-portfolio-navy"
-                asChild
-              >
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
+              {project.live && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 text-portfolio-navy hover:bg-portfolio-beige hover:text-portfolio-navy"
+                  asChild
                 >
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </Button>
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                </Button>
+              )}
             </div>
           </div>
         </CardHeader>
@@ -119,23 +121,23 @@ export default function ProjectsPage() {
       "Implemented idempotency, retries, and failure handling for reliable payment workflows.",
       "Validated 10+ service interaction scenarios using Docker-based integration testing.",
     ],
-    github: "#",
-    live: "#",
+    github: "https://github.com/Falcon-J/AtlasPay",
+    live: "https://atlas-pay-two.vercel.app",
   },
   {
     id: 2,
     title: "AgentArena",
     description:
-      "Multi-agent orchestration platform enabling concurrent execution and shared state across AI agents.",
+      "Auditable multi-agent trading analysis orchestrator for deterministic strategy runs and real-time execution state.",
     image: "/placeholder.svg?height=200&width=400",
     tags: ["Python", "FastAPI", "React", "PostgreSQL", "WebSockets"],
     features: [
-      "Engineered coordination layer for 15+ agents with shared state and parallel execution.",
-      "Handled secure in-memory credential management for external APIs without persistence.",
-      "Enabled real-time tracking of agent activity using WebSockets.",
+      "Engineered a coordination layer executing 15 strategy agents concurrently through LangGraph fan-out and shared state.",
+      "Implemented auditable persistence for market snapshots, agent outputs, weighted contributions, and deterministic replay.",
+      "Handled TTL-bound encrypted in-memory credentials and streamed ordered execution events through WebSockets.",
     ],
-    github: "#",
-    live: "#",
+    github: "https://github.com/Falcon-J/deepagentarena",
+    live: null,
   },
   {
     id: 3,
@@ -153,10 +155,10 @@ export default function ProjectsPage() {
     features: [
       "Built event-driven backend supporting 200+ concurrent users in testing.",
       "Achieved ~50ms real-time updates using Server-Sent Events.",
-      "Designed serverless workflows with Next.js Server Actions.",
+      "Structured 3 serverless workflows with Next.js Server Actions.",
     ],
-    github: "https://github.com/Falcon-J/Saathi",
-    live: "#",
+    github: "https://github.com/Falcon-J/saathi",
+    live: null,
   },
 ];
   return (
