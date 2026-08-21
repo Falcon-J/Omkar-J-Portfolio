@@ -104,7 +104,7 @@ export default function Mbinterest() {
   }, [currentIndex]);
 
   return (
-    <section className="py-8 bg-transparent relative md:hidden">
+    <section className="py-8 bg-transparent relative">
       <AnimatePresence>
         <motion.section
           initial={{ opacity: 0, y: 40 }}

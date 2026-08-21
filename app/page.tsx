@@ -21,9 +21,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageWrapper } from "@/components/page-wrapper";
 import { FadeIn } from "@/components/fade-in";
-import Interestsection from "@/components/Interestsection";
 import Greeting from "@/components/Greeting";
-import { cn } from "@/lib/utils";
 
 export default function Home() {
   return (
@@ -98,8 +96,6 @@ export default function Home() {
       {/* Quick Stats Section */}
 
       {/* Personal Interests Section */}
-      <Interestsection />
-      {/* Mobile Interests Section */}
       <Mbinterest />
     </PageWrapper>
   );
