@@ -1,67 +1,46 @@
-"use client";
-
-import { PageWrapper } from "@/components/page-wrapper";
-import { FadeIn } from "@/components/fade-in";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { notFound } from "next/navigation";
 import Link from "next/link";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-
-interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
-}
-
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const router = useRouter();
-
-  useEffect(() => {
-    // Handle the specific Medium article
-    if (params.slug === "meet-your-digital-pet-born-with-rl") {
-      window.open(
-        "https://medium.com/@omkarjawalikar04/meet-your-digital-pet-born-with-rl-d4bb419ee4ef",
-        "_blank"
-      );
-      router.push("/blog");
-    }
-  }, [params.slug, router]);
-
+import { ChapterHeading } from "@/components/portfolio/chapter";
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  if (
+    slug !== "meet-your-digital-pet-born-with-rl" &&
+    slug !== "digital-pet-rl"
+  )
+    notFound();
   return (
-    <PageWrapper>
-      <section className="py-20">
-        <div className="container max-w-4xl">
-          <FadeIn>
-            <div className="mb-8">
-              <Button variant="ghost" className="mb-4" asChild>
-                <Link href="/blog">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Articles
-                </Link>
-              </Button>
-            </div>
-
-            <div className="text-center py-20">
-              <h1 className="text-3xl font-bold mb-4 text-navy">
-                Redirecting...
-              </h1>
-              <p className="text-navy/70 mb-8">
-                You're being redirected to the article on Medium.
-              </p>
-              <Button asChild>
-                <a
-                  href="https://medium.com/@omkarjawalikar04/meet-your-digital-pet-born-with-rl-d4bb419ee4ef"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open Article on Medium
-                </a>
-              </Button>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-    </PageWrapper>
+    <div className="chapter">
+      <ChapterHeading
+        number="05"
+        eyebrow="Writing · 8 June 2025"
+        title={
+          <>
+            Meet Your Digital Pet:
+            <br />
+            <em>Born with RL.</em>
+          </>
+        }
+      >
+        <p>
+          Reinforcement learning, virtual companions, and the possibilities of a
+          digital pet that learns.
+        </p>
+      </ChapterHeading>
+      <a
+        className="button primary"
+        href="https://medium.com/@omkarjawalikar04/meet-your-digital-pet-born-with-rl-d4bb419ee4ef"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Read the original on Medium ↗
+      </a>
+      <Link className="text-button article-back" href="/#now">
+        ← Back to Now
+      </Link>
+    </div>
   );
 }

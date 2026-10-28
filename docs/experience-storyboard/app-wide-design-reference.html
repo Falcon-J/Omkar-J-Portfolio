@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Living map — app-wide design reference</title>
+<style>body{margin:0;background:#fffaf3;color:#302438;font:17px/1.65 system-ui,sans-serif}main{max-width:1200px;margin:auto;padding:32px 24px}h1,h2{line-height:1.2}h2{margin-top:48px}img{display:block;width:100%;height:auto;border:1px solid #d8cad1;border-radius:12px}figure{margin:24px 0}figcaption{font-size:14px;color:#685b6b;margin-top:10px}table{border-collapse:collapse;width:100%}th,td{text-align:left;vertical-align:top;padding:14px;border-bottom:1px solid #d8cad1}a{color:#684a86}li{margin:8px 0}.status{padding:16px;background:#efe7f2;border-radius:12px}.table{overflow:auto}summary{cursor:pointer;padding:12px 0;font-weight:700}</style>
+<main><h1>One illustrated world, every destination considered</h1><p>28 October 2026 · Design references and implementation contract</p>
+<p class="status">Home's visual direction is approved. The remaining compositions below are proposals for review. These static boards do not establish implementation, animation performance or accessibility compliance. No application code is changed by this reference package.</p>
+<p>This reference supersedes older proposals for four interest sections, Places naming, manual clock controls and music controls. Use Explore, automatic local-time lighting and the image-led destination direction. Preserve existing content facts and URLs.</p>
+<figure><img src="references/home-map-reference.png" alt="Home room entrance, personal card sheet, mobile version and three proposed map arrival frames"><figcaption>Home and map: approved visual direction. Proposed personal copy still needs editorial approval.</figcaption></figure>
+<figure><img src="references/journey-workshop-reference.png" alt="Journey journal and Workshop folders with desktop, content-open, mobile and toolbox designs"><figcaption>Journey and Workshop: proposed composition. Generated toolbox labels are illustrative, not a validated skills inventory. Use the existing verified source content when implementing.</figcaption></figure>
+<figure><img src="references/reading-contact-reference.png" alt="Reading Corner notebook and Contact letter with desktop, mobile, dark surface and interaction-state examples"><figcaption>Reading and Contact: proposed composition. Form labels and success language must follow the existing form/API contract. Dark form appearance illustrates the shared night palette; it does not imply nighttime artwork has already been authored.</figcaption></figure>
+<h2>Every destination has one clear purpose</h2><div class="table"><table><thead><tr><th>Place</th><th>Scene action</th><th>Revealed content</th></tr></thead><tbody>
+<tr><td>Map</td><td>Landmark or Explore</td><td>Destination scene; direct navigation remains available without art.</td></tr>
+<tr><td>Meet the Person</td><td>Crystal ball</td><td>Horizontal personal cards; no employer introduction or fabricated anecdotes.</td></tr>
+<tr><td>Journey</td><td>Open journal, choose milestone</td><td>One dated account; distinguish internship, employment and aspiration.</td></tr>
+<tr><td>Workshop</td><td>Saathi / AtlasPay folder, Toolbox</td><td>Overview, decisions, evidence and source; technical toolkit belongs here. AgentArena stays excluded.</td></tr>
+<tr><td>Reading Corner</td><td>Open notebook</td><td>One populated, dated Medium article; no empty shelves or invented reading history.</td></tr>
+<tr><td>Contact</td><td>Letter</td><td>Direct contact links and optional form. Links must also be discoverable without completing the form.</td></tr>
+</tbody></table></div>
+<h2>Shared interaction contract</h2><ul>
+<li>Keep Back to map and Explore in consistent positions. A detail surface has Back to scene. Escape and browser Back dismiss the deepest active view first. Never stack dialogs.</li>
+<li>Pointer hover reveals feedback; touch and keyboard get persistent, readable action labels. At least 44px primary touch targets. Never require finding an invisible object.</li>
+<li>Opening details retains scene context. Use opaque ivory/plum reading surfaces; glass is limited to small controls. Long content scrolls naturally with Back always reachable.</li>
+<li>Restore focus and parent scroll/card selection when returning. Keep URL state authoritative; preserve existing hashes and legacy routes, including #skills to Workshop.</li>
+<li>Contact drafts survive navigation within the mounted app session. Validate inline, block duplicate sends while pending, retain input on error, and announce only backend-confirmed success. Refresh persistence is not promised.</li>
+<li>Mobile uses explicit scene composition and verified hit regions, not a naive desktop crop. Keyboard and 200% zoom remain usable. Images carry atmosphere; HTML carries all essential text and controls.</li>
+<li>Map reveal is proposed at 700ms: light edge mist, clear landmarks from the start, no readiness delay. Reduced motion removes reveal and orb pulses. Pause optional effects when hidden or offscreen.</li>
+<li>Automatic local-time scene changes never reset navigation, scroll or drafts. Do not claim astronomical sunrise accuracy. Until authored variants exist, do not pretend flattened interior lamps or clouds are independently animated.</li>
+</ul>
+<h2>Design to code</h2><div class="table"><table><thead><tr><th>Responsibility</th><th>Implementation decision</th></tr></thead><tbody>
+<tr><td>Routing and state</td><td>Extend existing map-state.ts and shell ownership; no second router or state library.</td></tr>
+<tr><td>Scene composition</td><td>Shared scene layout with artwork-aligned object controls. Keep stable image geometry or explicitly defined mobile geometry.</td></tr>
+<tr><td>Reading surfaces</td><td>Reuse native dialog lifecycle and installed Framer Motion for restrained opacity/transform transitions. One focus boundary.</td></tr>
+<tr><td>Horizontal cards</td><td>Reuse installed Embla/carousel for arrows, swipe and retained position. No autoplay.</td></tr>
+<tr><td>Orb and mist</td><td>Start with CSS opacity/transform and authored decoration. No app-wide Three.js. Consider an isolated shader only if the approved visual requires it and mobile profiling supports it.</td></tr>
+<tr><td>Contact</td><td>Reuse existing ContactForm and API validation, timeout and retry handling. Preserve mounted draft state when splitting scene components.</td></tr>
+<tr><td>Assets</td><td>Reuse existing illustrations with Next Image and appropriately sized responsive derivatives. Load active scene first; do not eagerly fetch every large illustration.</td></tr>
+<tr><td>External components</td><td>Select effects by interaction purpose, accessibility, bundle cost and license. React Bits Pro source requires verified access; do not reproduce gated code from its demo.</td></tr>
+</tbody></table></div>
+<h2>Before calling implementation complete</h2><ol>
+<li>Approve the remaining scene compositions and personal wording; verify generated mockup text against source content.</li>
+<li>Resolve the inherited obsolete interest-menu test and establish a clean focused navigation test baseline.</li>
+<li>Build the shared scene/surface lifecycle once, then implement each destination and compare it with its reference.</li>
+<li>Check all place/detail deep links, Back/Escape, focus restoration, contact draft retention and failed images.</li>
+<li>Visually inspect desktop, tablet, 360px mobile, night surfaces, keyboard focus, long text and reduced motion. Verify hotspot alignment after resizing.</li>
+<li>Profile a production build on representative mobile hardware before claiming 60fps. Test contact success/failure separately from actual delivery.</li>
+</ol>
+<details><summary>Image-generation provenance</summary><p>Built-in image generation used the existing Home/Map, Journey/Workshop and Reading/Contact artwork as references. Prompts requested image-led desktop entrance, open-content and mobile states, the warm ivory/plum system, consistent Back/Explore controls, authentic content, and no music or manual time controls. The Home board additionally requested a 0/350/700ms edge-mist storyboard; the Contact board requested focus, pending, failure, image fallback and night-surface examples. Generated wording and ornamentation remain illustrative, not authoritative content or independently editable assets.</p></details>
+</main></html>
