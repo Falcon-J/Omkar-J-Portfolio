@@ -29,11 +29,11 @@ export default function Home() {
   return (
     <PageWrapper backgroundVariant="animated">
       {/* Hero Section */}
-      <section className="py-20 md:py-32 bg-transparent relative mb-10">
+      <section className="py-10 md:py-32 bg-transparent relative mb-4 md:mb-10">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <FadeIn delay={0.4}>
-              <div className="relative mx-auto w-64 h-64 md:w-80 md:h-80 group">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <FadeIn delay={0.4} className="order-2 md:order-1">
+              <div className="relative mx-auto w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 group">
                 {/* Animated glow background */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[var(--color-secondary)] via-transparent to-[var(--color-primary)] opacity-35 group-hover:opacity-80 blur-md transition-all animate-[spin_7s_linear_infinite]"></div>
 
@@ -54,22 +54,21 @@ export default function Home() {
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.2}>
+            <FadeIn delay={0.2} className="order-1 md:order-2">
               <div className="space-y-6">
-                <h1 className="text-4xl md:text-6xl font-bold text-[var(--color-text)]">
+                <p className="text-2xl md:text-4xl font-bold text-[var(--color-text)]">
                   <Greeting />
-                </h1>
+                </p>
                 <h1 className="text-4xl md:text-6xl font-bold tracking-wide text-[var(--color-primary)]">
                   {/* Hi, {" "} */}
                   <span className="text-[var(--color-secondary)]">
                     I'm Omkar Jawalikar
                   </span>
                 </h1>
-                <p className="text-xl max-w-xl text-[var(--color-text)]/80">
-                  I&apos;m a software engineer focused on backend systems and
-                  production AI. I build backend-heavy AI products, agentic
-                  systems, and full-stack prototypes grounded in production
-                  architecture, modular design, and real-world workflows.
+                <p className="text-lg md:text-xl max-w-xl text-[var(--color-text)]/80">
+                  I&apos;m a software engineer building backend systems and AI
+                  products for real-world workflows. Explore my projects and
+                  experience to learn more about my work.
                 </p>
 
                 <div className="flex flex-wrap gap-4">

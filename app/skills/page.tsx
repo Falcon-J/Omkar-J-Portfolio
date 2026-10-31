@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PageWrapper } from "@/components/page-wrapper";
 import { FadeIn } from "@/components/fade-in";
 import {
@@ -18,6 +18,15 @@ import { motion } from "framer-motion";
 export default function SkillsPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(2);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
 
   const handleNext = () => {
     if (!isTransitioning) {
@@ -135,7 +144,7 @@ export default function SkillsPage() {
     // Adjust spacing based on screen size
     return (
       normalizedDiff *
-      (typeof window !== "undefined" && window.innerWidth < 768 ? 100 : 120)
+      (isMobile ? 100 : 120)
     );
   };
 
@@ -154,7 +163,7 @@ export default function SkillsPage() {
           </FadeIn>
 
           <div className="relative">
-            <div className="relative h-[450px] sm:h-[400px] w-full overflow-hidden">
+            <div className="relative h-[340px] sm:h-[400px] w-full overflow-hidden">
               {/* Updated Left Button */}
               <button
                 onClick={handlePrev}
@@ -206,10 +215,7 @@ export default function SkillsPage() {
                       opacity:
                         Math.abs(
                           getPositionX(index, currentIndex) /
-                            (typeof window !== "undefined" &&
-                            window.innerWidth < 768
-                              ? 100
-                              : 120)
+                            (isMobile ? 100 : 120)
                         ) <= 2
                           ? 1
                           : 0,
@@ -217,10 +223,7 @@ export default function SkillsPage() {
                         5 -
                         Math.abs(
                           getPositionX(index, currentIndex) /
-                            (typeof window !== "undefined" &&
-                            window.innerWidth < 768
-                              ? 100
-                              : 120)
+                            (isMobile ? 100 : 120)
                         ),
                       filter:
                         normalizeIndex(index - currentIndex) === 0
@@ -248,11 +251,7 @@ export default function SkillsPage() {
                         <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                           <div className="p-2.5 md:p-3.5 rounded-xl bg-portfolio-navy text-portfolio-cream ring-1 ring-portfolio-beige/20 shadow-lg">
                             {React.createElement(category.icon, {
-                              size:
-                                typeof window !== "undefined" &&
-                                window.innerWidth < 768
-                                  ? 20
-                                  : 24,
+                              size: isMobile ? 20 : 24,
                             })}
                           </div>
                           <div>

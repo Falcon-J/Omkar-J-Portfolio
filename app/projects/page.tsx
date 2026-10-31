@@ -62,6 +62,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
               >
                 <a
                   href={project.github}
+                  aria-label={`View ${project.title} on GitHub`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -77,6 +78,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
                 >
                   <a
                     href={project.live}
+                    aria-label={`Visit ${project.title} live site`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

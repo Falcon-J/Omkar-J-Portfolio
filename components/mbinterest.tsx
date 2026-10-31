@@ -112,7 +112,7 @@ export default function Mbinterest() {
           exit={{ opacity: 0, y: 40 }}
           style={{ pointerEvents: "auto" }}
         >
-          <div className="container max-w-screen-sm px-20">
+          <div className="container max-w-screen-sm px-4">
             <h2 className="text-2xl font-bold text-[var(--color-secondary)] mb-6 text-center">
               My Interests
             </h2>
@@ -131,7 +131,7 @@ export default function Mbinterest() {
                   key={idx}
                   className={`snap-start shrink-0 w-full flex justify-center items-center gap-4 p-6 rounded-xl bg-gradient-to-r ${
                     colorClasses[item.color].bg
-                  } shadow mx-2`}
+                  } shadow`}
                 >
                   <span
                     className={`${
