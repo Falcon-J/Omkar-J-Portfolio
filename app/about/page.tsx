@@ -415,8 +415,8 @@ export default function AboutPage() {
                         </CardHeader>
                         <CardContent>
                           <p className="text-portfolio-almost-black/80 leading-relaxed">
-                            As the Director of Operations at VIT's
-                            Entrepreneurship Cell, I've developed leadership
+                            As the Director of Operations at VIT&apos;s
+                            Entrepreneurship Cell, I&apos;ve developed leadership
                             skills and a strategic mindset. I enjoy tackling
                             complex problems and turning ideas into reality
                             through code and collaboration.

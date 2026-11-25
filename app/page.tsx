@@ -1,29 +1,13 @@
 "use client";
 import Mbinterest from "@/components/mbinterest";
 import { Button } from "@/components/ui/button";
-import {
-  Github,
-  Linkedin,
-  Mail,
-  Phone,
-  ArrowRight,
-  Code,
-  Briefcase,
-  Star,
-  Music,
-  Car,
-  Laptop,
-  BookOpen,
-  Award,
-  ChevronDown,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { PageWrapper } from "@/components/page-wrapper";
 import { FadeIn } from "@/components/fade-in";
 import Interestsection from "@/components/Interestsection";
 import Greeting from "@/components/Greeting";
-import { cn } from "@/lib/utils";
 
 export default function Home() {
   return (
@@ -62,7 +46,7 @@ export default function Home() {
                 <h1 className="text-4xl md:text-6xl font-bold tracking-wide text-[var(--color-primary)]">
                   {/* Hi, {" "} */}
                   <span className="text-[var(--color-secondary)]">
-                    I'm Omkar Jawalikar
+                    I&apos;m Omkar Jawalikar
                   </span>
                 </h1>
                 <p className="text-lg md:text-xl max-w-xl text-[var(--color-text)]/80">

@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     });
     if (error) return Response.json({ success: false, error: "Email delivery failed." }, { status: 502 });
     return Response.json({ success: true });
-  } catch (error) {
+  } catch {
     return Response.json({ success: false, error: "Unable to process the message." }, { status: 500 });
   }
 }

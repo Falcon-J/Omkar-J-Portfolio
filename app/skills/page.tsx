@@ -7,10 +7,8 @@ import {
   Code,
   Database,
   Layers,
-  Wrench,
   Brain,
   Cloud,
-  Lock,
   Terminal,
 } from "lucide-react";
 import { motion } from "framer-motion";

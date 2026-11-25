@@ -52,7 +52,7 @@ export default function ContactPage() {
       } else {
         setStatus("Failed to send message. Try again.");
       }
-    } catch (error) {
+    } catch {
       setStatus("Something went wrong.");
     } finally {
       setLoading(false);
@@ -78,7 +78,7 @@ export default function ContactPage() {
                 getThemeStyle("subheading")
               )}
             >
-              Have a question or want to work together? I'd love to hear from
+              Have a question or want to work together? I&apos;d love to hear from
               you.
             </p>
           </FadeIn>
@@ -193,7 +193,7 @@ export default function ContactPage() {
                       getThemeStyle("subheading")
                     )}
                   >
-                    Fill out the form below and I'll get back to you as soon as
+                    Fill out the form below and I&apos;ll get back to you as soon as
                     possible.
                   </CardDescription>
                 </CardHeader>

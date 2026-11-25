@@ -79,7 +79,7 @@ export default function BlogPage() {
               </h1>
               <p className="text-lg text-portfolio-almost-black/80 max-w-3xl mx-auto">
                 Sharing my journey in AI, machine learning, and technology. From
-                hands-on projects to leadership experiences, here's where I
+                hands-on projects to leadership experiences, here&apos;s where I
                 document learnings, insights, and the stories behind the code.
               </p>
             </div>

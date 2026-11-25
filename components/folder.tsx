@@ -8,12 +8,6 @@ interface FolderProps {
   title?: string;
 }
 
-interface CardItem extends React.PropsWithChildren<{}> {
-  props: {
-    children: React.ReactNode[];
-  };
-}
-
 const darkenColor = (hex: string, percent: number): string => {
   let color = hex.startsWith("#") ? hex.slice(1) : hex;
   if (color.length === 3) {
