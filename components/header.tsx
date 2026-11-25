@@ -38,6 +38,15 @@ export default function Header() {
     setClickedButton(null);
   }, [pathname]);
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isMobileMenuOpen]);
+
   const navItems = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
@@ -151,30 +160,19 @@ export default function Header() {
       </motion.div>
     );
   };
-  const [dateTime, setDateTime] = useState(new Date());
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDateTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-  const formattedDateTime = `${dateTime.toLocaleDateString()} ${dateTime.toLocaleTimeString()}`;
-
   return (
     <header
       className={cn(
         "sticky top-0 z-50 w-full transform transition-all duration-300 ease-in-out",
-        isVisible ? "translate-y-0" : "-translate-y-full",
+        isVisible || isMobileMenuOpen ? "translate-y-0" : "-translate-y-full",
         "backdrop-blur-md bg-white/30 dark:bg-neutral-900/30 shadow-md border-b border-white/20 dark:border-neutral-800"
       )}
     >
       <div className="container flex h-16 items-center justify-between">
         {/* Brand or Logo (optional) */}
-        <div className=" font-bold text-[var(--color-secondary)] md:hidden">
-          {formattedDateTime}
-        </div>
+        <Link href="/" className="font-bold text-[var(--color-secondary)] md:hidden" onClick={() => setIsMobileMenuOpen(false)}>
+          Omkar Jawalikar
+        </Link>
 
         {/* Centered Horizontal Navbar */}
         <nav className="hidden md:flex gap-2 mx-auto">
@@ -192,10 +190,12 @@ export default function Header() {
             variant="ghost"
             size="icon"
             className="md:hidden text-[var(--color-secondary)]"
-            onClick={() => setIsMobileMenuOpen(true)}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <Menu className="h-6 w-6" />
-            <span className="sr-only">Open menu</span>
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <span className="sr-only">{isMobileMenuOpen ? "Close menu" : "Open menu"}</span>
           </Button>
         </div>
       </div>
@@ -203,21 +203,7 @@ export default function Header() {
       {/* Mobile Menu */}
       {/* Mobile Menu (Horizontal Navbar) */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white/90 dark:bg-neutral-900/90 backdrop-blur-lg md:hidden">
-          {/* Close Button */}
-          <div className="container flex h-16 items-center justify-between">
-            <div className="flex-grow"></div>{" "}
-            {/* spacer to push button to right */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-[var(--color-secondary)]"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <X className="h-6 w-6" />
-              <span className="sr-only">Close menu</span>
-            </Button>
-          </div>
+        <div id="mobile-navigation" className="absolute left-0 top-full z-50 w-full bg-white dark:bg-neutral-900 shadow-lg md:hidden">
           {/* Horizontal Nav Items */}
           <nav className="container bg-white/80 dark:bg-neutral-900/80 backdrop-blur-lg flex flex-wrap justify-center gap-4 shadow-md border-b border-white/20 dark:border-neutral-700 py-4">
             {navItems.map((item) => (

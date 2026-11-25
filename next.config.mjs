@@ -8,18 +8,11 @@ const securityHeaders = [
 
 const nextConfig = {
   poweredByHeader: false,
+  images: {
+    unoptimized: true,
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
-  },
-  distDir: process.env.NEXT_BUILD_DIR || ".next",
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: false,
-  },
-  images: {
-    unoptimized: false,
   },
 };
 
