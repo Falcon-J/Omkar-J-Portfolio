@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 
 const greetings = ["Hola", "Bonjour", "Namaste", "Ciao", "Hallo"];
@@ -13,6 +15,6 @@ export default function Greeting() {
   }, []);
 
   return (
-    <span className="text-[var(--color-primary)]">{greetings[index]}</span>
+    <span className="text-[var(--color-primary)]" aria-live="off">{greetings[index]}</span>
   );
 }

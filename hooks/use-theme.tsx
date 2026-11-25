@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 /**
  * Hook to get theme-aware values
@@ -73,7 +73,7 @@ export function ThemeAware({ light, dark, fallback = light }: ThemeAwareProps) {
 export function useThemeColors() {
   const { mounted, isDark } = useThemeStatus();
 
-  const colors = {
+  const colors = useMemo(() => ({
     // Primary brand colors with better contrast
     navy: isDark ? "hsl(210, 70%, 85%)" : "hsl(213, 75%, 21%)",
     cream: isDark ? "hsl(213, 35%, 6%)" : "hsl(40, 25%, 94%)",
@@ -93,7 +93,7 @@ export function useThemeColors() {
     navyHsl: isDark ? "210, 70%, 85%" : "213, 75%, 21%",
     creamHsl: isDark ? "213, 35%, 6%" : "40, 25%, 94%",
     textHsl: isDark ? "40, 20%, 98%" : "213, 75%, 21%",
-  };
+  }), [isDark]);
 
   return { colors, mounted, isDark };
 }

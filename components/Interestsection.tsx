@@ -1,8 +1,18 @@
+"use client";
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Laptop, Music, Car, Award, BookOpen } from "lucide-react";
 import { FadeIn } from "@/components/fade-in";
 import Folder from "@/components/folder";
+const colorClasses: Record<string, { card: string; icon: string; title: string; desc: string }> = {
+  indigo: { card: "from-indigo-50 to-indigo-100", icon: "bg-indigo-100", title: "text-indigo-700", desc: "text-indigo-600/80" },
+  pink: { card: "from-pink-50 to-pink-100", icon: "bg-pink-100", title: "text-pink-700", desc: "text-pink-600/80" },
+  orange: { card: "from-orange-50 to-orange-100", icon: "bg-orange-100", title: "text-orange-700", desc: "text-orange-600/80" },
+  green: { card: "from-green-50 to-green-100", icon: "bg-green-100", title: "text-green-700", desc: "text-green-600/80" },
+  blue: { card: "from-blue-50 to-blue-100", icon: "bg-blue-100", title: "text-blue-700", desc: "text-blue-600/80" },
+};
+
 const Interestssection = () => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -60,19 +70,19 @@ const Interestssection = () => {
                   items={items.map((item) => (
                     <div
                       key={item.key}
-                      className={`w-full h-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-${item.color}-50 to-${item.color}-100 shadow-md rounded-lg`}
+                      className={`w-full h-full flex flex-col items-center justify-center p-4 bg-gradient-to-br ${colorClasses[item.color].card} shadow-md rounded-lg`}
                     >
                       <div
-                        className={`bg-${item.color}-100 p-2 rounded-full mb-2`}
+                        className={`${colorClasses[item.color].icon} p-2 rounded-full mb-2`}
                       >
                         {item.icon}
                       </div>
                       <h3
-                        className={`text-sm font-semibold text-${item.color}-700`}
+                        className={`text-sm font-semibold ${colorClasses[item.color].title}`}
                       >
                         {item.title}
                       </h3>
-                      <p className={`text-xs text-${item.color}-600/80 mt-1`}>
+                      <p className={`text-xs ${colorClasses[item.color].desc} mt-1`}>
                         {item.desc}
                       </p>
                     </div>
@@ -82,14 +92,22 @@ const Interestssection = () => {
             </div>
           </div>
 
+          <ul className="sr-only">
+            {items.map((item) => (
+              <li key={item.key}>
+                {item.title}: {item.desc}
+              </li>
+            ))}
+          </ul>
+
           <div className="text-center mt-10">
             <motion.h2
               className="text-3xl md:text-4xl font-bold text-[var(--color-primary)] inline-flex items-center gap-2"
               whileTap={{ scale: 0.95 }}
             >
-              {isHovered ? "Click Now" : "Hover"}{" "}
+              {isHovered ? "Click to open" : "My interests"}{" "}
               <span className="text-[var(--color-secondary)]">
-                {isHovered ? "" : " :)"}
+                {isHovered ? "" : ":)"}
               </span>
             </motion.h2>
           </div>
