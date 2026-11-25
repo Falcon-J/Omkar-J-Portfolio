@@ -2,7 +2,9 @@ import type React from "react";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { MotionProvider } from "@/components/motion-provider";
+import { Header } from "@/components/site/header";
+import { Footer } from "@/components/site/footer";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 
@@ -28,10 +30,13 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: light)", color: "#F7F5F2" },
+    { media: "(prefers-color-scheme: dark)", color: "#0B1018" },
   ],
 };
+
+const sans = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -39,6 +44,8 @@ const personJsonLd = {
   name: site.name,
   url: site.url,
   jobTitle: "Software Engineer",
+  worksFor: { "@type": "Organization", name: "Anarock" },
+  alumniOf: { "@type": "CollegeOrUniversity", name: "Vellore Institute of Technology" },
   sameAs: [site.github, site.linkedin, site.medium],
 };
 
@@ -48,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${sans.variable} ${mono.variable}`}>
       <body>
         <script
           type="application/ld+json"
@@ -56,17 +63,21 @@ export default function RootLayout({
         />
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-black focus:shadow-lg"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-surface focus:px-4 focus:py-2 focus:text-text focus:shadow-lg"
         >
           Skip to content
         </a>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <MotionProvider>{children}</MotionProvider>
+          <Header />
+          <main id="main-content" tabIndex={-1} className="min-h-[70vh] outline-none">
+            {children}
+          </main>
+          <Footer />
           <Analytics />
         </ThemeProvider>
       </body>

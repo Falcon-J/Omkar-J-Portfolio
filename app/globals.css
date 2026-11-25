@@ -2,279 +2,99 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
+/* ------------------------------------------------------------------
+   Design tokens. RGB triplets so Tailwind opacity modifiers work
+   (e.g. bg-primary/10). Every text pair here clears WCAG AA 4.5:1.
+   ------------------------------------------------------------------ */
 @layer base {
   :root {
-    /* Primary Color Theme - Blue and Red */
-    --color-primary: #3b82f6; /* Blue */
-    --color-secondary: #ef4444; /* Red */
-    --color-light: #ffffff;
-    --color-dark: #000000;
-    --color-text: #1f2937; /* Dark gray for text */
-    --color-text-light: #6b7280; /* Light gray for secondary text */
-    --color-bglight: rgba(163, 153, 224, 0.1);
-
-    /* Custom Portfolio Colors - Light Theme */
-    --portfolio-navy: 213 75% 21%; /* #123458 */
-    --portfolio-cream: 40 25% 94%; /* #F1EFEC */
-    --portfolio-beige: 33 13% 79%; /* #D4C9BE */
-    --portfolio-almost-black: 0 0% 1%; /* #030303 */
-
-    /* Brand Color Variants */
-    --portfolio-navy-light: 213 65% 35%;
-    --portfolio-navy-dark: 213 85% 15%;
-    --portfolio-surface: 40 30% 97%;
-    --portfolio-surface-elevated: 0 0% 100%;
-
-    /* Shadcn/ui Variables - Light Theme */
-    --background: var(--portfolio-cream);
-    --foreground: var(--portfolio-navy);
-
-    --card: var(--portfolio-surface-elevated);
-    --card-foreground: var(--portfolio-navy);
-
-    --popover: var(--portfolio-surface-elevated);
-    --popover-foreground: var(--portfolio-navy);
-
-    --primary: var(--portfolio-navy);
-    --primary-foreground: var(--portfolio-cream);
-
-    --secondary: var(--portfolio-beige);
-    --secondary-foreground: var(--portfolio-navy);
-
-    --muted: var(--portfolio-beige);
-    --muted-foreground: 213 25% 45%;
-
-    --accent: var(--portfolio-surface);
-    --accent-foreground: var(--portfolio-navy);
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: var(--portfolio-cream);
-
-    --border: 33 13% 85%;
-    --input: 33 13% 85%;
-    --ring: var(--portfolio-navy);
-
-    --radius: 0.5rem;
-    --sidebar-background: var(--portfolio-surface);
-    --sidebar-foreground: var(--portfolio-navy);
-    --sidebar-primary: var(--portfolio-navy);
-    --sidebar-primary-foreground: var(--portfolio-cream);
-    --sidebar-accent: var(--portfolio-beige);
-    --sidebar-accent-foreground: var(--portfolio-navy);
-    --sidebar-border: 33 13% 85%;
-    --sidebar-ring: var(--portfolio-navy);
+    --bg: 247 245 242;
+    --surface: 255 255 255;
+    --surface-muted: 239 235 229;
+    --border: 221 213 202;
+    --text: 15 23 42;
+    --text-muted: 71 85 105;
+    --primary: 18 52 88;
+    --primary-fg: 255 255 255;
+    --accent: 194 65 12;
+    --success: 21 128 61;
+    --danger: 185 28 28;
+    --pattern: 18 52 88;
+    color-scheme: light;
   }
 
   .dark {
-    /* Primary Color Theme - Blue and Red (Dark Mode) */
-    --color-primary: #60a5fa; /* Lighter blue for dark mode */
-    --color-secondary: #f87171; /* Lighter red for dark mode */
-    --color-light: #ffffff;
-    --color-dark: #000000;
-    --color-text: #f9fafb; /* Light text for dark mode */
-    --color-text-light: #d1d5db; /* Lighter gray for secondary text */
-    --color-bglight: rgba(163, 153, 224, 0.2);
-
-    /* Custom Portfolio Colors - Dark Theme */
-    --portfolio-navy: 210 70% 85%; /* Bright light blue for text */
-    --portfolio-cream: 213 35% 6%; /* Very dark navy background */
-    --portfolio-beige: 213 25% 12%; /* Dark surface */
-    --portfolio-almost-black: 40 20% 98%; /* Almost white text */
-
-    /* Brand Color Variants - Dark Theme */
-    --portfolio-navy-light: 210 60% 90%;
-    --portfolio-navy-dark: 210 80% 75%;
-    --portfolio-surface: 213 30% 9%;
-    --portfolio-surface-elevated: 213 20% 15%;
-
-    /* Shadcn/ui Variables - Dark Theme */
-    --background: var(--portfolio-cream);
-    --foreground: var(--portfolio-almost-black);
-
-    --card: var(--portfolio-surface-elevated);
-    --card-foreground: var(--portfolio-almost-black);
-
-    --popover: var(--portfolio-surface-elevated);
-    --popover-foreground: var(--portfolio-almost-black);
-
-    --primary: var(--portfolio-navy);
-    --primary-foreground: var(--portfolio-cream);
-
-    --secondary: var(--portfolio-surface);
-    --secondary-foreground: var(--portfolio-almost-black);
-
-    --muted: var(--portfolio-beige);
-    --muted-foreground: 210 40% 75%;
-
-    --accent: var(--portfolio-surface);
-    --accent-foreground: var(--portfolio-almost-black);
-
-    --destructive: 0 70% 65%;
-    --destructive-foreground: var(--portfolio-almost-black);
-
-    --border: var(--portfolio-beige);
-    --input: var(--portfolio-beige);
-    --ring: var(--portfolio-navy);
-
-    --sidebar-background: var(--portfolio-surface);
-    --sidebar-foreground: var(--portfolio-almost-black);
-    --sidebar-primary: var(--portfolio-navy);
-    --sidebar-primary-foreground: var(--portfolio-cream);
-    --sidebar-accent: var(--portfolio-beige);
-    --sidebar-accent-foreground: var(--portfolio-almost-black);
-    --sidebar-border: var(--portfolio-beige);
-    --sidebar-ring: var(--portfolio-navy);
+    --bg: 11 16 24;
+    --surface: 18 26 38;
+    --surface-muted: 26 36 51;
+    --border: 38 51 71;
+    --text: 232 237 245;
+    --text-muted: 154 168 188;
+    --primary: 141 180 226;
+    --primary-fg: 11 16 24;
+    --accent: 251 146 60;
+    --success: 74 222 128;
+    --danger: 248 113 113;
+    --pattern: 141 180 226;
+    color-scheme: dark;
   }
-}
 
-@layer base {
-  * {
-    @apply border-[#e5e5e5];
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
+
   body {
-    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
+    @apply bg-bg font-sans text-text antialiased;
+    /* Static dot grid: the old canvas look with zero JavaScript. */
+    background-image: radial-gradient(rgb(var(--pattern) / 0.09) 1px, transparent 1px);
+    background-size: 22px 22px;
+    background-attachment: fixed;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-primary text-primary-fg;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary/60 ring-offset-2 ring-offset-bg;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 }
 
-/* Add custom styles for the blog content */
-.prose h2 {
-  @apply text-2xl font-bold mt-8 mb-4;
-}
-
-.prose h3 {
-  @apply text-xl font-bold mt-6 mb-3;
-}
-
-.prose p {
-  @apply mb-4;
-}
-
-.prose ul,
-.prose ol {
-  @apply mb-4 ml-6;
-}
-
-.prose li {
-  @apply mb-2;
-}
-
-.prose pre {
-  @apply p-4 rounded-md my-4 overflow-x-auto;
-}
-
-.prose code {
-  @apply px-1 py-0.5 rounded;
-}
-
-/* For the scrollable card section */
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-.hide-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
-/* Add custom keyframes for profile image hover effect */
-@keyframes glow {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 5px hsl(var(--portfolio-navy) / 0.5));
-  }
-  50% {
-    filter: drop-shadow(0 0 20px hsl(var(--portfolio-navy) / 0.7));
+@layer utilities {
+  /* Reveal once on scroll. CSS-only progressive enhancement: browsers without
+     scroll-driven animations (or with reduced motion) simply show the content. */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .reveal {
+        animation: reveal both cubic-bezier(.2,.8,.2,1);
+        animation-timeline: view();
+        animation-range: entry 0% entry 40%;
+      }
+    }
   }
 }
 
-/* Theme-aware skill animations */
-.skill-grid {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-
-.skill-dot {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: hsl(var(--portfolio-navy));
-  opacity: 0.15;
-  animation: float-dot linear infinite;
-}
-
-@keyframes float-dot {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.15;
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
   }
-  25% {
-    opacity: 0.3;
-  }
-  50% {
-    transform: translate(20px, 20px) scale(1.5);
-    opacity: 0.15;
-  }
-  75% {
-    opacity: 0.3;
-  }
-  100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.15;
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
-/* About page background animations - theme aware */
-.about-pattern {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-
-.about-particle {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: hsl(var(--portfolio-navy));
-  opacity: 0.1;
-  filter: blur(1px);
-  animation: float-particle ease-in-out infinite;
-}
-
-@keyframes float-particle {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.1;
-  }
-  25% {
-    opacity: 0.2;
-  }
-  50% {
-    transform: translate(30px, -30px) scale(1.8);
-    opacity: 0.15;
-  }
-  75% {
-    opacity: 0.2;
-  }
-  100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.1;
-  }
-}
-
-/* Respect the OS "reduce motion" setting for CSS animations and transitions */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

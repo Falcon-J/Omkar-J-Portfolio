@@ -9,4 +9,4 @@ export const site = {
   medium: "https://medium.com/@omkarjawalikar04",
 } as const;
 
-export const routes = ["", "/about", "/skills", "/projects", "/experience", "/blog", "/contact"] as const;
+export const routes = ["", "/about", "/projects", "/experience", "/blog", "/contact"] as const;
