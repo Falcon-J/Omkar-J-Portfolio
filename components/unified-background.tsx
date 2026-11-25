@@ -40,7 +40,8 @@ export function UnifiedBackground({
     ctx.closePath();
   };
 
-  // Animated background effect
+  // Animated background effect: ~30fps, pauses when the tab is hidden,
+  // draws a single static frame when the user prefers reduced motion.
   useEffect(() => {
     if (variant !== "animated" || !canvasRef.current) return;
 
@@ -48,57 +49,79 @@ export function UnifiedBackground({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    let animationFrameId: number;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const hexSize = 20;
+    let width = 0;
+    let height = 0;
+    let animationFrameId = 0;
+    let lastFrame = 0;
     let time = 0;
 
-    const animate = () => {
-      time += 0.001;
-
-      // Use consistent theme-aware colors
+    const draw = () => {
       ctx.fillStyle = colors.cream;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, width, height);
+      ctx.lineWidth = 1;
 
-      const hexSize = 20;
-      const cols = Math.ceil(canvas.width / (hexSize * 2)) + 2;
-      const rows = Math.ceil(canvas.height / (hexSize * 1.7)) + 2;
+      const cols = Math.ceil(width / (hexSize * 2)) + 2;
+      const rows = Math.ceil(height / (hexSize * 1.7)) + 2;
 
       for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
           const x = i * hexSize * 2 + (j % 2 === 0 ? 0 : hexSize);
           const y = j * hexSize * 1.7;
-
-          const distanceFromCenter = Math.sqrt(
-            Math.pow((x - canvas.width / 2) / canvas.width, 2) +
-              Math.pow((y - canvas.height / 2) / canvas.height, 2)
-          );
-
+          const dx = (x - width / 2) / width;
+          const dy = (y - height / 2) / height;
+          const distanceFromCenter = Math.sqrt(dx * dx + dy * dy);
           const opacity = Math.sin(time + distanceFromCenter * 5) * 0.05 + 0.05;
           ctx.strokeStyle = `hsla(${colors.navyHsl}, ${opacity})`;
-          ctx.lineWidth = 1;
-
           drawHexagon(ctx, x, y, hexSize);
           ctx.stroke();
         }
       }
+    };
 
+    const resizeCanvas = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      draw();
+    };
+
+    const animate = (now: number) => {
+      animationFrameId = requestAnimationFrame(animate);
+      if (now - lastFrame < 33) return; // ~30fps is plenty for a slow pulse
+      time += (now - lastFrame) * 0.00006;
+      lastFrame = now;
+      draw();
+    };
+
+    const start = () => {
+      if (reduceMotion || animationFrameId) return;
+      lastFrame = performance.now();
       animationFrameId = requestAnimationFrame(animate);
     };
+    const stop = () => {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = 0;
+    };
+    const onVisibility = () => (document.hidden ? stop() : start());
 
-    animate();
+    resizeCanvas();
+    start();
+    window.addEventListener("resize", resizeCanvas);
+    document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
+      stop();
       window.removeEventListener("resize", resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
-  }, [variant, colors, isDark]);
+  }, [variant, colors]);
 
   const backgroundVariants = {
     default: "bg-portfolio-cream",

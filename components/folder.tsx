@@ -1,4 +1,6 @@
-import React, { useState, ReactNode, isValidElement } from "react";
+"use client";
+
+import React, { useState, isValidElement } from "react";
 
 interface FolderProps {
   color?: string;
@@ -43,51 +45,13 @@ const Folder: React.FC<FolderProps> = ({
   }
 
   const [open, setOpen] = useState(false);
-  const [paperOffsets, setPaperOffsets] = useState<{ x: number; y: number }[]>(
-    Array.from({ length: maxItems }, () => ({ x: 0, y: 0 }))
-  );
 
   const folderBackColor = darkenColor(color, 0.08);
   const paper1 = darkenColor("#ffffff", 0.1);
   const paper2 = darkenColor("#ffffff", 0.05);
   const paper3 = "#ffffff";
-  const paper4 = darkenColor("#ffffff", 0.03);
-  const paper5 = darkenColor("#ffffff", 0.08);
 
-  const handleClick = () => {
-    setOpen((prev) => !prev);
-    if (open) {
-      setPaperOffsets(Array.from({ length: maxItems }, () => ({ x: 0, y: 0 })));
-    }
-  };
-
-  const handlePaperMouseMove = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    index: number
-  ) => {
-    if (!open) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const offsetX = (e.clientX - centerX) * 0.65;
-    const offsetY = (e.clientY - centerY) * 0.15;
-    setPaperOffsets((prev) => {
-      const newOffsets = [...prev];
-      newOffsets[index] = { x: offsetX, y: offsetY };
-      return newOffsets;
-    });
-  };
-
-  const handlePaperMouseLeave = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    index: number
-  ) => {
-    setPaperOffsets((prev) => {
-      const newOffsets = [...prev];
-      newOffsets[index] = { x: 0, y: 0 };
-      return newOffsets;
-    });
-  };
+  const handleClick = () => setOpen((prev) => !prev);
 
   const folderStyle: React.CSSProperties = {
     "--folder-color": color,
@@ -98,26 +62,6 @@ const Folder: React.FC<FolderProps> = ({
   } as React.CSSProperties;
 
   const scaleStyle = { transform: `scale(${size})` };
-
-  const getOpenTransform = (index: number) => {
-    if (index === 0) return "translate(-120%, -70%) rotate(-15deg)";
-    if (index === 1) return "translate(50%, -70%) rotate(15deg)";
-    if (index === 2) return "translate(-150%, -100%) rotate(5deg)";
-    if (index === 3) return "translate(-180%, -85%) rotate(-10deg)";
-    if (index === 4) return "translate(140%, -85%) rotate(10deg)";
-    return "";
-  };
-
-  const spacing = 20; // Spacing between cards when open
-  const getSpreadTransform = (index: number) => {
-    if (!open) return "";
-    const angles = [-30, -15, 0, 15, 30];
-    const distance = 180;
-    const angle = angles[index];
-    const x = Math.sin((angle * Math.PI) / 180) * distance;
-    const y = -Math.cos((angle * Math.PI) / 180) * distance - spacing;
-    return `translate(${x}px, ${y}px) rotate(${angle}deg)`;
-  };
 
   const getCardPosition = (index: number) => {
     if (!open) return "";
@@ -153,7 +97,17 @@ const Folder: React.FC<FolderProps> = ({
   return (
     <div style={scaleStyle} className={className}>
       <div
-        className={`group relative transition-all duration-200 ease-in cursor-pointer ${
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleClick();
+          }
+        }}
+        aria-expanded={open}
+        aria-label={open ? "Close interests folder" : "Open interests folder"}
+        className={`group relative transition-all duration-200 ease-in cursor-pointer rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-4 ${
           !open ? "hover:-translate-y-1" : ""
         }`}
         style={{
@@ -184,8 +138,6 @@ const Folder: React.FC<FolderProps> = ({
             return (
               <div
                 key={i}
-                onMouseMove={(e) => handlePaperMouseMove(e, i)}
-                onMouseLeave={(e) => handlePaperMouseLeave(e, i)}
                 className={`absolute z-20 bottom-[10%] left-1/2 transition-all duration-300 ease-in-out ${
                   !open
                     ? "transform -translate-x-1/2 translate-y-[10%] group-hover:translate-y-0"
@@ -215,13 +167,13 @@ const Folder: React.FC<FolderProps> = ({
                     ) : (
                       <div className="w-full h-full">
                         {/* Icon container - visible by default, hidden on hover */}
-                        <div className="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-100 bg-white group-hover/card:opacity-0">
+                        <div className="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-100 bg-white group-hover/card:opacity-0 group-focus-visible:opacity-0">
                           <div className="p-3 rounded-full transition-colors duration-300">
                             {cardContent.icon}
                           </div>
                         </div>
                         {/* Text container - hidden by default, visible on hover */}
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 scale-95 group-hover/card:opacity-100 group-hover/card:scale-100 transition-all duration-300 bg-white">
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 scale-95 group-hover/card:opacity-100 group-hover/card:scale-100 group-focus-visible:opacity-100 group-focus-visible:scale-100 transition-all duration-300 bg-white">
                           <div className="text-xs font-medium text-center p-3 break-words leading-tight max-w-[90%]">
                             {cardContent.content}
                           </div>

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { PageWrapper } from "@/components/page-wrapper";
 import { FadeIn } from "@/components/fade-in";
 import {
@@ -10,6 +11,12 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen, Clock } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Articles by Omkar Jawalikar on AI, reinforcement learning and software engineering.",
+  alternates: { canonical: "/blog" },
+};
 
 // Data structure for blog articles
 interface Article {
@@ -59,10 +66,6 @@ const blogData = {
 // Helper functions
 const getFeaturedArticle = (): Article | null => {
   return blogData.articles.find((article) => article.featured) || null;
-};
-
-const getAllArticles = (): Article[] => {
-  return blogData.articles;
 };
 
 export default function BlogPage() {
