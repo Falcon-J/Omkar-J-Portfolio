@@ -6,61 +6,27 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 import { SimpleThemeToggle } from "@/components/theme-toggle";
 
-const navItems = [
-  { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
-  { name: "Skills", path: "/skills" },
-  { name: "Projects", path: "/projects" },
-  { name: "Experience", path: "/experience" },
-  { name: "Blog", path: "/blog" },
-  { name: "Contact", path: "/contact" },
-] as const;
-
-function isActivePath(pathname: string, path: string) {
-  return path === "/" ? pathname === "/" : pathname.startsWith(path);
-}
-
-function DesktopNavLink({ href, active, children }: { href: string; active: boolean; children: React.ReactNode }) {
-  return (
-    <Link
-      href={href}
-      aria-current={active ? "page" : undefined}
-      className={cn(
-        "group relative rounded-lg px-3 py-2 text-base transition-colors duration-200",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]",
-        active
-          ? "font-bold text-[var(--color-secondary)]"
-          : "text-[var(--color-text)] hover:text-[var(--color-primary)]"
-      )}
-    >
-      {children}
-      <span
-        aria-hidden="true"
-        className={cn(
-          "absolute bottom-0 left-1/2 h-0.5 -translate-x-1/2 transition-all duration-300",
-          active
-            ? "w-4/5 bg-[var(--color-secondary)]"
-            : "w-0 bg-[var(--color-primary)] group-hover:w-4/5"
-        )}
-      />
-    </Link>
-  );
-}
-
 export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [clickedButton, setClickedButton] = useState<string | null>(null);
   const pathname = usePathname();
   const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const nextVisible = !(currentScrollY > lastScrollY.current && currentScrollY > 50);
+      setIsScrolled(currentScrollY > 5);
+      if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
       lastScrollY.current = currentScrollY;
-      setIsVisible((prev) => (prev === nextVisible ? prev : nextVisible));
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -69,7 +35,7 @@ export default function Header() {
 
   useEffect(() => {
     setIsVisible(true);
-    setIsMobileMenuOpen(false);
+    setClickedButton(null);
   }, [pathname]);
 
   useEffect(() => {
@@ -81,27 +47,143 @@ export default function Header() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [isMobileMenuOpen]);
 
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Skills", path: "/skills" },
+    { name: "Projects", path: "/projects" },
+    { name: "Experience", path: "/experience" },
+    { name: "Blog", path: "/blog" },
+    { name: "Contact", path: "/contact" },
+  ];
+
+  const isActive = (path: string) => {
+    if (path === "/" && pathname === "/") return true;
+    if (path !== "/" && pathname.startsWith(path)) return true;
+    return false;
+  };
+  const NavLink: React.FC<{
+    href: string;
+    children: React.ReactNode;
+    className?: string;
+    itemName: string;
+  }> = ({ href, children, className, itemName }) => {
+    const isClicked = clickedButton === itemName;
+    const isCurrentActive = isActive(href);
+
+    return (
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+      >
+        <motion.div
+          animate={
+            isClicked
+              ? {
+                  backgroundColor: [
+                    "transparent",
+                    "var(--color-primary)10",
+                    "var(--color-primary)20",
+                    "transparent",
+                  ],
+                  scale: [1, 0.95, 1.02, 1],
+                }
+              : {}
+          }
+          transition={{
+            duration: 0.6,
+            ease: "easeInOut",
+          }}
+          className={cn(
+            "relative px-3 py-2 rounded-lg transition-all duration-200",
+            isClicked &&
+              "bg-[var(--color-primary)]/10 dark:bg-[var(--color-primary)]/20"
+          )}
+        >
+          <Link
+            href={href}
+            className={cn(
+              "block text-md font-normal transition-all duration-200",
+              isCurrentActive
+                ? "text-[var(--color-secondary)] font-bold"
+                : cn(
+                    "text-[var(--color-text)] dark:text-[var(--color-text)] hover:text-[var(--color-primary)]",
+                    isClicked && "text-[var(--color-primary)] font-medium"
+                  ),
+              className
+            )}
+            onClick={() => {
+              setClickedButton(itemName);
+              setTimeout(() => setClickedButton(null), 600);
+            }}
+          >
+            {children}
+          </Link>
+
+          {/* Animated underline for non-active items */}
+          {!isCurrentActive && (
+            <motion.div
+              className="absolute bottom-0 left-1/2 h-0.5 bg-[var(--color-primary)]"
+              initial={{ width: 0, x: "-50%" }}
+              animate={
+                isClicked
+                  ? {
+                      width: ["0%", "80%", "0%"],
+                    }
+                  : {}
+              }
+              transition={{ duration: 0.6 }}
+            />
+          )}
+
+          {/* Active indicator */}
+          {isCurrentActive && (
+            <motion.div
+              className="absolute bottom-0 left-1/2 h-0.5 bg-[var(--color-secondary)]"
+              initial={{ width: "80%", x: "-50%" }}
+              animate={
+                isClicked
+                  ? {
+                      backgroundColor: [
+                        "var(--color-secondary)",
+                        "var(--color-primary)",
+                        "var(--color-secondary)",
+                      ],
+                    }
+                  : {}
+              }
+              transition={{ duration: 0.6 }}
+            />
+          )}
+        </motion.div>
+      </motion.div>
+    );
+  };
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transform transition-transform duration-300 ease-in-out",
+        "sticky top-0 z-50 w-full transform transition-all duration-300 ease-in-out",
         isVisible || isMobileMenuOpen ? "translate-y-0" : "-translate-y-full",
         "backdrop-blur-md bg-white/30 dark:bg-neutral-900/30 shadow-md border-b border-white/20 dark:border-neutral-800"
       )}
     >
       <div className="container flex h-16 items-center justify-between">
-        <Link href="/" className="font-bold text-[var(--color-secondary)] md:hidden">
+        {/* Brand or Logo (optional) */}
+        <Link href="/" className="font-bold text-[var(--color-secondary)] md:hidden" onClick={() => setIsMobileMenuOpen(false)}>
           Omkar Jawalikar
         </Link>
 
-        <nav aria-label="Main" className="hidden md:flex gap-2 mx-auto">
+        {/* Centered Horizontal Navbar */}
+        <nav className="hidden md:flex gap-2 mx-auto">
           {navItems.map((item) => (
-            <DesktopNavLink key={item.path} href={item.path} active={isActivePath(pathname, item.path)}>
+            <NavLink key={item.path} href={item.path} itemName={item.name}>
               {item.name}
-            </DesktopNavLink>
+            </NavLink>
           ))}
         </nav>
 
+        {/* Mobile Menu Toggle and Theme Toggle (Right Aligned) */}
         <div className="flex items-center gap-2">
           <SimpleThemeToggle />
           <Button
@@ -110,7 +192,7 @@ export default function Header() {
             className="md:hidden text-[var(--color-secondary)]"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-navigation"
-            onClick={() => setIsMobileMenuOpen((open) => !open)}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             <span className="sr-only">{isMobileMenuOpen ? "Close menu" : "Open menu"}</span>
@@ -118,32 +200,66 @@ export default function Header() {
         </div>
       </div>
 
+      {/* Mobile Menu */}
+      {/* Mobile Menu (Horizontal Navbar) */}
       {isMobileMenuOpen && (
         <div id="mobile-navigation" className="absolute left-0 top-full z-50 w-full bg-white dark:bg-neutral-900 shadow-lg md:hidden">
-          <nav
-            aria-label="Mobile"
-            className="container flex flex-wrap justify-center gap-4 border-b border-white/20 py-4 dark:border-neutral-700"
-          >
-            {navItems.map((item) => {
-              const active = isActivePath(pathname, item.path);
-              return (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  aria-current={active ? "page" : undefined}
-                  onClick={() => setIsMobileMenuOpen(false)}
+          {/* Horizontal Nav Items */}
+          <nav className="container bg-white/80 dark:bg-neutral-900/80 backdrop-blur-lg flex flex-wrap justify-center gap-4 shadow-md border-b border-white/20 dark:border-neutral-700 py-4">
+            {navItems.map((item) => (
+              <motion.div
+                key={item.path}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <motion.div
+                  animate={
+                    clickedButton === item.name
+                      ? {
+                          backgroundColor: [
+                            "transparent",
+                            "var(--color-primary)10",
+                            "var(--color-primary)20",
+                            "transparent",
+                          ],
+                          scale: [1, 0.95, 1.02, 1],
+                        }
+                      : {}
+                  }
+                  transition={{
+                    duration: 0.6,
+                    ease: "easeInOut",
+                  }}
                   className={cn(
-                    "block rounded-lg border-2 px-4 py-2 text-base font-medium transition-colors duration-200",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]",
-                    active
-                      ? "border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 font-semibold text-[var(--color-secondary)] dark:bg-[var(--color-primary)]/20"
-                      : "border-transparent text-[var(--color-text)] hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] dark:hover:bg-[var(--color-primary)]/20"
+                    "rounded-lg transition-all duration-200",
+                    clickedButton === item.name &&
+                      "bg-[var(--color-primary)]/10 dark:bg-[var(--color-primary)]/20"
                   )}
                 >
-                  {item.name}
-                </Link>
-              );
-            })}
+                  <Link
+                    href={item.path}
+                    className={cn(
+                      "block text-base font-medium px-4 py-2 rounded-lg transition-all duration-200 border-2 border-transparent",
+                      isActive(item.path)
+                        ? "text-[var(--color-secondary)] font-semibold bg-[var(--color-primary)]/10 dark:bg-[var(--color-primary)]/20 border-[var(--color-primary)]/30"
+                        : cn(
+                            "text-[var(--color-text)] dark:text-[var(--color-text)] hover:text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 dark:hover:bg-[var(--color-primary)]/20",
+                            clickedButton === item.name &&
+                              "text-[var(--color-primary)] bg-[var(--color-primary)]/10 dark:bg-[var(--color-primary)]/20 border-[var(--color-primary)]/30"
+                          )
+                    )}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setClickedButton(item.name);
+                      setTimeout(() => setClickedButton(null), 600);
+                    }}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
+              </motion.div>
+            ))}
           </nav>
         </div>
       )}

@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import {
@@ -27,11 +28,16 @@ export function PageWrapper({
 
   return (
     <BackgroundComponent>
-      <Header />
-      <main id="main-content" tabIndex={-1} className="outline-none">
+      <motion.main
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 20 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Header />
         {children}
-      </main>
-      <Footer />
+        <Footer />
+      </motion.main>
     </BackgroundComponent>
   );
 }
