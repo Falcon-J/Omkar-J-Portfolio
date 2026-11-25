@@ -1,0 +1,12 @@
+[
+  {
+    "key": "desktop-b-final",
+    "prompt": "Edit this storyboard preserving its four-panel layout and overall type. Remove the decorative cat landscape from the Saathi cover: use ONLY its existing title and purpose on a flat plum surface. Remove the illustration from Contact, leaving generous blank space beside the existing text/actions. Keep the small header cat. Correct timeline nodes in this exact order: '2004 / Born', 'School / Details to add', 'VIT / CSE', '2025 / ForgeAhead', 'Dec 2025 / Anarock intern', 'Jul 2026 / SDE I'. Last selected node caption 'Today'. Dashed tail 'Next / Aspiration'. Keep selected detail panel Anarock / Software Engineer I / Current chapter. Do not add any biographical claims or illustrations. Change Contact bottom Next to Home. Keep dark Journey, Projects and Now and light Contact.",
+    "path": "C:\\Users\\1552441\\.codex\\generated_images\\01a16f7b-0b40-7d82-8df2-c7d8408f1b1d\\exec-49a768d3-602f-4033-937e-2044f4438245.png"
+  },
+  {
+    "key": "details-final",
+    "prompt": "Edit this interaction storyboard preserving its four sections and controls. Unify its styling with warm ivory #F4F1E9, charcoal plum #211D27, muted violet #7761A8, apricot #EDB78D; use friendly bold sans only, no serif. In THEME PAIR remove all landscape, cloud, bench and large cat illustration, keep tiny header cat. Replace body copy in BOTH theme previews with exact 'Software engineer. Curious about the work, and the world around it.' Keep heading Hi, I'm Omkar. and two actions. In PROJECT STORY cover remove human and diagram drawings, retain ONLY typography 'Shared work. Connected updates.' in sans on muted violet, with small Concept cover. In mobile contact context panel remove record illustration; text and Email me enough. Keep cat game sample strokes in section09, but add a visible small 'Jump' button beside Pause in playing row. Ensure all dark sections use same charcoal plum, not blue grey. Show no scores or invented features. Captions unchanged.",
+    "path": "C:\\Users\\1552441\\.codex\\generated_images\\01a16f7b-0b40-7d82-8df2-c7d8408f1b1d\\exec-b2833385-b688-4f8f-949a-a8f5f7229c26.png"
+  }
+]

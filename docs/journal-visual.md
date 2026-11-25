@@ -1,0 +1,7 @@
+# Journal visual asset
+
+`public/journal-landscape.webp` was generated with the built-in image generation tool for the full-screen journal design, then encoded as WebP for delivery. It is decorative concept imagery, not a photograph of Omkar's workplace or project infrastructure. The original PNG remains in the Codex generated-images directory. Existing portraits are reused without modification.
+
+## Final generation prompt
+
+Use case: stylized-concept. Asset type: full-bleed website background for a software engineer's personal engineering journal. Create one original cinematic architectural photograph-style image, wide landscape composition, of a minimal sculptural brushed-aluminium pavilion with precise ribbed structural elements beside a winding concrete path in an expansive misty mountain landscape. The composition expresses considered engineering, tactile materials and calm precision, with luxury automotive campaign photographic polish but NO cars or automotive brands. Horizon near middle, pavilion predominantly in the right third; left half has calm open mist and pale sky with ample negative space for overlaid serif text. Matte graphite, silver, warm stone, atmospheric pale grey; soft diffused natural dawn light, grounded realistic materials, fine grain, editorial architectural photography, wide cinematic lens. Intended as a full-screen backdrop that remains compelling cropped to a mobile portrait. No text, logos, watermark, neon, circuit boards, screens, sci-fi city or people.

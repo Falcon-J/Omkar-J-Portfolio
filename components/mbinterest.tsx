@@ -104,7 +104,7 @@ export default function Mbinterest() {
   }, [currentIndex]);
 
   return (
-    <section className="py-8 bg-transparent relative md:hidden">
+    <section className="py-8 bg-transparent relative">
       <AnimatePresence>
         <motion.section
           initial={{ opacity: 0, y: 40 }}
@@ -112,7 +112,7 @@ export default function Mbinterest() {
           exit={{ opacity: 0, y: 40 }}
           style={{ pointerEvents: "auto" }}
         >
-          <div className="container max-w-screen-sm px-4">
+          <div className="container max-w-screen-sm px-20">
             <h2 className="text-2xl font-bold text-[var(--color-secondary)] mb-6 text-center">
               My Interests
             </h2>
@@ -131,7 +131,7 @@ export default function Mbinterest() {
                   key={idx}
                   className={`snap-start shrink-0 w-full flex justify-center items-center gap-4 p-6 rounded-xl bg-gradient-to-r ${
                     colorClasses[item.color].bg
-                  } shadow`}
+                  } shadow mx-2`}
                 >
                   <span
                     className={`${

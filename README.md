@@ -1,7 +1,7 @@
 
 # ✨ Omkar's Portfolio
 
-A modern, responsive, and accessible developer portfolio built using **Next.js 15**, **TypeScript**, and **Tailwind CSS**.
+A modern, responsive, and accessible developer portfolio built using **Next.js 13**, **TypeScript**, and **Tailwind CSS**.
 
 ## 🚀 Live Demo
 
@@ -9,10 +9,10 @@ A modern, responsive, and accessible developer portfolio built using **Next.js 1
 
 ## 🧱 Tech Stack
 
-- **Framework**: Next.js 15 (App Router)
+- **Framework**: Next.js 13 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **Package Manager**: npm
+- **Package Manager**: pnpm
 - **Build Tools**: PostCSS
 - **Deployment**: Vercel
 
@@ -22,7 +22,7 @@ A modern, responsive, and accessible developer portfolio built using **Next.js 1
 - 📱 Responsive design for all screen sizes
 - 🧑‍💻 Developer-friendly folder structure
 - 🧩 Modular and reusable components
-- 🌙 Light and dark themes
+- 🌙 Dark mode support ( upcoming feature..)
 - 🔍 SEO-friendly with customizable meta tags
 
 ## 📁 Folder Structure
@@ -48,7 +48,7 @@ styles/       → Global CSS
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (v16 or newer)
-- npm (ships with Node.js 20+)
+- [pnpm](https://pnpm.io/) (v7 or newer)
 
 ### Installation
 
@@ -58,13 +58,13 @@ git clone https://github.com/Falcon-J/Portfolio_2.0.git
 cd Portfolio_2.0
 
 # Install dependencies
-npm install
+pnpm install
 
 # Run the development server
-npm run dev
+pnpm dev
 
 # Build for production
-npm run build
+pnpm build
 ```
 
 ## 🪪 License
