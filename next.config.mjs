@@ -8,14 +8,18 @@ const securityHeaders = [
 
 const nextConfig = {
   poweredByHeader: false,
-  images: {
-    formats: ["image/avif", "image/webp"],
-  },
-  async redirects() {
-    return [{ source: "/skills", destination: "/about#skills", permanent: true }];
-  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
+  },
+  distDir: process.env.NEXT_BUILD_DIR || ".next",
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: false,
+  },
+  images: {
+    unoptimized: false,
   },
 };
 

@@ -5,7 +5,12 @@
 
 # next.js
 /.next/
+/.next-*/
+/.next-build/
+/.next-preview/
 /out/
+/output/
+/.playwright-cli/
 
 # production
 /build
@@ -25,5 +30,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/.next-compact/
+
 # crash logs
 hs_err_pid*.log

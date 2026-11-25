@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Omkar · Five-section design</title><link rel="stylesheet" href="design.css">
+</head>
+<body>
+<!-- Design artifact only. Flow: introduction → selected work → journey → approach → contact.
+     State: selected project, selected milestone, theme, guide visibility, four optional treats.
+     Content is proposed copy from existing portfolio sources; no live feed or production API. -->
+<div class="review-bar"><span>DESIGN PREVIEW · 27 OCT 2026</span><span><a href="mobile.html">Mobile ↗</a> · <a href="states.html">Supporting states ↗</a> · <a href="design.md">Design plan ↗</a></span></div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <span class="cat-mark" role="img" aria-label="Stella, pencil cat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.89-6.42-.5-7 1.39-.58 4.72.23 6.5 2.23A9.04 9.04 0 0 1 12 5Z"/><path d="M8 14v.5M16 14v.5m-4.75 1.75h1.5L12 17l-.75-.75Z"/></svg></span>
+  <nav class="desktop-nav" aria-label="Sections"><a href="#home" aria-current="location">Intro</a><a href="#work">Work</a><a href="#journey">Journey</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  <div class="header-actions"><button id="theme" aria-label="Use dark theme">◐</button><button id="guide" aria-pressed="false">Hide guide</button><button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-nav">Menu</button></div>
+  <nav id="mobile-nav" aria-label="Mobile sections" hidden><a href="#home">Introduction</a><a href="#work">Selected work</a><a href="#journey">Journey</a><a href="#about">How I work</a><a href="#contact">Contact</a><button id="mobile-guide" aria-pressed="false">Hide guide</button></nav>
+</header>
+<main id="main">
+  <section id="home" aria-labelledby="intro-title" class="hero">
+    <div class="hero-inner"><h1 id="intro-title">Hi, I’m <span>Omkar.</span></h1><p class="intro">Software engineer at Anarock in Bengaluru. I build product interfaces, backend APIs, and AI workflows.</p><div class="actions"><a class="button primary" href="#work">Explore my work <span>↘</span></a><a class="quiet-link" href="#contact">Get in touch ↗</a></div></div>
+    <div class="landscape" aria-hidden="true"></div><div class="hero-pair companion" aria-hidden="true"><img src="assets/omkar.png" alt=""><img src="assets/stella.png" alt=""></div>
+  </section>
+
+  <section id="work" class="section" aria-labelledby="work-title">
+    <div class="section-heading"><div><h2 id="work-title">Selected work.</h2></div></div>
+    <div class="project-tabs" role="tablist" aria-label="Selected projects">
+      <button id="tab-saathi" role="tab" aria-selected="true" aria-controls="project-detail" data-project="0"><span class="project-number">01 / COLLABORATION</span><strong>Saathi</strong><span>Keeping shared work in sync.</span><small aria-hidden="true">↓</small></button>
+      <button id="tab-atlaspay" role="tab" aria-selected="false" aria-controls="project-detail" tabindex="-1" data-project="1"><span class="project-number">02 / DISTRIBUTED SYSTEMS</span><strong>AtlasPay</strong><span>Checkout that can recover.</span><small aria-hidden="true">↓</small></button>
+      <button id="tab-agentarena" role="tab" aria-selected="false" aria-controls="project-detail" tabindex="-1" data-project="2"><span class="project-number">03 / AI ORCHESTRATION</span><strong>AgentArena</strong><span>Making agent work inspectable.</span><small aria-hidden="true">↓</small></button>
+    </div>
+    <div id="project-detail" role="tabpanel" aria-labelledby="tab-saathi" tabindex="0">
+      <div class="case-heading"><h3 id="case-title" class="sr-only">Saathi</h3><span id="case-stack">Next.js · TypeScript · PostgreSQL · Redis Streams · SSE</span></div>
+      <dl class="case-grid"><div><dt>The problem</dt><dd id="case-problem">Shared work becomes unreliable when clients disconnect or people edit stale data.</dd></div><div><dt>My contribution</dt><dd id="case-contribution">Task, membership, and invitation workflows, including permissions and live updates.</dd></div><div><dt>A key decision</dt><dd id="case-decision">Replay missed events with Redis Streams and SSE; reject stale edits using version checks.</dd></div><div><dt>Evidence</dt><dd><span id="case-evidence"></span> <a id="case-source" href="https://github.com/Falcon-J/saathi" target="_blank" rel="noopener">View source ↗</a></dd></div></dl>
+      <p id="case-boundary" class="case-boundary">Personal project</p>
+    </div>
+    <p class="current-work"><span class="status-dot" aria-hidden="true"></span><strong>Currently building</strong><span>Configurable product editors and tenant-scoped APIs at Anarock.</span></p>
+    <div class="section-end"><p class="related-writing">An earlier experiment: <a href="https://medium.com/@omkarjawalikar04/meet-your-digital-pet-born-with-rl-d4bb419ee4ef" target="_blank" rel="noopener">a digital pet with reinforcement learning ↗</a></p><button class="treat" data-treat="work" aria-label="Collect Stella’s work treat">♧ <span>A treat for Stella</span></button></div>
+  </section>
+
+  <section id="journey" class="section" aria-labelledby="journey-title">
+    <div class="section-heading"><div><h2 id="journey-title">How I got here.</h2></div><span class="section-note">Select a chapter.</span></div>
+    <div class="journey-path" role="group" aria-label="Journey milestones">
+      <button data-milestone="0" aria-pressed="false"><span class="node" aria-hidden="true"></span><strong>Education</strong><small>VIT · Computer Science</small></button>
+      <button data-milestone="1" aria-pressed="false"><span class="node" aria-hidden="true"></span><strong>AI / ML</strong><small>ForgeAhead · Internship</small></button>
+      <button data-milestone="2" aria-pressed="false"><span class="node" aria-hidden="true"></span><strong>Product engineering</strong><small>Anarock · Internship</small></button>
+      <button data-milestone="3" aria-pressed="true"><span class="node" aria-hidden="true"></span><strong>Today</strong><small>Anarock · SDE I</small></button>
+      <button data-milestone="4" aria-pressed="false" class="aspiration"><span class="node" aria-hidden="true"></span><strong>Next</strong><small>Aspiration</small></button>
+    </div>
+    <div class="journey-story"><div aria-live="polite" aria-atomic="true"><p id="story-date" class="eyebrow">JULY 2026 → PRESENT</p><h3 id="story-title">From features to the whole system.</h3><p id="story-copy">Moving from internship to SDE I has meant looking beyond a single feature: tracing its dependencies, handling failure, and following the change through the product.</p></div><img class="companion" src="assets/omkar-point.png" alt="" aria-hidden="true"></div>
+    <div class="section-end"><button class="treat" data-treat="journey" aria-label="Collect Stella’s journey treat">♧ <span>A treat for Stella</span></button></div>
+  </section>
+
+  <section id="about" class="section about" aria-labelledby="about-title">
+    <div class="portrait"><img src="assets/omkar-jacket.webp" alt="Illustrated portrait of Omkar wearing his black jacket"></div>
+    <div class="approach"><h2 id="about-title">How I approach my work.</h2><p>I start by understanding the person using a product and tracing the system behind it. I question complexity before adding to it, build on good existing tools, and pay attention to the details people notice: clear feedback, recoverable mistakes, and an experience that makes sense.</p><div class="section-end"><button class="treat" data-treat="about" aria-label="Collect Stella’s about treat">♧ <span>A treat for Stella</span></button></div></div>
+  </section>
+
+  <section id="contact" class="section contact" aria-labelledby="contact-title">
+    <div><h2 id="contact-title">Let’s connect.</h2><div class="contact-links"><a class="button primary" href="mailto:omkarjawalikar04@gmail.com">Email me ↗</a><a href="https://www.linkedin.com/in/omkar-jawalikar/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://github.com/Falcon-J" target="_blank" rel="noopener">GitHub ↗</a><a href="assets/Omkar-Jawalikar-Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a></div><button class="treat" data-treat="contact" aria-label="Collect Stella’s contact treat">♧ <span>A treat for Stella</span></button></div><img class="contact-companion companion" src="assets/omkar-sit.png" alt="" aria-hidden="true">
+  </section>
+</main>
+<footer><span>© 2026 Omkar Jawalikar</span><button id="reward" aria-label="Stella’s surprise: 0 of 4 treats"><span id="progress" aria-live="polite">Stella’s surprise · 0 / 4</span><span aria-hidden="true">↗</span></button></footer>
+<dialog id="surprise" aria-labelledby="surprise-title"><button class="dialog-close" aria-label="Close surprise">×</button><h2 id="surprise-title">A little surprise from Stella.</h2><p id="surprise-description">Four optional treats, one in Work, Journey, About, and Contact. Everything on the page is already open to you.</p><div id="reward-image" tabindex="-1" hidden><img src="assets/stella-surprise.jpg" alt="Omkar and Stella together"><p>Thanks for keeping us company.</p></div><button id="reveal" class="button primary" hidden>Reveal image</button><p id="scratch-note" hidden>Design note: a scratch layer and this same Reveal button will offer two ways to open the photo.</p></dialog>
+<script src="design.js"></script>
+</body></html>

@@ -1,46 +1,97 @@
 import type { Config } from "tailwindcss";
 
-const token = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
-
 const config = {
   darkMode: ["class"],
-  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./content/**/*.ts"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
+  prefix: "",
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       colors: {
-        bg: token("bg"),
-        surface: { DEFAULT: token("surface"), muted: token("surface-muted") },
-        border: token("border"),
-        text: { DEFAULT: token("text"), muted: token("text-muted") },
-        primary: { DEFAULT: token("primary"), fg: token("primary-fg") },
-        accent: token("accent"),
-        success: token("success"),
-        danger: token("danger"),
-      },
-      fontFamily: {
-        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
-      },
-      fontSize: {
-        display: ["clamp(2.5rem, 6vw, 4rem)", { lineHeight: "1.05", fontWeight: "700", letterSpacing: "-0.02em" }],
-        h1: ["clamp(2rem, 4vw, 2.75rem)", { lineHeight: "1.15", fontWeight: "700", letterSpacing: "-0.015em" }],
-        h2: ["1.5rem", { lineHeight: "1.25", fontWeight: "650" }],
-        h3: ["1.125rem", { lineHeight: "1.35", fontWeight: "600" }],
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+
+        // Custom Portfolio Colors (Theme-aware)
+        "portfolio-navy": "hsl(var(--portfolio-navy))",
+        "portfolio-cream": "hsl(var(--portfolio-cream))",
+        "portfolio-beige": "hsl(var(--portfolio-beige))",
+        "portfolio-almost-black": "hsl(var(--portfolio-almost-black))",
+        "portfolio-surface": "hsl(var(--portfolio-surface))",
+        "portfolio-surface-elevated": "hsl(var(--portfolio-surface-elevated))",
+        "portfolio-navy-light": "hsl(var(--portfolio-navy-light))",
+        "portfolio-navy-dark": "hsl(var(--portfolio-navy-dark))",
+
+        // Legacy colors (for gradual migration)
+        cream: "#F1EFEC",
+        beige: "#D4C9BE",
+        navy: "#123458",
+        "almost-black": "#030303",
+
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
       },
       borderRadius: {
-        sm: "6px",
-        DEFAULT: "12px",
-        lg: "12px",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
-      maxWidth: {
-        prose: "68ch",
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
       },
-      transitionTimingFunction: {
-        out: "cubic-bezier(.2,.8,.2,1)",
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate"), require("tailwind-scrollbar-hide")],
 } satisfies Config;
 
 export default config;
